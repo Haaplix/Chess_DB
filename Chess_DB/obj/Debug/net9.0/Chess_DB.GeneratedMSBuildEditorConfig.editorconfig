@@ -15,14 +15,14 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Chess_DB
-build_property.ProjectDir = C:\Users\julie\Documents\ECAM\3BA\PO3L\ChessDB\Chess_DB\Chess_DB\
+build_property.ProjectDir = C:\Users\Adam Ali\Documents\Ecam\3Ba\Object oriented programmig\Chess_DB\Chess_DB\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/julie/Documents/ECAM/3BA/PO3L/ChessDB/Chess_DB/Chess_DB/App.axaml]
+[C:/Users/Adam Ali/Documents/Ecam/3Ba/Object oriented programmig/Chess_DB/Chess_DB/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/julie/Documents/ECAM/3BA/PO3L/ChessDB/Chess_DB/Chess_DB/Views/MainWindow.axaml]
+[C:/Users/Adam Ali/Documents/Ecam/3Ba/Object oriented programmig/Chess_DB/Chess_DB/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

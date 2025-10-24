@@ -1464,19 +1464,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\julie\\.nuget\\packages\\": {}
+    "C:\\Users\\Adam Ali\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\julie\\Documents\\ECAM\\3BA\\PO3L\\ChessDB\\Chess_DB\\Chess_DB\\Chess_DB.csproj",
+      "projectUniqueName": "C:\\Users\\Adam Ali\\Documents\\Ecam\\3Ba\\Object oriented programmig\\Chess_DB\\Chess_DB\\Chess_DB.csproj",
       "projectName": "Chess_DB",
-      "projectPath": "C:\\Users\\julie\\Documents\\ECAM\\3BA\\PO3L\\ChessDB\\Chess_DB\\Chess_DB\\Chess_DB.csproj",
-      "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\julie\\Documents\\ECAM\\3BA\\PO3L\\ChessDB\\Chess_DB\\Chess_DB\\obj\\",
+      "projectPath": "C:\\Users\\Adam Ali\\Documents\\Ecam\\3Ba\\Object oriented programmig\\Chess_DB\\Chess_DB\\Chess_DB.csproj",
+      "packagesPath": "C:\\Users\\Adam Ali\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Adam Ali\\Documents\\Ecam\\3Ba\\Object oriented programmig\\Chess_DB\\Chess_DB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\julie\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Adam Ali\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
