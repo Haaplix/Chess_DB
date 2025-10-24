@@ -1,7 +1,6 @@
 ﻿using Avalonia;
 using System;
 
-// test
 
 namespace Chess_DB;
 
