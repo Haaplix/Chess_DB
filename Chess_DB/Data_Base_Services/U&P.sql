@@ -8,8 +8,11 @@
 -- DELETE FROM Admins WHERE admin_name = 'Adam';
 SELECT sqlite_version() AS version;
 
-INSERT INTO Admins(user, password_hash, email)
-VALUES('Admin', 'qfde', 'jp');
-ALTER TABLE Admins RENAME COLUMN admin_name TO user;
+CREATE TABLE Users(
+    Id INTEGER ,
+    Name TEXT NOT NULL
+);
 
+INSERT INTO Users(Id, Name)
+VALUES(1, 'Admin');
 -- SELECT * FROM Admins;
