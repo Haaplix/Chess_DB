@@ -1,24 +1,19 @@
+using Microsoft.EntityFrameworkCore;
 
-using System;
-using System.Data.Common;
-using System.IO;
-using Chess_DB.Data_Base_Services;
-
-static class TestProgram
+public class UserDbcontext : DbContext
 {
-    public static void TestDatabase()
-    {
-        string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\U&P.db"));
-        Data_managment dataManagement = new Data_managment($@"Data Source={dbPath}");
-        // Query the actual table created by your SQL script
-        DbDataReader reader = dataManagement.ExecuteReader(@"SELECT * FROM Admins;");
-        while (reader.Read())
-        {
+    public DbSet<User> Users { get; set; }
 
-            // Match the column names from sql.sql: username, password
-            Console.WriteLine($"Username: {reader["user"]}, Password: {reader["password_hash"]}, Email: {reader["email"]}");
-        }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=D:\\Ecole\\Ecam\\3Ba\\Object oriented programmig\\Chess_DB\\Chess_DB\\Data_Base_Services\\User.db");
     }
+
+
 }
 
-
+public class User
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+}
