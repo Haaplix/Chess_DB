@@ -15,23 +15,6 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         Console.WriteLine("Starting database test...");
 
-        using (var context = new UserDbcontext())
-        {
-            context.Database.EnsureCreated();
-
-            // Add a new user
-            var user = new User() { Id = 2, Name = "Alice" };
-            var user1 = new User() { Id = 1, Name = "Admin" };
-            //context.Users.Add(user);
-            context.Users.Remove(user);
-            context.SaveChanges();
-
-            var users = context.Users.ToListAsync().Result;
-            Console.WriteLine("All users in the database:");
-            foreach (var u in users)
-            {
-                Console.WriteLine($"- {u.Name} (ID: {u.Id})");
-            }
-        }
+        
     }
 }
