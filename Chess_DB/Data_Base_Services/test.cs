@@ -29,7 +29,7 @@ public class AdminDbcontext : DbContext
         optionsBuilder.UseSqlite($"Data Source={dbPath}");
     }
 
-    
+
 }
 public class User
 {
@@ -39,10 +39,10 @@ public class User
 
 public class Admins
 {
-    public int Id {get; set;}
-    public string Name {get; set;}
+    public int Id { get; set; }
+    public required string Name { get; set; }
 
-    public string LName {get; set;}
+    public required string LName { get; set; }
 
-    public string Pwd {get; set;}
+    public required string Pwd { get; set; }
 }

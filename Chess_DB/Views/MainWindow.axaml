@@ -17,8 +17,37 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    
-    <Panel>
+
+    <SplitView IsPaneOpen ="true"
+               OpenPaneLength ="300"
+               CompactPaneLength = "48"
+               DisplayMode = "CompactInline"
+               Background= "black"
+               >
+        <SplitView.Pane>
+            <StackPanel Spacing ="5"
+                        Margin = "5">
+                <Button>
+                    -
+                </Button>
+                <ListBox>
+                    <ListBoxItem>Item</ListBoxItem>
+                    <ListBoxItem>Item</ListBoxItem>
+                    <ListBoxItem>Item</ListBoxItem>
+                    <ListBoxItem>Item</ListBoxItem>
+                </ListBox>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Panel Margin="40">
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                    >
+                    <PathIcon Data="{StaticResource person_board_regular}"/>
+                </Button>
+            </Panel>
+        </SplitView.Content>
+    </SplitView>
+    <!-- <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
                 <ExperimentalAcrylicMaterial
@@ -28,12 +57,7 @@
                     MaterialOpacity="0.65" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
-        <Panel Margin="40">
-            <Button HorizontalAlignment="Right" VerticalAlignment="Top"
-                Command="{Binding printDB}">
-                <PathIcon Data="{StaticResource person_board_regular}"/>
-            </Button>
-        </Panel>
-    </Panel>
+        
+    </Panel> -->
 
 </Window>
