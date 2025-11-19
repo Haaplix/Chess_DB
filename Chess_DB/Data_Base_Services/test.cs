@@ -18,31 +18,9 @@ public class UserDbcontext : DbContext
 
 }
 
-public class AdminDbcontext : DbContext
-{
-    public DbSet<Admins> Admins { get; set; }
-
-    string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Admin.db"));
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite($"Data Source={dbPath}");
-    }
-
-
-}
 public class User
 {
     public int Id { get; set; }
     public required string Name { get; set; }
 }
 
-public class Admins
-{
-    public int Id { get; set; }
-    public required string Name { get; set; }
-
-    public required string LName { get; set; }
-
-    public required string Pwd { get; set; }
-}
