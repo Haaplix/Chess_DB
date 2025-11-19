@@ -22,7 +22,7 @@
             
         <SplitView IsPaneOpen ="{Binding IsPaneOpen}"
                 OpenPaneLength ="200"
-                CompactPaneLength = "48"
+                CompactPaneLength = "52"
                 DisplayMode = "CompactInline"
                 PaneBackground= "#144039"
                 Background ="#1b534a"
@@ -33,13 +33,17 @@
                             Margin = "5">
                     
                     <Button Command="{Binding TriggerPaneCommand}">
-                        -
+                        <PathIcon Data="{StaticResource LineHorizontal3Regular}"/>
                     </Button>
-                    <ListBox Background="#144039">
-                        <ListBoxItem>Acceuil</ListBoxItem>
-                        <ListBoxItem>Competitions</ListBoxItem>
-                        <ListBoxItem>Players</ListBoxItem>
-                        <ListBoxItem>Profile</ListBoxItem>
+                    <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedListItem}" Background="#144039">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+                                <StackPanel Spacing="15" Orientation="Horizontal">
+                                    <PathIcon Data="{Binding ListItemIcon}"/>
+                                    <TextBlock Text="{Binding Label}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
             </SplitView.Pane>

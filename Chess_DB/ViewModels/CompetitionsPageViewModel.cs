@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Chess_DB.ViewModels;
 
-public partial class HomePageViewModel : ViewModelBase
+public partial class CompetitionsPageViewModel : ViewModelBase
 {
 
 }
