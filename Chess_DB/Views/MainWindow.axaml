@@ -21,11 +21,11 @@
 
             
         <SplitView IsPaneOpen ="{Binding IsPaneOpen}"
-                OpenPaneLength ="200"
+                OpenPaneLength ="170"
                 CompactPaneLength = "52"
                 DisplayMode = "CompactInline"
                 PaneBackground= "#144039"
-                Background ="#1b534a"
+                Background ="#D7D9CE"
                 >
 
             <SplitView.Pane>
@@ -33,14 +33,17 @@
                             Margin = "5">
                     
                     <Button Command="{Binding TriggerPaneCommand}">
-                        <PathIcon Data="{StaticResource LineHorizontal3Regular}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="5" VerticalAlignment="Center">
+                            <PathIcon Data="{StaticResource LineHorizontal3Regular}"/>
+                            <TextBlock Text="  CHESSDB" FontWeight="Bold" FontSize="20" TextElement.Foreground="#D7D9CE"/>
+                        </StackPanel>
                     </Button>
-                    <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedListItem}" Background="#144039">
+                    <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedListItem}" Background="#144039" TextElement.Foreground="#D7D9CE">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type vm:ListItemTemplate}">
                                 <StackPanel Spacing="15" Orientation="Horizontal">
                                     <PathIcon Data="{Binding ListItemIcon}"/>
-                                    <TextBlock Text="{Binding Label}"/>
+                                    <TextBlock Text="{Binding Label}" FontSize="15"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -51,14 +54,7 @@
             <SplitView.Content>
                 <Border>
                     <TransitioningContentControl Content ="{Binding CurrentPage}"/>
-                    <!-- <Panel Margin="40">
-                        <Button HorizontalAlignment="Right" VerticalAlignment="Top"
-                            >
-                            <PathIcon Data="{StaticResource person_board_regular}"/>
-                        </Button>
-                    </Panel> -->
                 </Border>
-                
             </SplitView.Content>
         </SplitView>
 

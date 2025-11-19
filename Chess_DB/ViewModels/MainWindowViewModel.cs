@@ -47,11 +47,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel()
     {
         Console.WriteLine("Starting database test...");
-
-
     }
-
-
 }
 
 public class ListItemTemplate

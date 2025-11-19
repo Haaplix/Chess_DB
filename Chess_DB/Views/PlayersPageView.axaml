@@ -7,5 +7,32 @@
         x:Class="Chess_DB.Views.PlayersPageView"
         x:DataType="vm:PlayersPageViewModel"
         >
-        PLAYER
+        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+                <!-- Single row -->
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Centered TextBlock -->
+                <TextBlock Text="PLAYERS"
+                        FontWeight="Bold"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="5"
+                        Padding="5"/>
+
+                <!-- Button aligned to top-right -->
+                <Button Command="{Binding PrintDBCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="5,35,5,5"
+                        Padding="5">
+                        <TextBlock Text="Print DataBase"
+                                FontWeight="Bold"
+                                TextAlignment="Center"
+                                TextElement.Foreground="#144039"
+                                />
+                </Button>
+        </Grid>
 </UserControl>
