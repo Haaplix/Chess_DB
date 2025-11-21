@@ -24,7 +24,7 @@
                         Margin="5"/>
 
                 <!-- Button aligned to top-right -->
-                <Button Command="{Binding OpenWindowAddPlayerCommand}"
+                <Button Command="{Binding  OpendWindowAddPlayerCommand}"
                         HorizontalAlignment="Right"
                         Margin="5,35,5,5"
                         Padding="5">

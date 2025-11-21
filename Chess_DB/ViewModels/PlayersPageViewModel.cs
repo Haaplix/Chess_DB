@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
 using Chess_DB.Messages;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Chess_DB.ViewModels;
 

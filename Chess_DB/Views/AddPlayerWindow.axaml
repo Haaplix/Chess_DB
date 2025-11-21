@@ -2,13 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Chess_DB.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Chess_DB.Views.AddPlayerWindow"
         Title="AddPlayerWindow"
         Width="700" Height="350"
         WindowStartupLocation="CenterOwner"
         ExtendClientAreaToDecorationsHint="True"
-        CanResize="False">
+        CanResize="False"
+        x:DataType="vm:PlayersPageViewModel">
   <Window.Styles>
     <Style Selector="TextBox:pointerover">
     <Setter Property="Foreground" Value="#D7D9CE" />
@@ -42,18 +44,18 @@
               <TextBlock Text="NEW PLAYER" Margin="5" Padding="5" FontWeight="Bold" FontSize="30" TextAlignment="Center"/>
               <StackPanel Orientation="Horizontal">
                 <Label Margin="15,35,5,0" FontWeight="Bold" FontSize="25">FirstName:</Label>
-                <TextBox Text="" Watermark="Enter FirstName" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
+                <TextBox Text="{Binding FirstN}" Watermark="Enter FirstName" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
                 <Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">LastName:</Label>
-                <TextBox Text="" Watermark="Enter LastName" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
+                <TextBox Text="{Binding LastN}" Watermark="Enter LastName" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
               </StackPanel>
               <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >ELO:</Label>
-                <TextBox Text="" Watermark="Enter ELO" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
-                <Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >ELO:</Label>
-                <TextBox Text="" Watermark="Enter ID" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
+                <TextBox Text="{Binding Elo}" Watermark="Enter ELO" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
+                <Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >ID:</Label>
+                <TextBox Text="{Binding Id}" Watermark="Enter ID" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
               </StackPanel>
               <StackPanel  Margin="0,55,0,0">
-                <Button HorizontalAlignment="Stretch" Background="#226D68" FontSize="20" FontWeight="Bold" TextElement.Foreground="#D7D9CE"  HorizontalContentAlignment="Center">ADD NEW PLAYER</Button>
+                <Button Command="{Binding AddplayerCommand}" HorizontalAlignment="Stretch" Background="#226D68" FontSize="20" FontWeight="Bold" TextElement.Foreground="#D7D9CE"  HorizontalContentAlignment="Center">ADD NEW PLAYER</Button>
               </StackPanel>
               
   </StackPanel>
