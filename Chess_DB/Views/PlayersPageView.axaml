@@ -27,8 +27,23 @@
                 <Button Command="{Binding  OpendWindowAddPlayerCommand}"
                         HorizontalAlignment="Right"
                         Margin="5,35,5,5"
-                        Padding="5">
-                        <TextBlock Text="Print DataBase" FontWeight="Bold" TextElement.Foreground="#144039"/>
+                        Padding="5"
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
+                        +
+                        <Button.Styles>
+                                <Style Selector="Button">
+                                        <Setter Property="Background" Value="#144039" />
+                                        <Setter Property="Foreground" Value="#D7D9CE" />
+                                </Style>
+                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#226D68"></Setter>
+                                        <Setter Property="Foreground" Value="#D7D9CE" />
+                                </Style>
+                                <Style Selector="Button:pressed /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="#144039" />
+                                </Style>
+                        </Button.Styles>
                 </Button>
 
 

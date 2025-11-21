@@ -12,7 +12,7 @@
         CanResize="False"
         x:DataType="vm:PlayersPageViewModel">
   <Window.Styles>
-    <Style Selector="TextBox:pointerover">
+  <Style Selector="TextBox:pointerover">
     <Setter Property="Foreground" Value="#D7D9CE" />
 
     <Style Selector="^ /template/ Border#PART_BorderElement">
@@ -38,6 +38,7 @@
       </Style>
   </Style>
   </Window.Styles>
+  
   <StackPanel Spacing ="5"
               Background ="#D7D9CE"
               TextElement.Foreground="#144039">
@@ -55,7 +56,23 @@
                 <TextBox Text="{Binding Id}" Watermark="Enter ID" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
               </StackPanel>
               <StackPanel  Margin="0,55,0,0">
-                <Button Command="{Binding AddplayerCommand}" HorizontalAlignment="Stretch" Background="#226D68" FontSize="20" FontWeight="Bold" TextElement.Foreground="#D7D9CE"  HorizontalContentAlignment="Center">ADD NEW PLAYER</Button>
+                <Button x:Name="test" Command="{Binding AddplayerCommand}" HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
+                  ADD NEW PLAYER
+                  <Button.Styles>
+                    <Style Selector="Button">
+                      <Setter Property="Background" Value="#226D68" />
+                      <Setter Property="Foreground" Value="#D7D9CE" />
+                    </Style>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                      <Setter Property="Background" Value="#2c8f88"></Setter>
+                      <Setter Property="Foreground" Value="#D7D9CE" />
+                    </Style>
+                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                      <Setter Property="Background" Value="Transparent" />
+                      <Setter Property="Foreground" Value="#144039" />
+                    </Style>
+                  </Button.Styles>
+                </Button>
               </StackPanel>
               
   </StackPanel>
