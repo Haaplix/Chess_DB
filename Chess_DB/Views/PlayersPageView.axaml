@@ -23,7 +23,7 @@
                         Padding="5"/>
 
                 <!-- Button aligned to top-right -->
-                <Button Command="{Binding PrintDBCommand}"
+                <Button Command="{Binding AddPlayerCommand}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Margin="5,35,5,5"
