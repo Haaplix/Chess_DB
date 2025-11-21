@@ -8,31 +8,77 @@
         x:DataType="vm:PlayersPageViewModel"
         >
         <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
-                <!-- Single row -->
+
                 <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Centered TextBlock -->
-                <TextBlock Text="PLAYERS"
+    <!-- Title -->
+                <TextBlock Grid.Row="0"
+                        Text="PLAYERS"
                         FontWeight="Bold"
                         FontSize="40"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        Margin="5"
-                        Padding="5"/>
+                        Margin="5"/>
 
-                <!-- Button aligned to top-right -->
-                <Button Command="{Binding PrintDBCommand}"
+    <!-- Button Top Right -->
+                <Button Grid.Row="0"
+                        Command="{Binding PrintDBCommand}"
                         HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
                         Margin="5,35,5,5"
                         Padding="5">
-                        <TextBlock Text="Print DataBase"
-                                FontWeight="Bold"
-                                TextAlignment="Center"
-                                TextElement.Foreground="#144039"
-                                />
+                        <TextBlock Text="Print DataBase" FontWeight="Bold" TextElement.Foreground="#144039"/>
                 </Button>
-        </Grid>
+
+
+                <Canvas Grid.Row="1">
+
+                        <!-- First Name Input -->
+                        <TextBox 
+                                Canvas.Left="20"
+                                Canvas.Top="30"
+                                Width="100"
+                                Height="40"
+                                Text="{Binding FirstN}"
+                                Watermark="FN"/>
+                        
+                        <TextBox 
+                                Canvas.Left="150"
+                                Canvas.Top="30"
+                                Width="100"
+                                Height="40"
+                                Text="{Binding LastN}"
+                                Watermark="LN"/>
+                        <TextBox 
+                                Canvas.Left="260"
+                                Canvas.Top="30"
+                                Width="30"
+                                Height="40"
+                                Text="{Binding Id}"
+                                Watermark="id"/>
+                        <TextBox 
+                                Canvas.Left="350"
+                                Canvas.Top="30"
+                                Width="30"
+                                Height="40"
+                                Text="{Binding Elo}"
+                                Watermark="elo"/>
+                        
+
+                        <!-- Button -->
+                        <Button 
+                                Command="{Binding AddplayerCommand}"
+                                Canvas.Left="20"
+                                Canvas.Top="90"
+                                Padding="10"
+                                Background="#144039">
+                                Add
+                        </Button>
+
+                </Canvas>
+
+                </Grid>
+
 </UserControl>
