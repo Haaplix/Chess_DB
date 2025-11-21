@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 public class Player
 {
-    public string Firstname {get; set;}
+    public  required string Firstname {get; set;}
 
-    public string Lastname {get; set;}
+    public required string Lastname {get; set;}
     public int ELO{get; set;}
     public int playerID {get; set;}
     //private string picture {get; set;}
@@ -26,7 +26,7 @@ public class PlayerDbcontext : DbContext
 {
     public DbSet<Player> Players { get; set; }
 
-    string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\User.db"));
+    string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Player.db"));
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

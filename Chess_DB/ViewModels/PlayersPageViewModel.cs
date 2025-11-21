@@ -1,9 +1,6 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using Chess_DB.Data_Base_Services;
-using System.IO;
+
 using System;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
 
@@ -14,12 +11,18 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task PrintDB()
     {
-        using (var context = new UserDbcontext())
+        using (var context = new PlayerDbcontext())
         {
-            var users = await context.Users.ToListAsync();
-            foreach (var u in users)
+            context.Database.EnsureCreated();
+            // var player = new Player { Firstname = "Adam", Lastname = "JSP", ELO = 1223, playerID = 1333 };
+
+            // context.Players.Add(player);
+            // context.SaveChanges();
+            
+            var players = await context.Players.ToListAsync();
+            foreach (var p in players)
             {
-                Console.WriteLine($"-{u.Name} (ID: {u.Id})");
+                Console.WriteLine($"-{p.Lastname} {p.Firstname} (ID: {p.playerID})");
             }
         }
     }
