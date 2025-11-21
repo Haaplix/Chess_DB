@@ -10,7 +10,6 @@
         Title="Chess_DB"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
-        ExtendClientAreaToDecorationsHint="True"
         >
 
     <Design.DataContext>

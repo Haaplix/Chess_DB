@@ -23,9 +23,8 @@
                         HorizontalAlignment="Center"
                         Margin="5"/>
 
-    <!-- Button Top Right -->
-                <Button Grid.Row="0"
-                        Command="{Binding PrintDBCommand}"
+                <!-- Button aligned to top-right -->
+                <Button Command="{Binding OpenWindowAddPlayerCommand}"
                         HorizontalAlignment="Right"
                         Margin="5,35,5,5"
                         Padding="5">

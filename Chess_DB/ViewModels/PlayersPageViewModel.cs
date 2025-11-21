@@ -3,7 +3,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using Chess_DB.Messages;
 
 namespace Chess_DB.ViewModels;
 
@@ -68,6 +69,13 @@ public partial class PlayersPageViewModel : ViewModelBase
         Elo = Id = null;
     }
 
+
+    [RelayCommand]
+    private async Task OpendWindowAddPlayerAsync()
+    {
+        // Send the message to the previously registered handler and await the selected album
+        var jsp = await WeakReferenceMessenger.Default.Send(new JspMessage());
+    }
 }
 
 

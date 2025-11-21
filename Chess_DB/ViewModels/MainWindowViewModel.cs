@@ -8,6 +8,9 @@ using System.Collections.ObjectModel;
 using Avalonia.Media;
 using Avalonia;
 using Avalonia.Controls;
+using Chess_DB.Messages;
+using CommunityToolkit.Mvvm.Messaging;
+using System.Threading.Tasks;
 
 namespace Chess_DB.ViewModels;
 
@@ -42,10 +45,12 @@ public partial class MainWindowViewModel : ViewModelBase
         IsPaneOpen = !IsPaneOpen;
     }
 
+
     public MainWindowViewModel()
     {
         Console.WriteLine("Starting database test...");
     }
+
 }
 
 public class ListItemTemplate
@@ -62,3 +67,6 @@ public class ListItemTemplate
         ListItemIcon = (StreamGeometry)res!;
     }
 }
+
+
+
