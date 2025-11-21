@@ -15,7 +15,7 @@ public partial class MainWindow : Window
             return;
 
         // Whenever 'Send(new PurchaseAlbumMessage())' is called, invoke this callback on the MainWindow instance:
-        WeakReferenceMessenger.Default.Register<MainWindow, JspMessage>(this, static (w, m) =>
+        WeakReferenceMessenger.Default.Register<MainWindow, WindowPlayerMessage>(this, static (w, m) =>
         {
             // Create an instance of MusicStoreWindow and set MusicStoreViewModel as its DataContext.
             var dialog = new AddPlayerWindow
@@ -23,7 +23,19 @@ public partial class MainWindow : Window
                 DataContext = new PlayersPageViewModel()
             };
             // Show dialog window and reply with returned AlbumViewModel or null when the dialog is closed.
-            m.Reply(dialog.ShowDialog<JspViewModel?>(w));
+            m.Reply(dialog.ShowDialog<WindowPlayerViewModel?>(w));
+        });
+
+        // Whenever 'Send(new PurchaseAlbumMessage())' is called, invoke this callback on the MainWindow instance:
+        WeakReferenceMessenger.Default.Register<MainWindow, WindowCompetitionMessage>(this, static (w, m) =>
+        {
+            // Create an instance of MusicStoreWindow and set MusicStoreViewModel as its DataContext.
+            var dialog = new AddCompetitionWindow
+            {
+                DataContext = new CompetitionsPageViewModel()
+            };
+            // Show dialog window and reply with returned AlbumViewModel or null when the dialog is closed.
+            m.Reply(dialog.ShowDialog<WindowCompetitionViewModel?>(w));
         });
     }
 }

@@ -5,12 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Chess_DB.Views.CompetitionsPageView"
-        x:DataType="vm:CompetitionsPageViewModel"
-        >
-        <StackPanel Spacing ="5"
-                    Margin = "5"
-                    Background ="#D7D9CE"
-                    TextElement.Foreground="#144039">
-                    <TextBlock Text="COMPETITIONS" Margin="5" Padding="5" FontWeight="Bold" FontSize="40" TextAlignment="Center"/>
-        </StackPanel>
+        x:DataType="vm:CompetitionsPageViewModel">     
+
+        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+        
+                <TextBlock Grid.Row="0"
+                        Text="COMPETITIONS"
+                        FontWeight="Bold"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Margin="5"/>
+
+                <!-- Button aligned to top-right -->
+                <Button Command="{Binding  OpendWindowAddCompetitionCommand}"
+                        HorizontalAlignment="Right"
+                        Margin="5,35,5,5"
+                        Padding="5"
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
+                        +
+                        <Button.Styles>
+                                <Style Selector="Button">
+                                        <Setter Property="Background" Value="#144039" />
+                                        <Setter Property="Foreground" Value="#D7D9CE" />
+                                </Style>
+                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#226D68"></Setter>
+                                        <Setter Property="Foreground" Value="#D7D9CE" />
+                                </Style>
+                                <Style Selector="Button:pressed /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="#144039" />
+                                </Style>
+                        </Button.Styles>
+                </Button>
+        </Grid>
 </UserControl>

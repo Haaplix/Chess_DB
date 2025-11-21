@@ -75,7 +75,7 @@ public partial class PlayersPageViewModel : ViewModelBase
     private async Task OpendWindowAddPlayerAsync()
     {
         // Send the message to the previously registered handler and await the selected album
-        var jsp = await WeakReferenceMessenger.Default.Send(new JspMessage());
+        var playerwindow = await WeakReferenceMessenger.Default.Send(new WindowPlayerMessage());
     }
 }
 
