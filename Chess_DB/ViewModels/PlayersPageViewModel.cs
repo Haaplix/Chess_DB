@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Chess_DB.ViewModels;
 
 public partial class PlayersPageViewModel : ViewModelBase
 {
     [ObservableProperty]
+    [Required(ErrorMessage = "First name is required.")]
     private string? _firstN;
     [ObservableProperty]
+    [Required(ErrorMessage = "Last name is required.")]
     private string? _lastN;
     [ObservableProperty]
     private int? _elo;
     [ObservableProperty]
+    [Required(ErrorMessage = "Id is required.")]
     private int? _id;
 
 
@@ -43,11 +47,13 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task Addplayer()
     {
-        if (string.IsNullOrWhiteSpace(FirstN) || string.IsNullOrWhiteSpace(LastN) || Elo == null || Id == null)
-        {
-            Console.WriteLine("Please fill all fields.");
-            return;
-        }
+        ValidateAllProperties();
+        if (HasErrors) return;
+        // if (string.IsNullOrWhiteSpace(FirstN) || string.IsNullOrWhiteSpace(LastN) || Elo == null || Id == null)
+        // {
+        //     Console.WriteLine("Please fill all fields.");
+        //     return;
+        // }
 
         using (var context = new PlayerDbcontext())
         {
@@ -80,18 +86,3 @@ public partial class PlayersPageViewModel : ViewModelBase
 }
 
 
-// public class AddPlayer
-// {
-//     public void AddNewPlayer()
-//     {
-//         using (var context = new PlayerDbcontext())
-//         {
-
-//             context.Database.EnsureCreated();
-//             var player = new Player { Firstname = "Adam", Lastname = "JSP", ELO = 1223, playerID = 1333 };
-
-//             context.Players.Add(player);
-//             context.SaveChanges();
-//         }
-//     }
-// }
