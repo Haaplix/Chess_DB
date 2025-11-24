@@ -2,24 +2,19 @@ using System.IO;
 using System;
 
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 public class Player
 {
-    public  required string Firstname {get; set;}
 
-    public required string Lastname {get; set;}
-    public int ELO{get; set;}
-    public int playerID {get; set;}
-    //private string picture {get; set;}
-     
-    
-    // public Player(string Firstname, string Lastname, int ELO, int playerID, string picture):
-    // {
-    //     this.ELO = ELO;
-    //     this.playerID = playerID;
-    //     this.picture = picture;
-    // }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int playerID { get; set; }
+    public required string Firstname { get; set; }
 
+    public required string Lastname { get; set; }
+    public int ELO { get; set; }
 }
 
 public class PlayerDbcontext : DbContext

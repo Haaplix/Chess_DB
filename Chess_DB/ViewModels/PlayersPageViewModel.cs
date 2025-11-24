@@ -8,6 +8,7 @@ using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Chess_DB.ViewModels;
 
 public partial class PlayersPageViewModel : ViewModelBase
@@ -21,7 +22,8 @@ public partial class PlayersPageViewModel : ViewModelBase
     [ObservableProperty]
     private int? _elo;
     [ObservableProperty]
-    [Required(ErrorMessage = "Id is required.")]
+    // [Required(ErrorMessage = "Id is required.")]
+
     private int? _id;
 
 
@@ -31,10 +33,7 @@ public partial class PlayersPageViewModel : ViewModelBase
         using (var context = new PlayerDbcontext())
         {
             context.Database.EnsureCreated();
-            // var player = new Player { Firstname = "Adam", Lastname = "JSP", ELO = 1223, playerID = 1333 };
 
-            // context.Players.Add(player);
-            // context.SaveChanges();
 
             var players = await context.Players.ToListAsync();
             foreach (var p in players)
@@ -47,28 +46,27 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task Addplayer()
     {
+
         ValidateAllProperties();
         if (HasErrors) return;
-        // if (string.IsNullOrWhiteSpace(FirstN) || string.IsNullOrWhiteSpace(LastN) || Elo == null || Id == null)
-        // {
-        //     Console.WriteLine("Please fill all fields.");
-        //     return;
-        // }
 
         using (var context = new PlayerDbcontext())
         {
+#pragma warning disable CS8601 // Possible null reference assignment.
+
+            context.Database.EnsureCreated();
             var newPlayer = new Player
             {
                 Firstname = FirstN,
                 Lastname = LastN,
-                ELO = Elo.Value,
-                playerID = Id.Value
+                ELO = Elo.Value
             };
+#pragma warning restore CS8601 // Possible null reference assignment.
 
             context.Players.Add(newPlayer);
             await context.SaveChangesAsync();
 
-            Console.WriteLine($"Player added: {LastN} {FirstN} (ID: {Id})");
+            Console.WriteLine($"Player added: {LastN} {FirstN} (ID generated: {newPlayer.playerID})");
         }
 
         // OPTIONAL: Clear inputs after adding
