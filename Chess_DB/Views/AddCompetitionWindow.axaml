@@ -1,79 +1,85 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:Chess_DB.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Chess_DB.Views.AddCompetitionWindow"
-        Title="AddPlayerWindow"
-        Width="700" Height="350"
-        WindowStartupLocation="CenterOwner"
-        ExtendClientAreaToDecorationsHint="True"
-        CanResize="False"
-        x:DataType="vm:PlayersPageViewModel">
-  <Window.Styles>
-  <Style Selector="TextBox:pointerover">
-    <Setter Property="Foreground" Value="#D7D9CE" />
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:vm="using:Chess_DB.ViewModels"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		x:Class="Chess_DB.Views.AddCompetitionWindow"
+		Title="AddPlayerWindow"
+		Width="700" Height="350"
+		WindowStartupLocation="CenterOwner"
+		ExtendClientAreaToDecorationsHint="True"
+		CanResize="False"
+		x:DataType="vm:PlayersPageViewModel">
 
-    <Style Selector="^ /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="#2c8f88"/>
-        <Setter Property="Background" Value="#2c8f88" />
-    </Style>
+	<Window.Styles>
+		<Style Selector="TextBox:pointerover">
+				<Setter Property="Foreground" Value="#D7D9CE" />
+			<Style Selector="^ /template/ Border#PART_BorderElement">
+				<Setter Property="BorderBrush" Value="#2c8f88"/>
+				<Setter Property="Background" Value="#2c8f88" />
+			</Style>
 
-    <Style Selector="^ /template/ TextBlock#PART_Watermark">
-        <Setter Property="Foreground" Value="#D7D9CE" />
-    </Style>
-  </Style>
-  <Style Selector="TextBox:focus">
-      <Setter Property="Foreground" Value="#144039" />
+			<Style Selector="^ /template/ TextBlock#PART_Watermark">
+				<Setter Property="Foreground" Value="#D7D9CE" />
+			</Style>
+		</Style>
 
-      <Style Selector="^ /template/ TextBlock#PART_Watermark">
-          <Setter Property="Foreground" Value="#144039" />
-      </Style>
+		<Style Selector="TextBox:focus">
+			<Setter Property="Foreground" Value="#144039" />
 
-      <Style Selector="^ /template/ Border#PART_BorderElement">
-          <Setter Property="Background" Value="Transparent"/>
-          <Setter Property="BorderBrush" Value="#144039"/>
-          <Setter Property="BorderThickness" Value="1" />
-      </Style>
-  </Style>
-  </Window.Styles>
-  
-  <StackPanel Spacing ="5"
-              Background ="#D7D9CE"
-              TextElement.Foreground="#144039">
-              <TextBlock Text="NEW COMPETITION" Margin="5" Padding="5" FontWeight="Bold" FontSize="30" TextAlignment="Center"/>
-              <StackPanel Orientation="Horizontal">
-                <Label Margin="15,35,5,0" FontWeight="Bold" FontSize="25">Name:</Label>
-                <TextBox Text="" Watermark="Enter Name" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
-                <Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">ID:</Label>
-                <TextBox Text="" Watermark="Enter ID" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
-              </StackPanel>
-              <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Date:</Label>
-                <TextBox Text="" Watermark="Enter Date" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
-                <Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Place:</Label>
-                <TextBox Text="" Watermark="Enter Place" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
-              </StackPanel>
-              <StackPanel  Margin="0,55,0,0">
-                <Button Command="" HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
-                  ADD NEW COMPETITION
-                  <Button.Styles>
-                    <Style Selector="Button">
-                      <Setter Property="Background" Value="#226D68" />
-                      <Setter Property="Foreground" Value="#D7D9CE" />
-                    </Style>
-                    <Style Selector="Button:pointerover /template/ ContentPresenter">
-                      <Setter Property="Background" Value="#2c8f88"></Setter>
-                      <Setter Property="Foreground" Value="#D7D9CE" />
-                    </Style>
-                    <Style Selector="Button:pressed /template/ ContentPresenter">
-                      <Setter Property="Background" Value="Transparent" />
-                      <Setter Property="Foreground" Value="#144039" />
-                    </Style>
-                  </Button.Styles>
-                </Button>
-              </StackPanel>
-              
-  </StackPanel>
+			<Style Selector="^ /template/ TextBlock#PART_Watermark">
+				<Setter Property="Foreground" Value="#144039" />
+			</Style>
+			<Style Selector="^ /template/ Border#PART_BorderElement">
+				<Setter Property="Background" Value="Transparent"/>
+				<Setter Property="BorderBrush" Value="#144039"/>
+				<Setter Property="BorderThickness" Value="1" />
+			</Style>
+		</Style>
+	</Window.Styles>
+
+
+		<StackPanel Spacing ="5"
+					Background ="#D7D9CE"
+					TextElement.Foreground="#144039">
+
+			<TextBlock Text="NEW COMPETITION" Margin="5" Padding="5" FontWeight="Bold" FontSize="30" TextAlignment="Center"/>
+
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="15,35,5,0" FontWeight="Bold" FontSize="25">Name:</Label>
+				<TextBox Text="" Watermark="Enter Name" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">ID:</Label>
+				<TextBox Text="" Watermark="Enter ID" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Date:</Label>
+				<TextBox Text="" Watermark="Enter Date" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
+				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Place:</Label>
+				<TextBox Text="" Watermark="Enter Place" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
+			</StackPanel>
+
+			<StackPanel  Margin="0,55,0,0">
+				<Button Command="" HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
+				ADD NEW COMPETITION
+					<Button.Styles>
+						<Style Selector="Button">
+							<Setter Property="Background" Value="#226D68" />
+							<Setter Property="Foreground" Value="#D7D9CE" />
+						</Style>
+						<Style Selector="Button:pointerover /template/ ContentPresenter">
+							<Setter Property="Background" Value="#2c8f88"></Setter>
+							<Setter Property="Foreground" Value="#D7D9CE" />
+						</Style>
+						<Style Selector="Button:pressed /template/ ContentPresenter">
+							<Setter Property="Background" Value="Transparent" />
+							<Setter Property="Foreground" Value="#144039" />
+						</Style>
+					</Button.Styles>
+				</Button>
+			</StackPanel>
+
+		</StackPanel>
+
 </Window>
