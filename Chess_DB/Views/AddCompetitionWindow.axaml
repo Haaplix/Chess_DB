@@ -13,6 +13,10 @@
 		x:DataType="vm:PlayersPageViewModel">
 
 	<Window.Styles>
+		<Style Selector="TextBox">
+			<Setter Property="Foreground" Value="#D7D9CE" />
+                        <Setter Property="Background" Value="#226D68" />
+		</Style>
 		<Style Selector="TextBox:pointerover">
 				<Setter Property="Foreground" Value="#D7D9CE" />
 			<Style Selector="^ /template/ Border#PART_BorderElement">
@@ -37,6 +41,18 @@
 				<Setter Property="BorderThickness" Value="1" />
 			</Style>
 		</Style>
+		<Style Selector="Button">
+				<Setter Property="Background" Value="#144039" />
+				<Setter Property="Foreground" Value="#D7D9CE" />
+		</Style>
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+				<Setter Property="Background" Value="#226D68"></Setter>
+				<Setter Property="Foreground" Value="#D7D9CE" />
+		</Style>
+		<Style Selector="Button:pressed /template/ ContentPresenter">
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="Foreground" Value="#144039" />
+		</Style>
 	</Window.Styles>
 
 
@@ -48,35 +64,21 @@
 
 			<StackPanel Orientation="Horizontal">
 				<Label Margin="15,35,5,0" FontWeight="Bold" FontSize="25">Name:</Label>
-				<TextBox Text="" Watermark="Enter Name" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<TextBox Text="" Watermark="Enter Name" Width="160" Margin="10,35,5,0" FontSize="17"/>
 				<Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">ID:</Label>
-				<TextBox Text="" Watermark="Enter ID" Background="#226D68" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<TextBox Text="" Watermark="Enter ID" Width="160" Margin="10,35,5,0" FontSize="17"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Date:</Label>
-				<TextBox Text="" Watermark="Enter Date" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
+				<TextBox Text="" Watermark="Enter Date" Width="140" Margin="10,75,5,0" FontSize="17"/>
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Place:</Label>
-				<TextBox Text="" Watermark="Enter Place" Background="#226D68" Width="140" Margin="10,75,5,0" FontSize="17"/>
+				<TextBox Text="" Watermark="Enter Place"  Width="140" Margin="10,75,5,0" FontSize="17"/>
 			</StackPanel>
 
 			<StackPanel  Margin="0,55,0,0">
 				<Button Command="" HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
 				ADD NEW COMPETITION
-					<Button.Styles>
-						<Style Selector="Button">
-							<Setter Property="Background" Value="#226D68" />
-							<Setter Property="Foreground" Value="#D7D9CE" />
-						</Style>
-						<Style Selector="Button:pointerover /template/ ContentPresenter">
-							<Setter Property="Background" Value="#2c8f88"></Setter>
-							<Setter Property="Foreground" Value="#D7D9CE" />
-						</Style>
-						<Style Selector="Button:pressed /template/ ContentPresenter">
-							<Setter Property="Background" Value="Transparent" />
-							<Setter Property="Foreground" Value="#144039" />
-						</Style>
-					</Button.Styles>
 				</Button>
 			</StackPanel>
 

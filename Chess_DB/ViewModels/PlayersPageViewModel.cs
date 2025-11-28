@@ -7,6 +7,10 @@ using CommunityToolkit.Mvvm.Messaging;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Data;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 
 namespace Chess_DB.ViewModels;
@@ -26,8 +30,17 @@ public partial class PlayersPageViewModel : ViewModelBase
 
     private int? _id;
 
+    // [ObservableProperty]
+    // private string? searchText;
 
-    [RelayCommand]
+    // [ObservableProperty]
+    // private bool isBusy;
+
+    public PlayersPageViewModel()
+    {
+        LoadPlayer();
+    }
+
     private async Task PrintDB()
     {
         using (var context = new PlayerDbcontext())
@@ -80,6 +93,24 @@ public partial class PlayersPageViewModel : ViewModelBase
     {
         // Send the message to the previously registered handler and await the selected album
         var playerwindow = await WeakReferenceMessenger.Default.Send(new WindowPlayerMessage());
+    }
+
+
+    [ObservableProperty]
+    private ObservableCollection<string> playerList = new();
+
+    [RelayCommand]
+    public void LoadPlayer()
+    {
+        DataTable result = Connexion.PlayerTable();
+
+        PlayerList.Clear();
+
+        foreach (DataRow row in result.Rows)
+        {
+            var tarsh = " " + row["Firstname"] + " " + row["Lastname"] + " " + "ELO: " + row["ELO"] + " " + "Id : " + row["playerID"];
+            PlayerList.Add(tarsh);
+        }
     }
 }
 

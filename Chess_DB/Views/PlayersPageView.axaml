@@ -7,7 +7,52 @@
         x:Class="Chess_DB.Views.PlayersPageView"
         x:DataType="vm:PlayersPageViewModel"
         >
-        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+        <UserControl.Styles>
+                <Style Selector="TextBox">
+			<Setter Property="Foreground" Value="#D7D9CE" />
+                        <Setter Property="Background" Value="#226D68" />
+		</Style>
+		<Style Selector="TextBox:pointerover">
+			<Setter Property="Foreground" Value="#D7D9CE" />
+
+			<Style Selector="^ /template/ Border#PART_BorderElement">
+				<Setter Property="BorderBrush" Value="#2c8f88"/>
+				<Setter Property="Background" Value="#2c8f88" />
+			</Style>
+
+			<Style Selector="^ /template/ TextBlock#PART_Watermark">
+				<Setter Property="Foreground" Value="#D7D9CE" />
+			</Style>
+		</Style>
+
+		<Style Selector="TextBox:focus">
+			<Setter Property="Foreground" Value="#144039" />
+
+			<Style Selector="^ /template/ TextBlock#PART_Watermark">
+				<Setter Property="Foreground" Value="#144039" />
+			</Style>
+
+			<Style Selector="^ /template/ Border#PART_BorderElement">
+				<Setter Property="Background" Value="Transparent"/>
+				<Setter Property="BorderBrush" Value="#144039"/>
+				<Setter Property="BorderThickness" Value="1" />
+			</Style>
+		</Style>
+                <Style Selector="Button">
+                                <Setter Property="Background" Value="#144039" />
+                                <Setter Property="Foreground" Value="#D7D9CE" />
+                        </Style>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#226D68"></Setter>
+                                <Setter Property="Foreground" Value="#D7D9CE" />
+                        </Style>
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="#144039" />
+                        </Style>
+	</UserControl.Styles>
+        <StackPanel>
+                <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
 
                 <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -15,7 +60,7 @@
                         <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-    <!-- Title -->
+                <!-- Title -->
                 <TextBlock Grid.Row="0"
                         Text="PLAYERS"
                         FontWeight="Bold"
@@ -30,69 +75,32 @@
                         Padding="5"
                         FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
                         +
-                        <Button.Styles>
-                                <Style Selector="Button">
-                                        <Setter Property="Background" Value="#144039" />
-                                        <Setter Property="Foreground" Value="#D7D9CE" />
-                                </Style>
-                                <Style Selector="Button:pointerover /template/ ContentPresenter">
-                                        <Setter Property="Background" Value="#226D68"></Setter>
-                                        <Setter Property="Foreground" Value="#D7D9CE" />
-                                </Style>
-                                <Style Selector="Button:pressed /template/ ContentPresenter">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="Foreground" Value="#144039" />
-                                </Style>
-                        </Button.Styles>
                 </Button>
-
-
-                <Canvas Grid.Row="1">
-
-                        <!-- First Name Input -->
-                        <TextBox 
-                                Canvas.Left="20"
-                                Canvas.Top="30"
-                                Width="100"
-                                Height="40"
-                                Text="{Binding FirstN}"
-                                Watermark="FN"/>
-                        
-                        <TextBox 
-                                Canvas.Left="150"
-                                Canvas.Top="30"
-                                Width="100"
-                                Height="40"
-                                Text="{Binding LastN}"
-                                Watermark="LN"/>
-                        <TextBox 
-                                Canvas.Left="260"
-                                Canvas.Top="30"
-                                Width="30"
-                                Height="40"
-                                Text="{Binding Id}"
-                                Watermark="id"/>
-                        <TextBox 
-                                Canvas.Left="350"
-                                Canvas.Top="30"
-                                Width="30"
-                                Height="40"
-                                Text="{Binding Elo}"
-                                Watermark="elo"/>
-                        
-
-                        <!-- Button -->
-                        <Button 
-                                Command="{Binding AddplayerCommand}"
-                                Canvas.Left="20"
-                                Canvas.Top="90"
-                                Padding="10"
-                                Background="#144039">
-                                Add
-                        </Button>
-
-                </Canvas>
-
-                </Grid>
+        </Grid>
+        <DockPanel>
+                <StackPanel DockPanel.Dock="Top">
+                        <TextBox Watermark="Search for Albums...." Text="" />
+                        <ProgressBar IsIndeterminate="True" IsVisible="" />
+                </StackPanel>
+                <ListBox />
+        </DockPanel>
+        <Button Command="{Binding LoadPlayerCommand}"
+                HorizontalAlignment="Center"
+                Margin="5,35,5,5"
+                Padding="5"
+                FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+                PlayerTable
+        </Button>
+        <ItemsControl ItemsSource="{Binding PlayerList}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button>
+                        <Label Content="{Binding}"/>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </StackPanel>
+        
 
 </UserControl>
