@@ -88,16 +88,13 @@
 						Maximum="3000"
 						Watermark="Enter ELO" 
 						Background="#226D68" 
-						Width="140" 
+						Width="170" 
 						Margin="10,75,5,0" 
 						FontSize="17"/>
-
-			<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >ID:</Label>
-			<TextBox Text="{Binding Id}" Watermark="Enter ID" Width="140" Margin="10,75,5,0" FontSize="17"/>
 		</StackPanel>
 
 		<StackPanel  Margin="0,55,0,0">
-			<Button x:Name="test" Command="{Binding AddplayerCommand}" 
+			<Button Command="{Binding AddplayerCommand}" 
 					HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
 					ADD NEW PLAYER
 			</Button>

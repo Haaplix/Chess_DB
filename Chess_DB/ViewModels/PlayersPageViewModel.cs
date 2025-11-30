@@ -97,7 +97,7 @@ public partial class PlayersPageViewModel : ViewModelBase
 
 
     [ObservableProperty]
-    private ObservableCollection<string> playerList = new();
+    private ObservableCollection<Player> playerList = new();
 
     [RelayCommand]
     public void LoadPlayer()
@@ -108,8 +108,13 @@ public partial class PlayersPageViewModel : ViewModelBase
 
         foreach (DataRow row in result.Rows)
         {
-            var tarsh = " " + row["Firstname"] + " " + row["Lastname"] + " " + "ELO: " + row["ELO"] + " " + "Id : " + row["playerID"];
-            PlayerList.Add(tarsh);
+            PlayerList.Add(new Player
+            {
+                Firstname = row["Firstname"].ToString(),
+                Lastname = row["Lastname"].ToString(),
+                ELO = Convert.ToInt32(row["ELO"]),
+                playerID = Convert.ToInt32(row["playerID"])
+            });
         }
     }
 }
