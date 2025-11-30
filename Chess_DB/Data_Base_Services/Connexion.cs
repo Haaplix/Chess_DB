@@ -1,13 +1,14 @@
+using System.IO;
 using System;
 using System.Data;
 using System.Data.SQLite;
-using System.Linq;
-using System.Security.Cryptography;
+
 
 
 public static class Connexion
 {
-    private static readonly string key = @"Data Source=C:\Users\julie\Documents\ECAM\3BA\PO3L\ChessDB\Chess_DB\Chess_DB\Data_Base_Services\Player.db";
+    static string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Player.db"));
+    private static readonly string key = $@"Data Source={dbPath}";
     /// <summary>
     /// Connexion a la datatbase 
     /// </summary>
