@@ -19,59 +19,40 @@ public static class Connexion
     }
 
 
-    /// <summary>
-    /// exécute une commmande SQL non_query!
-    /// </summary>
-    /// <param name="query">string représentant la commande SQL a exécuter! Attention que pour les Query type!</param>
-    public static void ExecuteNonQuery(string query)
-    {
-        using (var conn = connection())
-        {
-            conn.Open();
-            var cmd = new SQLiteCommand(query, conn);
-            cmd.ExecuteNonQuery();
-        }
-    }
-
-    /// <summary>
-    /// retourne une Table avec la data demandée par la query
-    /// </summary>
-    /// <param name="query">string représentant la commade SQL a exécuter! Attention que pour les Query type!</param>
-    /// <returns>retourne un objet de type DataTable</returns>
-    public static DataTable ExecuteQuery(string query)
-    {
-        using (var conn = connection())
-        {
-            conn.Open();
-            var cmd = new SQLiteCommand(query, conn);
-            SQLiteDataReader reader;
-            reader = cmd.ExecuteReader();
-
-
-            var result = new DataTable();
-            result.Load(reader);
-            return result;
-        }
-    }
-    public static DataTable FindPlayer(long? ID, string? name)
+    public static DataTable FindPlayer(string? firstname, string? lastname, string? id)
     {
         using (var conn = connection())
         {
             var cmd = new SQLiteCommand(conn);
             string query = "Select * from Players where 1=1";
 
-            if (ID != null)
+            if (firstname != "" && firstname != null)
             {
-                query += " and ID=@ID";
-                cmd.Parameters.AddWithValue("@ID", ID.ToString());
+                query += " and FirstName =@firstname";
             }
-            if (name != "")
+            if (lastname != "" && lastname != null)
             {
-                query += " and Nom=@name";
-                cmd.Parameters.AddWithValue("@name", name);
+                query += " and LastName =@lastname";
+            }
+            if (id != "" && id != null)
+            {
+                query += " and playerID =@id";
             }
 
             cmd.CommandText = query;
+
+            if (firstname != null && firstname != "")
+            {
+                cmd.Parameters.AddWithValue("@firstname", firstname);
+            }
+            if (lastname != null && lastname != "")
+            {
+                cmd.Parameters.AddWithValue("@lastname", lastname);
+            }
+            if (id != null && id != "")
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+            }
 
             conn.Open();
             SQLiteDataReader reader;
@@ -88,7 +69,7 @@ public static class Connexion
         using (var conn = connection())
         {
             var cmd = new SQLiteCommand(conn);
-            string query = "Select * from Players where 1=1";
+            string query = "Select * from Players";
 
             cmd.CommandText = query;
 

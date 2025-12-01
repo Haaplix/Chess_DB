@@ -7,9 +7,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Data;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
@@ -85,6 +83,7 @@ public partial class PlayersPageViewModel : ViewModelBase
         // OPTIONAL: Clear inputs after adding
         FirstN = LastN = string.Empty;
         Elo = Id = null;
+
     }
 
 
@@ -117,6 +116,34 @@ public partial class PlayersPageViewModel : ViewModelBase
             });
         }
     }
+
+    [ObservableProperty]
+    private string firstName_search;
+    [ObservableProperty]
+    private string lastName_search;
+    [ObservableProperty]
+    private string id_search;
+
+    [RelayCommand]
+    private void Search()
+    {
+        DataTable result = Connexion.FindPlayer(FirstName_search, LastName_search, Id_search);
+        Console.WriteLine(FirstName_search);
+        PlayerList.Clear();
+
+        foreach (DataRow row in result.Rows)
+        {
+            PlayerList.Add(new Player
+            {
+                Firstname = row["Firstname"].ToString(),
+                Lastname = row["Lastname"].ToString(),
+                ELO = Convert.ToInt32(row["ELO"]),
+                playerID = Convert.ToInt32(row["playerID"])
+            });
+            Console.WriteLine(row["Firstname"].ToString());
+        }
+    }
+
 }
 
 
