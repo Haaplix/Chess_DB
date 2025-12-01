@@ -8,6 +8,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Chess_DB.ViewModels;
 
@@ -16,12 +18,16 @@ public partial class CompetitionsPageViewModel : ViewModelBase
 
     private int? _competitionId;
     [ObservableProperty]
+    [Required(ErrorMessage = "*")]
     private string? _competitionName;
     [ObservableProperty]
+    [Required(ErrorMessage = "*")]
     private string? _date;
     [ObservableProperty]
+    [Required(ErrorMessage = "*")]
     private string? _city;
     [ObservableProperty]
+    [Required(ErrorMessage = "*")]
     private string? _country;
 
     [RelayCommand]
@@ -52,6 +58,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             // Clear the input fields after adding the competition
             CompetitionName = Date = City = Country = string.Empty;
         }
+        LoadComp();
     }
 
     [RelayCommand]
@@ -59,5 +66,31 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     {
         // Send the message to the previously registered handler and await the selected album
         var competitionwindow = await WeakReferenceMessenger.Default.Send(new WindowCompetitionMessage());
+    }
+
+
+    [ObservableProperty]
+    private ObservableCollection<Competition> compList = new();
+
+    [RelayCommand]
+    public void LoadComp()
+    {
+
+
+        using (var context = new CompetitionDbcontext())
+        {
+            context.Database.EnsureCreated();
+            var competitions = context.Competitions.ToListAsync().Result;
+            CompList.Clear();
+            foreach (var comp in competitions)
+            {
+                CompList.Add(comp);
+            }
+        }
+
+        foreach (var comp in CompList)
+        {
+            Console.WriteLine($"Loaded competition: {comp.CompName} on {comp.date} in {comp.city}, {comp.country}");
+        }
     }
 }

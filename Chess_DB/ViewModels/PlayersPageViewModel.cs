@@ -24,7 +24,7 @@ public partial class PlayersPageViewModel : ViewModelBase
     [Required(ErrorMessage = "*.")]
     private string? _lastN;
     [ObservableProperty]
-    private int? _elo;
+    private int? _elo = 1400;
     [ObservableProperty]
     // [Required(ErrorMessage = "Id is required.")]
 
@@ -91,7 +91,6 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     public void LoadPlayer()
     {
-        Console.WriteLine("Loading players from database...");
         DataTable result = Connexion.PlayerTable();
 
         PlayerList.Clear();
@@ -107,7 +106,6 @@ public partial class PlayersPageViewModel : ViewModelBase
                 playerID = Convert.ToInt32(row["playerID"])
             });
 #pragma warning restore CS8601 // Possible null reference assignment.
-            Console.WriteLine($"Loaded player: {row["Firstname"]} {row["Lastname"]} (ELO: {row["ELO"]})");
         }
     }
 }
