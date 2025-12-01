@@ -76,14 +76,9 @@
 
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 			<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >ELO:</Label>
-			<!-- <TextBox Text="{Binding Elo}" 
-					Watermark="Enter ELO" 
-					Background="#226D68" 
-					Width="140" 
-					Margin="10,75,5,0" 
-					FontSize="17">
-			</TextBox> -->
-			<NumericUpDown Value="{Binding Elo}" 
+			
+			<NumericUpDown Value="{Binding Elo}"
+						
 						Minimum="0"
 						Maximum="3000"
 						Watermark="Enter ELO" 
