@@ -76,7 +76,7 @@
                 </Button>
 
                 <!-- Button aligned to top-right -->
-                <Button Command="{Binding  OpendWindowAddPlayerCommand}"
+                <Button Command="{Binding OpendWindowAddPlayerCommand}"
                         Margin="5,35,5,5"
                         Padding="5"
                         FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
@@ -85,10 +85,12 @@
                 </StackPanel>
                 
         </Grid>
-        <DockPanel>
-                <StackPanel DockPanel.Dock="Top">
-                        <TextBox Watermark="Search for Albums...." Text="" />
-                        <ProgressBar IsIndeterminate="True" IsVisible="False" />
+        <DockPanel LastChildFill="True">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" >
+                        <TextBox Watermark="FirstName" Text="{Binding FirstName_search}" Width="150"/>
+                        <TextBox Watermark="LastName" Text="{Binding LastName_search}" Width="150"/>
+                        <TextBox Watermark="ID" Text="{Binding Id_search}" Width="150"/>
+                        <Button Command="{Binding SearchCommand}">Search</Button>
                 </StackPanel>
                 <ListBox />
         </DockPanel>
