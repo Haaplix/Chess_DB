@@ -114,6 +114,9 @@ public partial class PlayersPageViewModel : ViewModelBase
                 ELO = Convert.ToInt32(row["ELO"]),
                 playerID = Convert.ToInt32(row["playerID"])
             });
+            FirstName_search = "";
+            LastName_search = "";
+            id_search = "";
         }
     }
 

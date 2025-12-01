@@ -28,30 +28,30 @@ public static class Connexion
 
             if (firstname != "" && firstname != null)
             {
-                query += " and FirstName =@firstname";
+                query += " and FirstName like @firstname";
             }
             if (lastname != "" && lastname != null)
             {
-                query += " and LastName =@lastname";
+                query += " and LastName like @lastname";
             }
             if (id != "" && id != null)
             {
-                query += " and playerID =@id";
+                query += " and playerID like @id";
             }
 
             cmd.CommandText = query;
 
             if (firstname != null && firstname != "")
             {
-                cmd.Parameters.AddWithValue("@firstname", firstname);
+                cmd.Parameters.AddWithValue("@firstname", $"%{firstname}%");
             }
             if (lastname != null && lastname != "")
             {
-                cmd.Parameters.AddWithValue("@lastname", lastname);
+                cmd.Parameters.AddWithValue("@lastname", $"%{lastname}%");
             }
             if (id != null && id != "")
             {
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", $"%{id}%");
             }
 
             conn.Open();
