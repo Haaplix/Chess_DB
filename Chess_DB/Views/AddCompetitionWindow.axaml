@@ -3,14 +3,21 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:vm="using:Chess_DB.ViewModels"
+		xmlns:i="using:Avalonia.Xaml.Interactivity"
+		xmlns:iv="using:Avalonia.Xaml.Interactions.Core"	
+		xmlns:av="using:Avalonia.Xaml.Interactivity"
+		xmlns:avc="using:Avalonia.Xaml.Interactions.Core"
+
+
 		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		x:Class="Chess_DB.Views.AddCompetitionWindow"
-		Title="AddPlayerWindow"
+		Title="AddCompetitionWindow"
 		Width="700" Height="350"
 		WindowStartupLocation="CenterOwner"
 		ExtendClientAreaToDecorationsHint="True"
 		CanResize="False"
-		x:DataType="vm:PlayersPageViewModel">
+		x:DataType="vm:CompetitionsPageViewModel"
+>
 
 	<Window.Styles>
 		<Style Selector="TextBox">
@@ -64,20 +71,20 @@
 
 			<StackPanel Orientation="Horizontal">
 				<Label Margin="15,35,5,0" FontWeight="Bold" FontSize="25">Name:</Label>
-				<TextBox Text="" Watermark="Enter Name" Width="160" Margin="10,35,5,0" FontSize="17"/>
-				<Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">ID:</Label>
-				<TextBox Text="" Watermark="Enter ID" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<TextBox Text="{Binding CompetitionName}" Watermark="Enter Name" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">Country:</Label>
+				<TextBox Text="{Binding Country}" Watermark="Enter Country" Width="160" Margin="10,35,5,0" FontSize="17"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Date:</Label>
-				<TextBox Text="" Watermark="Enter Date" Width="140" Margin="10,75,5,0" FontSize="17"/>
+				<TextBox Text="{Binding Date}" Watermark="Enter Date" Width="140" Margin="10,75,5,0" FontSize="17"/>
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Place:</Label>
-				<TextBox Text="" Watermark="Enter Place"  Width="140" Margin="10,75,5,0" FontSize="17"/>
+				<TextBox Text="{Binding City}" Watermark="Enter City"  Width="140" Margin="10,75,5,0" FontSize="17"/>
 			</StackPanel>
 
 			<StackPanel  Margin="0,55,0,0">
-				<Button Command="" HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
+				<Button Command="{Binding AddCompetitionCommand}" HorizontalAlignment="Stretch" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center">
 				ADD NEW COMPETITION
 				</Button>
 			</StackPanel>

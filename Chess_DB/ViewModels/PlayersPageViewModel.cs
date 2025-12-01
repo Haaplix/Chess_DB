@@ -18,10 +18,10 @@ namespace Chess_DB.ViewModels;
 public partial class PlayersPageViewModel : ViewModelBase
 {
     [ObservableProperty]
-    [Required(ErrorMessage = "First name is required.")]
+    [Required(ErrorMessage = "*")]
     private string? _firstN;
     [ObservableProperty]
-    [Required(ErrorMessage = "Last name is required.")]
+    [Required(ErrorMessage = "*.")]
     private string? _lastN;
     [ObservableProperty]
     private int? _elo;
@@ -39,21 +39,6 @@ public partial class PlayersPageViewModel : ViewModelBase
     public PlayersPageViewModel()
     {
         LoadPlayer();
-    }
-
-    private async Task PrintDB()
-    {
-        using (var context = new PlayerDbcontext())
-        {
-            context.Database.EnsureCreated();
-
-
-            var players = await context.Players.ToListAsync();
-            foreach (var p in players)
-            {
-                Console.WriteLine($"-{p.Lastname} {p.Firstname} (ID: {p.playerID})");
-            }
-        }
     }
 
     [RelayCommand]
@@ -80,11 +65,15 @@ public partial class PlayersPageViewModel : ViewModelBase
             await context.SaveChangesAsync();
 
             Console.WriteLine($"Player added: {LastN} {FirstN} (ID generated: {newPlayer.playerID})");
+
         }
 
         // OPTIONAL: Clear inputs after adding
         FirstN = LastN = string.Empty;
         Elo = Id = null;
+
+        await Task.Delay(50);
+        LoadPlayer();
     }
 
 
@@ -102,12 +91,14 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     public void LoadPlayer()
     {
+        Console.WriteLine("Loading players from database...");
         DataTable result = Connexion.PlayerTable();
 
         PlayerList.Clear();
 
         foreach (DataRow row in result.Rows)
         {
+#pragma warning disable CS8601 // Possible null reference assignment.
             PlayerList.Add(new Player
             {
                 Firstname = row["Firstname"].ToString(),
@@ -115,6 +106,8 @@ public partial class PlayersPageViewModel : ViewModelBase
                 ELO = Convert.ToInt32(row["ELO"]),
                 playerID = Convert.ToInt32(row["playerID"])
             });
+#pragma warning restore CS8601 // Possible null reference assignment.
+            Console.WriteLine($"Loaded player: {row["Firstname"]} {row["Lastname"]} (ELO: {row["ELO"]})");
         }
     }
 }
