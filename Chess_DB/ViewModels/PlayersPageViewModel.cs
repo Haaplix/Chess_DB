@@ -96,7 +96,6 @@ public partial class PlayersPageViewModel : ViewModelBase
 
         foreach (DataRow row in result.Rows)
         {
-#pragma warning disable CS8601 // Possible null reference assignment.
             PlayerList.Add(new Player
             {
                 Firstname = row["Firstname"].ToString(),
@@ -104,35 +103,9 @@ public partial class PlayersPageViewModel : ViewModelBase
                 ELO = Convert.ToInt32(row["ELO"]),
                 playerID = Convert.ToInt32(row["playerID"])
             });
-#pragma warning restore CS8601 // Possible null reference assignment.
-        }
-    }
-
-    [ObservableProperty]
-    private string firstName_search;
-    [ObservableProperty]
-    private string lastName_search;
-    [ObservableProperty]
-    private string id_search;
-
-    [RelayCommand]
-    private void Search()
-    {
-        DataTable result = Connexion.FindPlayer(FirstName_search, LastName_search, Id_search);
-        Console.WriteLine(FirstName_search);
-        PlayerList.Clear();
-
-        foreach (DataRow row in result.Rows)
-        {
-#pragma warning disable CS8601 // Possible null reference assignment.
-            PlayerList.Add(new Player
-            {
-                Firstname = row["Firstname"].ToString(),
-                Lastname = row["Lastname"].ToString(),
-                ELO = Convert.ToInt32(row["ELO"]),
-                playerID = Convert.ToInt32(row["playerID"])
-            });
-#pragma warning restore CS8601 // Possible null reference assignment.
+            FirstName_search = "";
+            LastName_search = "";
+            id_search = "";
         }
     }
 
