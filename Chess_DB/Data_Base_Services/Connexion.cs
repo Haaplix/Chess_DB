@@ -7,8 +7,8 @@ using System.Data.SQLite;
 
 public static class Connexion
 {
-    static string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Player.db"));
-    private static readonly string key = $@"Data Source={dbPath}";
+    static string dbPathPlayer = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Player.db"));
+    private static readonly string key = $@"Data Source={dbPathPlayer}";
     /// <summary>
     /// Connexion a la datatbase 
     /// </summary>
@@ -64,14 +64,56 @@ public static class Connexion
         }
     }
 
-    public static DataTable PlayerTable()
+    public static DataTable FindComp(string? name, string? country, string? city, string? date, string? id)
     {
         using (var conn = connection())
         {
             var cmd = new SQLiteCommand(conn);
-            string query = "Select * from Players";
+            string query = "Select * from Competitions where 1=1";
+
+            if (name != "" && name != null)
+            {
+                query += " and FirstName like @firstname";
+            }
+            if (country != "" && country != null)
+            {
+                query += " and LastName like @lastname";
+            }
+            if (city != "" && city != null)
+            {
+                query += " and LastName like @lastname";
+            }
+            if (date != "" && date != null)
+            {
+                query += " and LastName like @lastname";
+            }
+            if (id != "" && id != null)
+            {
+                query += " and playerID like @id";
+            }
 
             cmd.CommandText = query;
+
+            if (name != null && name != "")
+            {
+                cmd.Parameters.AddWithValue("@firstname", $"%{name}%");
+            }
+            if (country != null && country != "")
+            {
+                cmd.Parameters.AddWithValue("@lastname", $"%{country}%");
+            }
+            if (city != null && city != "")
+            {
+                cmd.Parameters.AddWithValue("@lastname", $"%{city}%");
+            }
+            if (date != null && date != "")
+            {
+                cmd.Parameters.AddWithValue("@lastname", $"%{date}%");
+            }
+            if (id != null && id != "")
+            {
+                cmd.Parameters.AddWithValue("@id", $"%{id}%");
+            }
 
             conn.Open();
             SQLiteDataReader reader;

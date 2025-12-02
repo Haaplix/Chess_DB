@@ -90,22 +90,17 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     public void LoadPlayer()
     {
-        DataTable result = Connexion.PlayerTable();
 
-        PlayerList.Clear();
-
-        foreach (DataRow row in result.Rows)
+        using (var context = new PlayerDbcontext())
         {
-            PlayerList.Add(new Player
+            context.Database.EnsureCreated();
+            var competitions = context.Players.ToListAsync().Result;
+            PlayerList.Clear();
+
+            foreach (var comp in competitions)
             {
-                Firstname = row["Firstname"].ToString(),
-                Lastname = row["Lastname"].ToString(),
-                ELO = Convert.ToInt32(row["ELO"]),
-                playerID = Convert.ToInt32(row["playerID"])
-            });
-            FirstName_search = "";
-            LastName_search = "";
-            id_search = "";
+                PlayerList.Add(comp);
+            }
         }
     }
 
@@ -117,7 +112,7 @@ public partial class PlayersPageViewModel : ViewModelBase
     private string id_search;
 
     [RelayCommand]
-    private void Search()
+    private void SearchPlayers()
     {
         DataTable result = Connexion.FindPlayer(FirstName_search, LastName_search, Id_search);
         Console.WriteLine(FirstName_search);

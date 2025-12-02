@@ -10,6 +10,7 @@ using System.Data.SQLite;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Chess_DB.ViewModels;
 
@@ -29,6 +30,13 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     [ObservableProperty]
     [Required(ErrorMessage = "*")]
     private string? _country;
+
+
+    public CompetitionsPageViewModel()
+    {
+        LoadComp();
+    }
+
 
     [RelayCommand]
     private async Task AddCompetition()
@@ -58,7 +66,6 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             // Clear the input fields after adding the competition
             CompetitionName = Date = City = Country = string.Empty;
         }
-        LoadComp();
     }
 
     [RelayCommand]
@@ -75,22 +82,50 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     [RelayCommand]
     public void LoadComp()
     {
-
-
         using (var context = new CompetitionDbcontext())
         {
             context.Database.EnsureCreated();
             var competitions = context.Competitions.ToListAsync().Result;
             CompList.Clear();
+
             foreach (var comp in competitions)
             {
                 CompList.Add(comp);
             }
         }
+    }
 
-        foreach (var comp in CompList)
+    [ObservableProperty]
+    private string name_search;
+    [ObservableProperty]
+    private string country_search;
+    [ObservableProperty]
+    private string city_search;
+    [ObservableProperty]
+    private string date_search;
+    [ObservableProperty]
+    private string id_search;
+
+    [RelayCommand]
+    private void SearchCompetitions()
+    {
+        DataTable result = Connexion.FindComp(Name_search, Country_search, City_search, Date_search, Id_search);
+        Console.WriteLine(Name_search);
+        CompList.Clear();
+
+        foreach (DataRow row in result.Rows)
         {
-            Console.WriteLine($"Loaded competition: {comp.CompName} on {comp.date} in {comp.city}, {comp.country}");
+            CompList.Add(new Competition
+            {
+                CompName = row["CompName"].ToString(),
+                country = row["country"].ToString(),
+                city = row["city"].ToString(),
+                date = row["date"].ToString(),
+                CompId = Convert.ToInt32(row["CompId"])
+            });
+            Console.WriteLine(row["Firstname"].ToString());
         }
     }
+
 }
+

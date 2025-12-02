@@ -7,78 +7,132 @@
         x:Class="Chess_DB.Views.CompetitionsPageView"
         x:DataType="vm:CompetitionsPageViewModel">     
         
-        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
 
-    <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
+        <UserControl.Styles>
+            <Style Selector="TextBox">
+			    <Setter Property="Foreground" Value="#D7D9CE" />
+                <Setter Property="Background" Value="#226D68" />
+		    </Style>
+		    <Style Selector="TextBox:pointerover">
+			    <Setter Property="Foreground" Value="#D7D9CE" />
 
-    <!-- Title -->
-    <TextBlock Grid.Row="0"
-               Text="COMPETITIONS"
-               FontWeight="Bold"
-               FontSize="40"
-               HorizontalAlignment="Center"
-               Margin="5"/>
+			<Style Selector="^ /template/ Border#PART_BorderElement">
+				<Setter Property="BorderBrush" Value="#2c8f88"/>
+				<Setter Property="Background" Value="#2c8f88" />
+			</Style>
 
-    <!-- Button aligned to top-right -->
-    <Button Grid.Row="0"
-            Command="{Binding OpendWindowAddCompetitionCommand}"
-            HorizontalAlignment="Right"
-            Margin="5,35,5,5"
-            Padding="5"
-            FontWeight="Bold"
-            FontSize="23"
-            Width="40">
-        +
-        <Button.Styles>
+			<Style Selector="^ /template/ TextBlock#PART_Watermark">
+				<Setter Property="Foreground" Value="#D7D9CE" />
+			</Style>
+		    </Style>
+
+		    <Style Selector="TextBox:focus">
+			    <Setter Property="Foreground" Value="#144039" />
+
+			<Style Selector="^ /template/ TextBlock#PART_Watermark">
+				<Setter Property="Foreground" Value="#144039" />
+			</Style>
+
+			<Style Selector="^ /template/ Border#PART_BorderElement">
+				<Setter Property="Background" Value="Transparent"/>
+				<Setter Property="BorderBrush" Value="#144039"/>
+				<Setter Property="BorderThickness" Value="1" />
+			</Style>
+		    </Style>
             <Style Selector="Button">
                 <Setter Property="Background" Value="#144039" />
                 <Setter Property="Foreground" Value="#D7D9CE" />
             </Style>
             <Style Selector="Button:pointerover /template/ ContentPresenter">
-                <Setter Property="Background" Value="#226D68" />
+                <Setter Property="Background" Value="#226D68"></Setter>
                 <Setter Property="Foreground" Value="#D7D9CE" />
             </Style>
             <Style Selector="Button:pressed /template/ ContentPresenter">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Foreground" Value="#144039" />
             </Style>
-        </Button.Styles>
-    </Button>
+	    </UserControl.Styles>
 
-    <!-- StackPanel MUST BE INSIDE THE GRID -->
-    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
-        <TextBlock Text="List of all competitions:" FontSize="20" FontWeight="Bold" Margin="0,0,10,0"/>
+        <StackPanel>
+            <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="430">
-            <ItemsControl ItemsSource="{Binding CompList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
-                            <DockPanel LastChildFill="True">
-                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                    <TextBlock Text="" FontSize="30" FontWeight="Bold"/>
-                                    <TextBlock Text="" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-                                </StackPanel>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                                    <TextBlock Margin="10,0,0,0" FontSize="20">
-                                        <Run Text="ID: " />
-                                        <Run Text="" />
-                                    </TextBlock>
-                                </StackPanel>
-                            </DockPanel>
+                    <!-- Title -->
+                    <TextBlock Grid.Row="0"
+                            Text="COMPETITIONS"
+                            FontWeight="Bold"
+                            FontSize="40"
+                            HorizontalAlignment="Center"
+                            Margin="5"/>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button Command="{Binding LoadCompCommand}"
+                        Margin="5,35,5,5"
+                        Padding="5"
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+                        Update
                         </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </StackPanel>
 
-</Grid> <!-- <<< Now it's correctly closed -->
+                        <!-- Button aligned to top-right -->
+                        <Button Command="{Binding OpendWindowAddCompetitionCommand}"
+                                Margin="5,35,5,5"
+                                Padding="5"
+                                FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
+                                +
+                        </Button>
+                    </StackPanel>
+            </Grid>
+            <DockPanel LastChildFill="True">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" >
+                        <TextBox Watermark="Name" Text="{Binding Name_search}" Width="150"/>
+                        <TextBox Watermark="Country" Text="{Binding Country_search}" Width="150"/>
+                        <TextBox Watermark="City" Text="{Binding City_search}" Width="150"/>
+                        <TextBox Watermark="Date" Text="{Binding Date_search}" Width="150"/>
+                        <TextBox Watermark="ID" Text="{Binding Id_search}" Width="150"/>
+                        <Button Command="{Binding SearchCompetitionsCommand}">Search</Button>
+                </StackPanel>
+            </DockPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="430">
+                <ItemsControl ItemsSource="{Binding CompList}">
+                    <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                            <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                                    <DockPanel LastChildFill="True">
 
+                                            <!-- Left side: Firstname + Lastname -->
+                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                                    <TextBlock Text="{Binding CompName}" FontSize="30" FontWeight="Bold"/>
+                                            </StackPanel>
 
+                                            <!-- Right side: ELO + ID -->
+                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                                    <TextBlock Margin="20,0,0,0" FontSize="20" FontWeight="Bold">
+                                                    <Run Text="Country: " />
+                                                    <Run Text="{Binding country}" />
+                                                    </TextBlock>
+                                                    <TextBlock Margin="30,0,0,0" FontSize="20" FontWeight="Bold">
+                                                    <Run Text="City: " />
+                                                    <Run Text="{Binding city}" />
+                                                    </TextBlock>
+                                                    <TextBlock Margin="40,0,0,0" FontSize="20">
+                                                    <Run Text="Date: " />
+                                                    <Run Text="{Binding date}" />
+                                                    </TextBlock>
+                                                    <TextBlock Margin="50,0,0,0" FontSize="20">
+                                                    <Run Text="ID: " />
+                                                    <Run Text="{Binding CompId}" />
+                                                    </TextBlock>
+                                            </StackPanel>
+
+                                    </DockPanel>
+                            </Button>
+                            </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
 </UserControl>
