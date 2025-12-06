@@ -4,7 +4,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 public class Competition
 {
     [Key]
@@ -16,12 +15,7 @@ public class Competition
     public required string city { get; set; }
     public required string country { get; set; }
 
-    // public Competition(string date, string city,string country)
-    // {
-    //     this.date = date;
-    //     this.city = city;
-    //     this.country = country;
-    // }
+
 }
 
 

@@ -112,24 +112,26 @@ public partial class PlayersPageViewModel : ViewModelBase
     private string id_search;
 
     [RelayCommand]
-    private void SearchPlayers()
-    {
-        DataTable result = Connexion.FindPlayer(FirstName_search, LastName_search, Id_search);
-        Console.WriteLine(FirstName_search);
-        PlayerList.Clear();
+    private async Task SearchPlayers()
+{
+    var result = await Connexion.FindPlayerAsync(FirstName_search, LastName_search, Id_search);
 
-        foreach (DataRow row in result.Rows)
+    PlayerList.Clear();
+
+    foreach (var p in result)
+    {
+        PlayerList.Add(new Player
         {
-            PlayerList.Add(new Player
-            {
-                Firstname = row["Firstname"].ToString(),
-                Lastname = row["Lastname"].ToString(),
-                ELO = Convert.ToInt32(row["ELO"]),
-                playerID = Convert.ToInt32(row["playerID"])
-            });
-            Console.WriteLine(row["Firstname"].ToString());
-        }
+            Firstname = p.Firstname,
+            Lastname = p.Lastname,
+            ELO = p.ELO,
+            playerID = p.playerID
+        });
+
+        Console.WriteLine(p.Firstname);
     }
+}
+
 
 }
 

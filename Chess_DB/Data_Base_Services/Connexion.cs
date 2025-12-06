@@ -2,127 +2,60 @@ using System.IO;
 using System;
 using System.Data;
 using System.Data.SQLite;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 
 
 public static class Connexion
 {
-    static string dbPathPlayer = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Player.db"));
-    private static readonly string key = $@"Data Source={dbPathPlayer}";
-    /// <summary>
-    /// Connexion a la datatbase 
-    /// </summary>
-    /// <returns>Retourne un objet de type SQLiteConnection</returns>
-    public static SQLiteConnection connection()
+
+    public static async Task<List<Player>> FindPlayerAsync(string? firstname, string? lastname, string? id)
     {
-        return new SQLiteConnection(key);
+        using (var _context = new PlayerDbcontext())
+        {
+            IQueryable<Player> query = _context.Players;
+
+            if (!string.IsNullOrWhiteSpace(firstname))
+                query = query.Where(p => p.Firstname.Contains(firstname));
+
+            if (!string.IsNullOrWhiteSpace(lastname))
+                query = query.Where(p => p.Lastname.Contains(lastname));
+
+            if (!string.IsNullOrWhiteSpace(id))
+                query = query.Where(p => p.playerID.ToString().Contains(id));
+
+            return await query.ToListAsync();
+        }
+
     }
 
-
-    public static DataTable FindPlayer(string? firstname, string? lastname, string? id)
+    public static async Task<List<Competition>> FindCompAsync(string? name, string? country, string? city, string? date, string? id)
     {
-        using (var conn = connection())
+        using (var _context = new CompetitionDbcontext())
         {
-            var cmd = new SQLiteCommand(conn);
-            string query = "Select * from Players where 1=1";
+            IQueryable<Competition> query = _context.Competitions;
 
-            if (firstname != "" && firstname != null)
-            {
-                query += " and FirstName like @firstname";
-            }
-            if (lastname != "" && lastname != null)
-            {
-                query += " and LastName like @lastname";
-            }
-            if (id != "" && id != null)
-            {
-                query += " and playerID like @id";
-            }
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(p => p.CompName.Contains(name));
 
-            cmd.CommandText = query;
+            if (!string.IsNullOrWhiteSpace(country))
+                query = query.Where(p => p.country.Contains(country));
 
-            if (firstname != null && firstname != "")
-            {
-                cmd.Parameters.AddWithValue("@firstname", $"%{firstname}%");
-            }
-            if (lastname != null && lastname != "")
-            {
-                cmd.Parameters.AddWithValue("@lastname", $"%{lastname}%");
-            }
-            if (id != null && id != "")
-            {
-                cmd.Parameters.AddWithValue("@id", $"%{id}%");
-            }
+            if (!string.IsNullOrWhiteSpace(city))
+                query = query.Where(p => p.city.Contains(city));
 
-            conn.Open();
-            SQLiteDataReader reader;
-            reader = cmd.ExecuteReader();
+            if (!string.IsNullOrWhiteSpace(date))
+                query = query.Where(p => p.date.Contains(date));
 
-            var result = new DataTable();
-            result.Load(reader);
-            return result;
+            if (!string.IsNullOrWhiteSpace(id))
+                query = query.Where(p => p.CompId.ToString().Contains(id));
+
+            return await query.ToListAsync();
         }
     }
 
-    public static DataTable FindComp(string? name, string? country, string? city, string? date, string? id)
-    {
-        using (var conn = connection())
-        {
-            var cmd = new SQLiteCommand(conn);
-            string query = "Select * from Competitions where 1=1";
-
-            if (name != "" && name != null)
-            {
-                query += " and FirstName like @firstname";
-            }
-            if (country != "" && country != null)
-            {
-                query += " and LastName like @lastname";
-            }
-            if (city != "" && city != null)
-            {
-                query += " and LastName like @lastname";
-            }
-            if (date != "" && date != null)
-            {
-                query += " and LastName like @lastname";
-            }
-            if (id != "" && id != null)
-            {
-                query += " and playerID like @id";
-            }
-
-            cmd.CommandText = query;
-
-            if (name != null && name != "")
-            {
-                cmd.Parameters.AddWithValue("@firstname", $"%{name}%");
-            }
-            if (country != null && country != "")
-            {
-                cmd.Parameters.AddWithValue("@lastname", $"%{country}%");
-            }
-            if (city != null && city != "")
-            {
-                cmd.Parameters.AddWithValue("@lastname", $"%{city}%");
-            }
-            if (date != null && date != "")
-            {
-                cmd.Parameters.AddWithValue("@lastname", $"%{date}%");
-            }
-            if (id != null && id != "")
-            {
-                cmd.Parameters.AddWithValue("@id", $"%{id}%");
-            }
-
-            conn.Open();
-            SQLiteDataReader reader;
-            reader = cmd.ExecuteReader();
-
-            var result = new DataTable();
-            result.Load(reader);
-            return result;
-        }
-    }
 
 }

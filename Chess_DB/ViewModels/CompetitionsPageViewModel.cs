@@ -107,24 +107,24 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     private string id_search;
 
     [RelayCommand]
-    private void SearchCompetitions()
+    private async Task SearchCompetitions()
     {
-        DataTable result = Connexion.FindComp(Name_search, Country_search, City_search, Date_search, Id_search);
-        Console.WriteLine(Name_search);
+        var results = await Connexion.FindCompAsync(Name_search, Country_search, City_search, Date_search, Id_search);
         CompList.Clear();
 
-        foreach (DataRow row in result.Rows)
+        foreach (var p in results)
         {
             CompList.Add(new Competition
             {
-                CompName = row["CompName"].ToString(),
-                country = row["country"].ToString(),
-                city = row["city"].ToString(),
-                date = row["date"].ToString(),
-                CompId = Convert.ToInt32(row["CompId"])
+                CompId = p.CompId,
+                CompName = p.CompName,
+                date = p.date,
+                city = p.city,
+                country = p.country
             });
-            Console.WriteLine(row["Firstname"].ToString());
+            Console.WriteLine(p.CompName);
         }
+
     }
 
 }
