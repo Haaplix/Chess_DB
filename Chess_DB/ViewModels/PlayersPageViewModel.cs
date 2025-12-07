@@ -34,6 +34,7 @@ public partial class PlayersPageViewModel : ViewModelBase
     // [ObservableProperty]
     // private bool isBusy;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public PlayersPageViewModel()
     {
         LoadPlayer();
@@ -48,8 +49,8 @@ public partial class PlayersPageViewModel : ViewModelBase
 
         using (var context = new PlayerDbcontext())
         {
-#pragma warning disable CS8601 // Possible null reference assignment.
 
+#pragma warning disable CS8601 // Possible null reference assignment.
             context.Database.EnsureCreated();
             var newPlayer = new Player
             {
@@ -57,7 +58,7 @@ public partial class PlayersPageViewModel : ViewModelBase
                 Lastname = LastN,
                 ELO = Elo.Value
             };
-#pragma warning restore CS8601 // Possible null reference assignment.
+
 
             context.Players.Add(newPlayer);
             await context.SaveChangesAsync();
@@ -113,25 +114,25 @@ public partial class PlayersPageViewModel : ViewModelBase
 
     [RelayCommand]
     private async Task SearchPlayers()
-{
-    var result = await Connexion.FindPlayerAsync(FirstName_search, LastName_search, Id_search);
-
-    PlayerList.Clear();
-
-    foreach (var p in result)
     {
-        PlayerList.Add(new Player
+        var result = await Connexion.FindPlayerAsync(FirstName_search, LastName_search, Id_search);
+
+        PlayerList.Clear();
+
+        foreach (var p in result)
         {
-            Firstname = p.Firstname,
-            Lastname = p.Lastname,
-            ELO = p.ELO,
-            playerID = p.playerID
-        });
+            PlayerList.Add(new Player
+            {
+                Firstname = p.Firstname,
+                Lastname = p.Lastname,
+                ELO = p.ELO,
+                playerID = p.playerID
+            });
 
-        Console.WriteLine(p.Firstname);
+            Console.WriteLine(p.Firstname);
+        }
     }
-}
-
+#pragma warning restore CS8601 // Possible null reference assignment.
 
 }
 

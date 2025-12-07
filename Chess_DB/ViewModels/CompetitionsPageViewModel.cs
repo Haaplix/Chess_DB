@@ -5,25 +5,21 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
+
 
 namespace Chess_DB.ViewModels;
 
 public partial class CompetitionsPageViewModel : ViewModelBase
 {
 
-    private int? _competitionId;
     [ObservableProperty]
     [Required(ErrorMessage = "*")]
     private string? _competitionName;
     [ObservableProperty]
-    [Required(ErrorMessage = "*")]
-    private string? _date;
+    public DateTime? _date;
     [ObservableProperty]
     [Required(ErrorMessage = "*")]
     private string? _city;
@@ -31,7 +27,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     [Required(ErrorMessage = "*")]
     private string? _country;
 
-
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public CompetitionsPageViewModel()
     {
         LoadComp();
@@ -53,7 +49,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             {
 
                 CompName = CompetitionName,
-                date = Date,
+                date = Date.HasValue ? DateOnly.FromDateTime(Date.Value) : null,
                 city = City,
                 country = Country,
             };
@@ -64,7 +60,8 @@ public partial class CompetitionsPageViewModel : ViewModelBase
 
 
             // Clear the input fields after adding the competition
-            CompetitionName = Date = City = Country = string.Empty;
+            CompetitionName = City = Country = string.Empty;
+            Date = null;
         }
     }
 
@@ -111,7 +108,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     {
         var results = await Connexion.FindCompAsync(Name_search, Country_search, City_search, Date_search, Id_search);
         CompList.Clear();
-
+#pragma warning disable CS8601 // Possible null reference assignment.
         foreach (var p in results)
         {
             CompList.Add(new Competition
@@ -124,7 +121,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             });
             Console.WriteLine(p.CompName);
         }
-
+#pragma warning restore CS8601 // Possible null reference assignment.
     }
 
 }

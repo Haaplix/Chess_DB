@@ -48,7 +48,14 @@ public static class Connexion
                 query = query.Where(p => p.city.Contains(city));
 
             if (!string.IsNullOrWhiteSpace(date))
-                query = query.Where(p => p.date.Contains(date));
+            {
+                if (DateTime.TryParse(date, out var parsedDate))
+                {
+                    var parsedDateOnly = DateOnly.FromDateTime(parsedDate);
+
+                    query = query.Where(p => p.date.HasValue && p.date.Value == parsedDateOnly);
+                }
+            }
 
             if (!string.IsNullOrWhiteSpace(id))
                 query = query.Where(p => p.CompId.ToString().Contains(id));

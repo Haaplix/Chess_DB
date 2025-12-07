@@ -11,7 +11,7 @@ public class Competition
 
     public int CompId { get; set; }
     public required string CompName { get; set; }
-    public required string date { get; set; }
+    public DateOnly? date { get; set; }
     public required string city { get; set; }
     public required string country { get; set; }
 
