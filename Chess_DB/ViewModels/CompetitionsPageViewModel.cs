@@ -8,6 +8,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Chess_DB.ViewModels;
@@ -40,7 +42,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
         ValidateAllProperties();
         if (HasErrors) return;
 
-        using (var context = new CompetitionDbcontext())
+        using (var context = new AppDbContext())
         {
 #pragma warning disable CS8601 // Possible null reference assignment.
             context.Database.EnsureCreated();
@@ -79,7 +81,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     [RelayCommand]
     public void LoadComp()
     {
-        using (var context = new CompetitionDbcontext())
+        using (var context = new AppDbContext())
         {
             context.Database.EnsureCreated();
             var competitions = context.Competitions.ToListAsync().Result;
@@ -103,10 +105,45 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     [ObservableProperty]
     private string id_search;
 
+
+    public static async Task<List<Competition>> FindCompAsync(string? name, string? country, string? city, string? date, string? id)
+    {
+        using (var _context = new AppDbContext())
+        {
+            IQueryable<Competition> query = _context.Competitions;
+
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(p => p.CompName.Contains(name));
+
+            if (!string.IsNullOrWhiteSpace(country))
+                query = query.Where(p => p.country.Contains(country));
+
+            if (!string.IsNullOrWhiteSpace(city))
+                query = query.Where(p => p.city.Contains(city));
+
+            if (!string.IsNullOrWhiteSpace(date))
+            {
+                if (DateTime.TryParse(date, out var parsedDate))
+                {
+                    var parsedDateOnly = DateOnly.FromDateTime(parsedDate);
+
+                    query = query.Where(p => p.date.HasValue && p.date.Value == parsedDateOnly);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(id))
+                query = query.Where(p => p.CompId.ToString().Contains(id));
+
+            return await query.ToListAsync();
+        }
+    }
+
+
+
     [RelayCommand]
     private async Task SearchCompetitions()
     {
-        var results = await Connexion.FindCompAsync(Name_search, Country_search, City_search, Date_search, Id_search);
+        var results = await FindCompAsync(Name_search, Country_search, City_search, Date_search, Id_search);
         CompList.Clear();
 #pragma warning disable CS8601 // Possible null reference assignment.
         foreach (var p in results)
@@ -119,7 +156,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
                 city = p.city,
                 country = p.country
             });
-            Console.WriteLine(p.CompName);
+
         }
 #pragma warning restore CS8601 // Possible null reference assignment.
     }
