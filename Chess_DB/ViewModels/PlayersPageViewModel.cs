@@ -9,6 +9,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Chess_DB.ViewModels;
@@ -47,7 +49,7 @@ public partial class PlayersPageViewModel : ViewModelBase
         ValidateAllProperties();
         if (HasErrors) return;
 
-        using (var context = new PlayerDbcontext())
+        using (var context = new AppDbContext())
         {
 
 #pragma warning disable CS8601 // Possible null reference assignment.
@@ -92,7 +94,7 @@ public partial class PlayersPageViewModel : ViewModelBase
     public void LoadPlayer()
     {
 
-        using (var context = new PlayerDbcontext())
+        using (var context = new AppDbContext())
         {
             context.Database.EnsureCreated();
             var competitions = context.Players.ToListAsync().Result;
@@ -112,10 +114,33 @@ public partial class PlayersPageViewModel : ViewModelBase
     [ObservableProperty]
     private string id_search;
 
+
+    public static async Task<List<Player>> FindPlayerAsync(string? firstname, string? lastname, string? id)
+    {
+        using (var _context = new AppDbContext())
+        {
+            IQueryable<Player> query = _context.Players;
+
+            if (!string.IsNullOrWhiteSpace(firstname))
+                query = query.Where(p => p.Firstname.Contains(firstname));
+
+            if (!string.IsNullOrWhiteSpace(lastname))
+                query = query.Where(p => p.Lastname.Contains(lastname));
+
+            if (!string.IsNullOrWhiteSpace(id))
+                query = query.Where(p => p.playerID.ToString().Contains(id));
+
+            return await query.ToListAsync();
+        }
+
+    }
+
+
+
     [RelayCommand]
     private async Task SearchPlayers()
     {
-        var result = await Connexion.FindPlayerAsync(FirstName_search, LastName_search, Id_search);
+        var result = await FindPlayerAsync(FirstName_search, LastName_search, Id_search);
 
         PlayerList.Clear();
 
@@ -128,8 +153,6 @@ public partial class PlayersPageViewModel : ViewModelBase
                 ELO = p.ELO,
                 playerID = p.playerID
             });
-
-            Console.WriteLine(p.Firstname);
         }
     }
 #pragma warning restore CS8601 // Possible null reference assignment.

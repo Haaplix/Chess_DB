@@ -4,6 +4,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 public class Competition
 {
     [Key]
@@ -15,20 +16,6 @@ public class Competition
     public required string city { get; set; }
     public required string country { get; set; }
 
-
-}
-
-
-public class CompetitionDbcontext : DbContext
-{
-    public DbSet<Competition> Competitions { get; set; }
-
-    string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\Competitions.db"));
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite($"Data Source={dbPath}");
-    }
-
+    public List<Player> Players { get; set; } = new();
 
 }
