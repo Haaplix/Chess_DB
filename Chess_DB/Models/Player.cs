@@ -18,5 +18,9 @@ public class Player
     public int ELO { get; set; }
 
     public List<Competition> Competitions { get; set; } = new();
+
+    public List<Match> AsPlayer1 { get; set; } = new();
+    public List<Match> AsPlayer2 { get; set; } = new();
+    public List<Match> Winner { get; set; } = new();
 }
 

@@ -17,5 +17,6 @@ public class Competition
     public required string country { get; set; }
 
     public List<Player> Players { get; set; } = new();
+    public List<Match> Matches { get; set; } = new();
 
 }
