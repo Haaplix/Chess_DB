@@ -39,6 +39,11 @@ public partial class MainWindow : Window
             // Show dialog window and reply with returned AlbumViewModel or null when the dialog is closed.
             m.Reply(dialog.ShowDialog<WindowCompetitionViewModel?>(w));
         });
+
+
+
     }
+
+
 }
 

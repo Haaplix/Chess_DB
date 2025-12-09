@@ -80,13 +80,13 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task OpendWindowAddPlayerAsync()
     {
-        // Send the message to the previously registered handler and await the selected album
         var playerwindow = await WeakReferenceMessenger.Default.Send(new WindowPlayerMessage());
     }
 
 
+
     [ObservableProperty]
-    private ObservableCollection<Player> playerList = new();
+    private ObservableCollection<PlayerViewModel> playerList = new();
 
     [RelayCommand]
     public void LoadPlayer()
@@ -95,12 +95,12 @@ public partial class PlayersPageViewModel : ViewModelBase
         using (var context = new PlayerDbcontext())
         {
             context.Database.EnsureCreated();
-            var competitions = context.Players.ToListAsync().Result;
+            var players = context.Players.ToListAsync().Result;
             PlayerList.Clear();
 
-            foreach (var comp in competitions)
+            foreach (var player in players)
             {
-                PlayerList.Add(comp);
+                PlayerList.Add(new PlayerViewModel(player));
             }
         }
     }
@@ -121,12 +121,12 @@ public partial class PlayersPageViewModel : ViewModelBase
 
         foreach (var p in result)
         {
-            PlayerList.Add(new Player
+            PlayerList.Add(new PlayerViewModel(p)
             {
                 Firstname = p.Firstname,
                 Lastname = p.Lastname,
                 ELO = p.ELO,
-                playerID = p.playerID
+                PlayerID = p.playerID
             });
 
             Console.WriteLine(p.Firstname);

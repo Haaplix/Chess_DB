@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Chess_DB.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Chess_DB.Views.PlayerView"
+             x:DataType="vm:PlayerViewModel">
+  <DockPanel LastChildFill="True">
+
+        <!-- Left side: Firstname + Lastname -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <TextBlock Text="{Binding Firstname}" FontSize="30" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Lastname}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- Right side: ELO + ID -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <TextBlock Margin="10,0,0,0" FontSize="20">
+                <Run Text="ELO: " />
+                <Run Text="{Binding ELO}" />
+                </TextBlock>
+                <TextBlock Margin="10,0,0,0" FontSize="20">
+                <Run Text="ID: " />
+                <Run Text="{Binding PlayerID}" />
+                </TextBlock>
+        </StackPanel>
+
+    </DockPanel>
+</UserControl>

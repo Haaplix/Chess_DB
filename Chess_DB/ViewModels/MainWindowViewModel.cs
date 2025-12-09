@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Chess_DB.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessage>
 {
     public string Greeting { get; } = "Welcome to Avalonia!";
     [ObservableProperty]
@@ -50,6 +50,12 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel()
     {
         Console.WriteLine("Starting database test...");
+        WeakReferenceMessenger.Default.Register<PlayerMessage>(this);
+    }
+
+    public void Receive(PlayerMessage message)
+    {
+        CurrentPage = message.Value;
     }
 
 }

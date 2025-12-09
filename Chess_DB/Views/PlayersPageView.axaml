@@ -96,7 +96,7 @@
                 <ItemsControl ItemsSource="{Binding PlayerList}">
                 <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                           <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                           <Button Command="{Binding OpendPlayerCommand} " Padding="20" Margin="5" HorizontalAlignment="Stretch">
                                 <DockPanel LastChildFill="True">
 
                                         <!-- Left side: Firstname + Lastname -->
@@ -113,10 +113,9 @@
                                                 </TextBlock>
                                                 <TextBlock Margin="10,0,0,0" FontSize="20">
                                                 <Run Text="ID: " />
-                                                <Run Text="{Binding playerID}" />
+                                                <Run Text="{Binding PlayerID}" />
                                                 </TextBlock>
                                         </StackPanel>
-
                                 </DockPanel>
                            </Button>
                         </DataTemplate>
