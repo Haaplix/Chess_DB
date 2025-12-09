@@ -51,9 +51,9 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             {
 
                 CompName = CompetitionName,
-                date = Date.HasValue ? DateOnly.FromDateTime(Date.Value) : null,
-                city = City,
-                country = Country,
+                Date = Date.HasValue ? DateOnly.FromDateTime(Date.Value) : null,
+                City = City,
+                Country = Country,
             };
 #pragma warning restore CS8601 // Possible null reference assignment.
             context.Competitions.Add(newCompetition);
@@ -76,7 +76,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
 
 
     [ObservableProperty]
-    private ObservableCollection<Competition> compList = new();
+    private ObservableCollection<CompViewModel> compList = new();
 
     [RelayCommand]
     public void LoadComp()
@@ -89,7 +89,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
 
             foreach (var comp in competitions)
             {
-                CompList.Add(comp);
+                CompList.Add(new CompViewModel(comp));
             }
         }
     }
@@ -113,13 +113,13 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             IQueryable<Competition> query = _context.Competitions;
 
             if (!string.IsNullOrWhiteSpace(name))
-                query = query.Where(p => p.CompName.Contains(name));
+                query = query.Where(c => c.CompName.Contains(name));
 
             if (!string.IsNullOrWhiteSpace(country))
-                query = query.Where(p => p.country.Contains(country));
+                query = query.Where(c => c.Country.Contains(country));
 
             if (!string.IsNullOrWhiteSpace(city))
-                query = query.Where(p => p.city.Contains(city));
+                query = query.Where(c => c.City.Contains(city));
 
             if (!string.IsNullOrWhiteSpace(date))
             {
@@ -127,12 +127,12 @@ public partial class CompetitionsPageViewModel : ViewModelBase
                 {
                     var parsedDateOnly = DateOnly.FromDateTime(parsedDate);
 
-                    query = query.Where(p => p.date.HasValue && p.date.Value == parsedDateOnly);
+                    query = query.Where(c => c.Date.HasValue && c.Date.Value == parsedDateOnly);
                 }
             }
 
             if (!string.IsNullOrWhiteSpace(id))
-                query = query.Where(p => p.CompId.ToString().Contains(id));
+                query = query.Where(c => c.CompId.ToString().Contains(id));
 
             return await query.ToListAsync();
         }
@@ -146,15 +146,15 @@ public partial class CompetitionsPageViewModel : ViewModelBase
         var results = await FindCompAsync(Name_search, Country_search, City_search, Date_search, Id_search);
         CompList.Clear();
 #pragma warning disable CS8601 // Possible null reference assignment.
-        foreach (var p in results)
+        foreach (var c in results)
         {
-            CompList.Add(new Competition
+            CompList.Add(new CompViewModel(c)
             {
-                CompId = p.CompId,
-                CompName = p.CompName,
-                date = p.date,
-                city = p.city,
-                country = p.country
+                CompId = c.CompId,
+                CompName = c.CompName,
+                Date = c.Date,
+                City = c.City,
+                Country = c.Country
             });
 
         }

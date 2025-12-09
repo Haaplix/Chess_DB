@@ -12,9 +12,9 @@ public class Competition
 
     public int CompId { get; set; }
     public required string CompName { get; set; }
-    public DateOnly? date { get; set; }
-    public required string city { get; set; }
-    public required string country { get; set; }
+    public DateOnly? Date { get; set; }
+    public required string City { get; set; }
+    public required string Country { get; set; }
 
     public List<Player> Players { get; set; } = new();
     public List<Match> Matches { get; set; } = new();
