@@ -65,24 +65,25 @@
 
 		<StackPanel Spacing ="5"
 					Background ="#D7D9CE"
-					TextElement.Foreground="#144039">
+					TextElement.Foreground="#144039"
+					>
 
 			<TextBlock Text="NEW COMPETITION" Margin="5" Padding="5" FontWeight="Bold" FontSize="30" TextAlignment="Center"/>
 
 			<StackPanel Orientation="Horizontal">
 				<Label Margin="15,35,5,0" FontWeight="Bold" FontSize="25">Name:</Label>
-				<TextBox Text="{Binding CompetitionName}" Watermark="Enter Name" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<TextBox Text="{Binding CompetitionName}" Watermark="Enter Name" Width="160" Height="5" Margin="10,35,5,0" FontSize="17"/>
 				<Label Margin="30,35,5,0" FontWeight="Bold" FontSize="25">Country:</Label>
-				<TextBox Text="{Binding Country}" Watermark="Enter Country" Width="160" Margin="10,35,5,0" FontSize="17"/>
+				<TextBox Text="{Binding Country}" Watermark="Enter Country" Width="160" Height="5" Margin="10,35,5,0" FontSize="17"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Date:</Label>
 				<!-- <TextBox Text="{Binding Date}" Watermark="Enter Date" Width="140" Margin="10,75,5,0" FontSize="17"/> -->
-				<CalendarDatePicker SelectedDate="{Binding Date}" Margin="10,75,5,0"/>
+				<CalendarDatePicker SelectedDate="{Binding Date}" Height="5" Margin="10,75,5,0"/>
 
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Place:</Label>
-				<TextBox Text="{Binding City}" Watermark="Enter City"  Width="140" Margin="10,75,5,0" FontSize="17"/>
+				<TextBox Text="{Binding City}" Watermark="Enter City"  Width="140" Height="5" Margin="10,75,5,0" FontSize="17"/>
 			</StackPanel>
 
 			<StackPanel  Margin="0,55,0,0">

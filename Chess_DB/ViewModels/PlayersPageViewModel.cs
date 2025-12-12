@@ -69,9 +69,10 @@ public partial class PlayersPageViewModel : ViewModelBase
 
         }
 
-        // OPTIONAL: Clear inputs after adding
+        //Clear inputs after adding
         FirstN = LastN = string.Empty;
-        Elo = Id = null;
+        Elo = 1400;
+        Id = null;
 
 
         await Task.Delay(50);
