@@ -6,6 +6,48 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Chess_DB.Views.CompView"
              x:DataType="vm:CompViewModel">
+			 <UserControl.Styles>
+				<Style Selector="TextBox">
+					<Setter Property="Foreground" Value="#D7D9CE" />
+					<Setter Property="Background" Value="#226D68" />
+				</Style>
+				<Style Selector="TextBox:pointerover">
+						<Setter Property="Foreground" Value="#D7D9CE" />
+					<Style Selector="^ /template/ Border#PART_BorderElement">
+						<Setter Property="BorderBrush" Value="#2c8f88"/>
+						<Setter Property="Background" Value="#2c8f88" />
+					</Style>
+
+					<Style Selector="^ /template/ TextBlock#PART_Watermark">
+						<Setter Property="Foreground" Value="#D7D9CE" />
+					</Style>
+				</Style>
+
+				<Style Selector="TextBox:focus">
+					<Setter Property="Foreground" Value="#144039" />
+
+					<Style Selector="^ /template/ TextBlock#PART_Watermark">
+						<Setter Property="Foreground" Value="#144039" />
+					</Style>
+					<Style Selector="^ /template/ Border#PART_BorderElement">
+						<Setter Property="Background" Value="Transparent"/>
+						<Setter Property="BorderBrush" Value="#144039"/>
+						<Setter Property="BorderThickness" Value="1" />
+					</Style>
+				</Style>
+				<Style Selector="Button">
+						<Setter Property="Background" Value="#144039" />
+						<Setter Property="Foreground" Value="#D7D9CE" />
+				</Style>
+				<Style Selector="Button:pointerover /template/ ContentPresenter">
+						<Setter Property="Background" Value="#226D68"></Setter>
+						<Setter Property="Foreground" Value="#D7D9CE" />
+				</Style>
+				<Style Selector="Button:pressed /template/ ContentPresenter">
+						<Setter Property="Background" Value="Transparent" />
+						<Setter Property="Foreground" Value="#144039" />
+				</Style>
+			</UserControl.Styles>
   <DockPanel LastChildFill="True">
 
 	<Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
@@ -15,14 +57,20 @@
                         <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-
-
-                <Button Grid.Row="0"
-						Command=""
-                        Margin="5,10,5,5"	
+                <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding OpendWindowEditCompCommand}"
+                        Margin="5,10,5,5"
                         Padding="5"
-                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                        EDIT
                 </Button>
+                <Button Command="{Binding EditcompCommand}"
+                        Margin="5,10,5,5"
+                        Padding="5"
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                        UPDATE
+                </Button>
+				</StackPanel>
 
 				<TextBlock Grid.Row="0"
 						   Text="{Binding CompName}"

@@ -47,6 +47,15 @@ public partial class MainWindow : Window
             };
             m.Reply(dialog.ShowDialog<WindowEditPlayerViewModel?>(w));
         });
+
+        WeakReferenceMessenger.Default.Register<MainWindow, WindowEditCompMessage>(this, static (w, m) =>
+        {
+            var dialog = new EditCompView
+            {
+                DataContext = new CompViewModel(m.CompToEdit)
+            };
+            m.Reply(dialog.ShowDialog<WindowEditCompViewModel?>(w));
+        });
     }
 
 }

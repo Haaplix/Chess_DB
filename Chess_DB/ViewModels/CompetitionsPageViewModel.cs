@@ -49,7 +49,6 @@ public partial class CompetitionsPageViewModel : ViewModelBase
 
             var newCompetition = new Competition
             {
-
                 CompName = CompetitionName,
                 Date = Date.HasValue ? DateOnly.FromDateTime(Date.Value) : null,
                 City = City,
