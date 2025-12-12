@@ -11,6 +11,7 @@ using Avalonia.Controls;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Threading.Tasks;
+using Chess_DB.Views;
 
 namespace Chess_DB.ViewModels;
 
@@ -49,10 +50,11 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessa
 
     public MainWindowViewModel()
     {
-        Console.WriteLine("Starting database test...");
         WeakReferenceMessenger.Default.Register<PlayerMessage>(this);
         WeakReferenceMessenger.Default.Register<CompMessage>(this);
     }
+
+
 
     public void Receive(PlayerMessage message)
     {

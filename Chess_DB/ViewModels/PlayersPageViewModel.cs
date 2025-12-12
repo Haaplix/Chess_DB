@@ -60,8 +60,6 @@ public partial class PlayersPageViewModel : ViewModelBase
                 Lastname = LastN,
                 ELO = Elo.Value
             };
-
-
             context.Players.Add(newPlayer);
             await context.SaveChangesAsync();
 
@@ -93,7 +91,6 @@ public partial class PlayersPageViewModel : ViewModelBase
     [RelayCommand]
     public void LoadPlayer()
     {
-
         using (var context = new AppDbContext())
         {
             context.Database.EnsureCreated();

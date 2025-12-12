@@ -6,10 +6,109 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Chess_DB.Views.PlayerView"
              x:DataType="vm:PlayerViewModel">
-  <DockPanel LastChildFill="True">
 
+        <UserControl.Styles>
+                <Style Selector="TextBox">
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                        <Setter Property="Background" Value="#226D68" />
+                </Style>
+                <Style Selector="TextBox:pointerover">
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+
+                <Style Selector="^ /template/ Border#PART_BorderElement">
+                        <Setter Property="BorderBrush" Value="#2c8f88"/>
+                        <Setter Property="Background" Value="#2c8f88" />
+                </Style>
+
+                <Style Selector="^ /template/ TextBlock#PART_Watermark">
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                </Style>
+                </Style>
+
+                <Style Selector="TextBox:focus">
+                <Setter Property="Foreground" Value="#144039" />
+
+                <Style Selector="^ /template/ TextBlock#PART_Watermark">
+                        <Setter Property="Foreground" Value="#144039" />
+                </Style>
+
+                <Style Selector="^ /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="#144039"/>
+                        <Setter Property="BorderThickness" Value="1" />
+                </Style>
+                </Style>
+                <Style Selector="Button">
+                        <Setter Property="Background" Value="#144039" />
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                </Style>
+                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="#226D68"></Setter>
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                </Style>
+                <Style Selector="Button:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground" Value="#144039" />
+                </Style>
+	</UserControl.Styles>
+  <DockPanel LastChildFill="True" TextElement.Foreground="#144039">
+        <StackPanel>
+        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding OpendWindowEditPlayerCommand}"
+                        Margin="5,10,5,5"
+                        Padding="5"
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                        EDIT
+                </Button>
+                <Button Command="{Binding EditplayerCommand}"
+                        Margin="5,10,5,5"
+                        Padding="5"
+                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                        UPDATE
+                </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Grid.Row="0"
+                        Text="{Binding Firstname}"
+                        FontWeight="Bold"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+
+                <TextBlock Grid.Row="0"
+                        Text="{Binding Lastname}"
+                        FontWeight="Bold"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1"
+                        FontSize="30"
+                        HorizontalAlignment="Right"
+                        Margin="10">
+                        <Run Text="ELO: " />
+                        <Run Text="{Binding ELO}" />
+                </TextBlock>
+
+                <TextBlock Grid.Row="1"
+                        FontSize="30"
+                        HorizontalAlignment="Left"
+                        Margin="10">
+                        <Run Text="ID: "/>
+                        <Run Text="{Binding PlayerID}" />
+                </TextBlock>
+        </Grid>
         <!-- Left side: Firstname + Lastname -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="10">
                 <TextBlock Text="{Binding Firstname}" FontSize="30" FontWeight="Bold"/>
                 <TextBlock Text="{Binding Lastname}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
         </StackPanel>
@@ -25,6 +124,9 @@
                 <Run Text="{Binding PlayerID}" />
                 </TextBlock>
         </StackPanel>
-
+</StackPanel>
     </DockPanel>
+        
+
+        
 </UserControl>
