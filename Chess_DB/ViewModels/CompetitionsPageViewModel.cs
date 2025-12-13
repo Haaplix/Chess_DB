@@ -151,7 +151,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             {
                 CompId = c.CompId,
                 CompName = c.CompName,
-                Date = c.Date,
+                Date = c.Date.HasValue ? c.Date.Value.ToDateTime(TimeOnly.MinValue) : null,
                 City = c.City,
                 Country = c.Country
             });

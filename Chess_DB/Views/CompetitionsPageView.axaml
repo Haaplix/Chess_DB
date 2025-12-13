@@ -120,7 +120,7 @@
                                                     </TextBlock>
                                                     <TextBlock Margin="40,0,0,0" FontSize="20">
                                                     <Run Text="Date: " />
-                                                    <Run Text="{Binding Date}" />
+                                                    <Run Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
                                                     </TextBlock>
                                                     <TextBlock Margin="50,0,0,0" FontSize="20">
                                                     <Run Text="ID: " />
