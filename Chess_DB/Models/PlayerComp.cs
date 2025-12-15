@@ -5,13 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public class PlayerCompetition
 {
-    [Key]
-    public int PlayerCompId { get; set; }
 
     [ForeignKey("Player")]
-    public int PlayersplayerId { get; set; }
+    public int PlayerId { get; set; }
 
     [ForeignKey("Competition")]
-    public int CompetitionsCompId { get; set; }
+    public int CompId { get; set; }
 
 }

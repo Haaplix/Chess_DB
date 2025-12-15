@@ -7,6 +7,7 @@ public class Match
     [Key]
     public int MatchId { get; set; }
     public int CompetitionId { get; set; }
+
     public Competition Competition { get; set; }
 
     public int Player1Id { get; set; }

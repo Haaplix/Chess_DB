@@ -20,10 +20,25 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //relationship many to many
+        modelBuilder.Entity<PlayerCompetition>()
+        .HasKey(pc => new { pc.CompId, pc.PlayerId });
+
+        modelBuilder.Entity<PlayerCompetition>()
+            .ToTable("PlayerCompetition");
+
         modelBuilder.Entity<Player>()
             .HasMany(p => p.Competitions)
             .WithMany(c => c.Players)
-            .UsingEntity("PlayerCompetition");
+            .UsingEntity<PlayerCompetition>(
+                j => j
+                    .HasOne<Competition>()
+                    .WithMany()
+                    .HasForeignKey(pc => pc.CompId),
+                j => j
+                    .HasOne<Player>()
+                    .WithMany()
+                    .HasForeignKey(pc => pc.PlayerId)
+            );
 
         //relationship one to many
         modelBuilder.Entity<Match>()

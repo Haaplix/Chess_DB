@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -82,6 +83,7 @@ public partial class CompViewModel : ViewModelBase
 
     [ObservableProperty]
     private ObservableCollection<PlayerViewModel> playerList = new();
+    private ObservableCollection<PlayerViewModel> PlayersInCompList = new();
 
     [RelayCommand]
     public void LoadPlayer()
@@ -95,6 +97,28 @@ public partial class CompViewModel : ViewModelBase
             foreach (var player in players)
             {
                 PlayerList.Add(new PlayerViewModel(player));
+            }
+        }
+    }
+    [RelayCommand]
+    public void LoadPlayerInComp()
+    {
+        using (var context = new AppDbContext())
+        {
+            var playersInComp = context.PlayerCompetition
+                .Where(pc => pc.CompId == CompId)
+                .ToListAsync().Result;
+
+            Console.WriteLine($"Players in Competition ID {CompId}: {playersInComp.Count}");
+            PlayersInCompList.Clear();
+
+            foreach (var pc in playersInComp)
+            {
+                var player = context.Players.Find(pc.PlayerId);
+                if (player != null)
+                {
+                    PlayersInCompList.Add(new PlayerViewModel(player));
+                }
             }
         }
     }
@@ -153,19 +177,19 @@ public partial class CompViewModel : ViewModelBase
 
 
     [RelayCommand]
-    private async Task AddPlayerToComp()
+    private async Task AddPlayerToComp(PlayerViewModel player)
     {
         using (var context = new AppDbContext())
         {
             var playerComp = new PlayerCompetition
             {
-                CompetitionsCompId = CompId,
-                PlayersplayerId = 1/*get player id from somewhere*/
+                CompId = CompId,
+                PlayerId = player.PlayerID/*get player id from somewhere*/
             };
             context.PlayerCompetition.Add(playerComp);
             await context.SaveChangesAsync();
 
-            Console.WriteLine($"Player added to competition ID: {CompId}");
+            Console.WriteLine($"Player added to competition ID: {CompId}, Player ID: {player.PlayerID}");
         }
     }
 }

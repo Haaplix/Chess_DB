@@ -64,7 +64,7 @@
                         FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
                         EDIT
                 </Button>
-                <Button Command="{Binding EditcompCommand}"
+                <Button Command="{Binding LoadPlayerInCompCommand}"
                         Margin="5,10,5,5"
                         Padding="5"
                         FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
@@ -97,17 +97,11 @@
 						</TextBlock.Text>
 					</TextBlock>
 
-					<TextBlock Text="| Date:" FontWeight="Bold" FontSize="20"/>
-					<TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" FontSize="20"/>
+					<TextBlock Text="| Date:" FontWeight="Bold" FontSize="25"/>
+					<TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" FontSize="25"/>
 
 				</StackPanel>
 
-				<Button Command="{Binding AddPlayerToCompCommand}"
-						Margin="5,10,5,5"
-						Padding="5"
-						FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
-						+
-				</Button>
         </Grid>
 		
         
