@@ -79,7 +79,7 @@
         </StackPanel>
       </DockPanel>
 
-			<ScrollViewer VerticalScrollBarVisibility="Auto" Height="350">
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="350">
           <ItemsControl ItemsSource="{Binding PlayerList}">
             <ItemsControl.ItemTemplate>
               <DataTemplate>
@@ -108,7 +108,7 @@
             </ItemsControl.ItemTemplate>
           </ItemsControl>
         </ScrollViewer>
-		</StackPanel>
+	</StackPanel>
 
 </Window>
 
