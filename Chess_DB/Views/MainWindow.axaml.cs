@@ -38,6 +38,16 @@ public partial class MainWindow : Window
         });
 
 
+        WeakReferenceMessenger.Default.Register<MainWindow, WindowAddPtoCMessage>(this, static (w, m) =>
+        {
+            var dialog = new AddPtoCWindow
+            {
+                DataContext = new CompViewModel(m.CompToEdit)
+            };
+            m.Reply(dialog.ShowDialog<WindowAddPtoCViewModel?>(w));
+        });
+
+
 
         WeakReferenceMessenger.Default.Register<MainWindow, WindowEditPlayerMessage>(this, static (w, m) =>
         {
