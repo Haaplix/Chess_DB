@@ -51,82 +51,53 @@
                         <Setter Property="Foreground" Value="#144039" />
                 </Style>
 	</UserControl.Styles>
-  <DockPanel LastChildFill="True" TextElement.Foreground="#144039">
-        <StackPanel>
-        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
-                <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <DockPanel LastChildFill="True" TextElement.Foreground="#144039">
+                <StackPanel>
+                        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding OpendWindowEditPlayerCommand}"
-                        Margin="5,10,5,5"
-                        Padding="5"
-                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
-                        EDIT
-                </Button>
-                <Button Command="{Binding EditplayerCommand}"
-                        Margin="5,10,5,5"
-                        Padding="5"
-                        FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
-                        UPDATE
-                </Button>
+                                <StackPanel Orientation="Horizontal">
+                                        <Button Command="{Binding OpendWindowEditPlayerCommand}"
+                                                Margin="5,10,5,5"
+                                                Padding="5"
+                                                FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                                                EDIT
+                                        </Button>
+                                        <Button Command="{Binding EditplayerCommand}"
+                                                Margin="5,10,5,5"
+                                                Padding="5"
+                                                FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                                                UPDATE
+                                        </Button>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Grid.Row="0"
+                                                Text="{Binding Firstname}"
+                                                FontWeight="Bold"
+                                                FontSize="40"
+                                                HorizontalAlignment="Center"
+                                                Margin="10"/>
+
+                                        <TextBlock Grid.Row="0"
+                                                Text="{Binding Lastname}"
+                                                FontWeight="Bold"
+                                                FontSize="40"
+                                                HorizontalAlignment="Center"
+                                                Margin="10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,10" Spacing="10">
+                                        <TextBlock Text="ID:" FontWeight="Bold" FontSize="25"/>
+                                        <TextBlock Text="{Binding PlayerID}" FontSize="25"/>
+                                        <TextBlock Text="| ELO:" FontWeight="Bold" FontSize="25"/>
+                                        <TextBlock Text="{Binding ELO}" FontSize="25"/>
+                                </StackPanel>
+                        </Grid>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Grid.Row="0"
-                        Text="{Binding Firstname}"
-                        FontWeight="Bold"
-                        FontSize="40"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-
-                <TextBlock Grid.Row="0"
-                        Text="{Binding Lastname}"
-                        FontWeight="Bold"
-                        FontSize="40"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-                </StackPanel>
-
-                <TextBlock Grid.Row="1"
-                        FontSize="30"
-                        HorizontalAlignment="Right"
-                        Margin="10">
-                        <Run Text="ELO: " />
-                        <Run Text="{Binding ELO}" />
-                </TextBlock>
-
-                <TextBlock Grid.Row="1"
-                        FontSize="30"
-                        HorizontalAlignment="Left"
-                        Margin="10">
-                        <Run Text="ID: "/>
-                        <Run Text="{Binding PlayerID}" />
-                </TextBlock>
-        </Grid>
-        <!-- Left side: Firstname + Lastname -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="10">
-                <TextBlock Text="{Binding Firstname}" FontSize="30" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Lastname}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-        </StackPanel>
-
-        <!-- Right side: ELO + ID -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                <TextBlock Margin="10,0,0,0" FontSize="20">
-                <Run Text="ELO: " />
-                <Run Text="{Binding ELO}" />
-                </TextBlock>
-                <TextBlock Margin="10,0,0,0" FontSize="20">
-                <Run Text="ID: " />
-                <Run Text="{Binding PlayerID}" />
-                </TextBlock>
-        </StackPanel>
-</StackPanel>
-    </DockPanel>
-        
-
-        
+        </DockPanel>        
 </UserControl>

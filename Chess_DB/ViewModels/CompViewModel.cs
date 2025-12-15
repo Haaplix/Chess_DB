@@ -1,9 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Chess_DB.ViewModels;
@@ -31,6 +35,7 @@ public partial class CompViewModel : ViewModelBase
         City = comp.City;
         Country = comp.Country;
         _currentComp = comp;
+        LoadPlayer();
     }
 
     [RelayCommand]
@@ -43,6 +48,12 @@ public partial class CompViewModel : ViewModelBase
     private async Task OpendWindowEditCompAsync()
     {
         var editcompwindow = await WeakReferenceMessenger.Default.Send(new WindowEditCompMessage(_currentComp));
+    }
+
+    [RelayCommand]
+    private async Task OpendWindowAdddMatchAsync()
+    {
+        var editcompwindow = await WeakReferenceMessenger.Default.Send(new WindowAddPtoCMessage(_currentComp));
     }
 
 
@@ -67,6 +78,79 @@ public partial class CompViewModel : ViewModelBase
 
         }
     }
+
+
+    [ObservableProperty]
+    private ObservableCollection<PlayerViewModel> playerList = new();
+
+    [RelayCommand]
+    public void LoadPlayer()
+    {
+        using (var context = new AppDbContext())
+        {
+            context.Database.EnsureCreated();
+            var players = context.Players.ToListAsync().Result;
+            PlayerList.Clear();
+
+            foreach (var player in players)
+            {
+                PlayerList.Add(new PlayerViewModel(player));
+            }
+        }
+    }
+
+
+    [ObservableProperty]
+    private string firstName_search;
+    [ObservableProperty]
+    private string lastName_search;
+    [ObservableProperty]
+    private string id_search;
+
+
+    public static async Task<List<Player>> FindPlayerAsync(string? firstname, string? lastname, string? id)
+    {
+        using (var _context = new AppDbContext())
+        {
+            IQueryable<Player> query = _context.Players;
+
+            if (!string.IsNullOrWhiteSpace(firstname))
+                query = query.Where(p => p.Firstname.Contains(firstname));
+
+            if (!string.IsNullOrWhiteSpace(lastname))
+                query = query.Where(p => p.Lastname.Contains(lastname));
+
+            if (!string.IsNullOrWhiteSpace(id))
+                query = query.Where(p => p.playerID.ToString().Contains(id));
+
+            return await query.ToListAsync();
+        }
+
+    }
+
+
+
+    [RelayCommand]
+    private async Task SearchPlayers()
+    {
+        var result = await FindPlayerAsync(FirstName_search, LastName_search, Id_search);
+
+        PlayerList.Clear();
+
+        foreach (var p in result)
+        {
+            PlayerList.Add(new PlayerViewModel(p)
+            {
+                Firstname = p.Firstname,
+                Lastname = p.Lastname,
+                ELO = p.ELO,
+                PlayerID = p.playerID
+            });
+        }
+    }
+#pragma warning restore CS8601 // Possible null reference assignment.
+
+
 
     [RelayCommand]
     private async Task AddPlayerToComp()
