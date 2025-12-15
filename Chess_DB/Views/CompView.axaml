@@ -97,8 +97,8 @@
 						</TextBlock.Text>
 					</TextBlock>
 
-					<TextBlock Text="| Date:" FontWeight="Bold" FontSize="25"/>
-					<TextBlock Text="{Binding Date}" FontSize="25"/>
+					<TextBlock Text="| Date:" FontWeight="Bold" FontSize="20"/>
+					<TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" FontSize="20"/>
 
 				</StackPanel>
 			

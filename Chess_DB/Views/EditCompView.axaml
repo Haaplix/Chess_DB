@@ -79,7 +79,7 @@
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Date:</Label>
 				<!-- <TextBox Text="{Binding Date}" Watermark="Enter Date" Width="140" Margin="10,75,5,0" FontSize="17"/> -->
-				<CalendarDatePicker SelectedDate="" Margin="10,75,5,0"/>
+				<CalendarDatePicker SelectedDate="{Binding Date}" SelectedDateFormat="Short" Margin="10,75,5,0"/>
 
 				<Label Margin="0,75,5,0" FontWeight="Bold" FontSize="25" >Place:</Label>
 				<TextBox Text="{Binding City}" Watermark="Enter City"  Width="140" Margin="10,75,5,0" FontSize="17"/>

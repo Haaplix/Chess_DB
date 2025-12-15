@@ -19,7 +19,7 @@ public partial class CompViewModel : ViewModelBase
     [ObservableProperty]
     public string _compName;
     [ObservableProperty]
-    public DateOnly? _date;
+    public DateTime? _date;
     [ObservableProperty]
     public string _city;
 
@@ -31,7 +31,7 @@ public partial class CompViewModel : ViewModelBase
     {
         CompId = comp.CompId;
         CompName = comp.CompName;
-        Date = comp.Date;
+        Date = comp.Date.HasValue ? comp.Date.Value.ToDateTime(TimeOnly.MinValue) : null;
         City = comp.City;
         Country = comp.Country;
         _currentComp = comp;
@@ -65,9 +65,11 @@ public partial class CompViewModel : ViewModelBase
 #pragma warning disable CS8601 // Possible null reference assignment.
             var editComp = new Competition
             {
+                CompId = CompId,
                 CompName = CompName,
                 City = City,
                 Country = Country,
+                Date = Date.HasValue ? DateOnly.FromDateTime(Date.Value) : null,
             };
             context.Competitions.Update(editComp);
             await context.SaveChangesAsync();
