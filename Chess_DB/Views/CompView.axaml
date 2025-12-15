@@ -94,8 +94,15 @@
 					<TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" FontSize="20"/>
 
 				</StackPanel>
-			
+
+				<Button Command="{Binding AddPlayerToCompCommand}"
+						Margin="5,10,5,5"
+						Padding="5"
+						FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" >
+						+
+				</Button>
         </Grid>
+		
         
 
     </DockPanel>

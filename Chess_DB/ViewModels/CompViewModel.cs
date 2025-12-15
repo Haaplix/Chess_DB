@@ -67,4 +67,21 @@ public partial class CompViewModel : ViewModelBase
 
         }
     }
+
+    [RelayCommand]
+    private async Task AddPlayerToComp()
+    {
+        using (var context = new AppDbContext())
+        {
+            var playerComp = new PlayerCompetition
+            {
+                CompetitionsCompId = CompId,
+                PlayersplayerId = 1/*get player id from somewhere*/
+            };
+            context.PlayerCompetition.Add(playerComp);
+            await context.SaveChangesAsync();
+
+            Console.WriteLine($"Player added to competition ID: {CompId}");
+        }
+    }
 }
