@@ -42,9 +42,18 @@ public partial class MainWindow : Window
         {
             var dialog = new AddPtoCWindow
             {
-                DataContext = new CompViewModel(m.CompToEdit)
+                DataContext = new CompViewModel(m.Comp)
             };
             m.Reply(dialog.ShowDialog<WindowAddPtoCViewModel?>(w));
+        });
+
+        WeakReferenceMessenger.Default.Register<MainWindow, WindowAddMtoCMessage>(this, static (w, m) =>
+        {
+            var dialog = new AddMtoCWindow
+            {
+                DataContext = new CompViewModel(m.Comp)
+            };
+            m.Reply(dialog.ShowDialog<WindowAddMtoCViewModel?>(w));
         });
 
 

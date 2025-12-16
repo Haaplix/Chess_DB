@@ -135,7 +135,7 @@
 			</ItemsControl>
 		</ScrollViewer>
 		
-		<Button Command="{Binding OpendWindowAdddMatchCommand}"
+		<Button Command="{Binding OpendWindowAddPtoCCommand}"
 				HorizontalAlignment="Right"
 				Margin="5,10,5,5"
 				Padding="5"
@@ -180,7 +180,7 @@
 			</ItemsControl.ItemTemplate>
 			</ItemsControl>
 		</ScrollViewer>
-		<Button Command="{Binding OpendWindowAdddMatchCommand}"
+		<Button Command="{Binding OpendWindowAddMtoCCommand}"
 				HorizontalAlignment="Right"
 				Margin="5,10,5,5"
 				Padding="5"

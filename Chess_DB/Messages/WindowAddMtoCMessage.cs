@@ -4,11 +4,11 @@ using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace Chess_DB.Messages;
 
-public class WindowAddPtoCMessage : AsyncRequestMessage<WindowAddPtoCViewModel?>
+public class WindowAddMtoCMessage : AsyncRequestMessage<WindowAddMtoCViewModel?>
 {
     public Competition? Comp { get; }
 
-    public WindowAddPtoCMessage(Competition comp)
+    public WindowAddMtoCMessage(Competition comp)
     {
         Comp = comp;
     }

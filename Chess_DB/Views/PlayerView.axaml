@@ -103,12 +103,12 @@
                 </StackPanel>
         </DockPanel> 
         <TextBlock Grid.Row="0" TextElement.Foreground="#144039"
-                            Text="COMPETITIONS:"
-                            FontWeight="Bold"
-                            FontSize="25"
-                            HorizontalAlignment="Left"
-							TextDecorations = "Underline"
-                            Margin="5"/>
+                Text="COMPETITIONS:"
+                FontWeight="Bold"
+                FontSize="25"
+                HorizontalAlignment="Left"
+                TextDecorations = "Underline"
+                Margin="5"/>
 		
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">
                 <ItemsControl ItemsSource="{Binding CompList}">
@@ -153,7 +153,7 @@
                         FontWeight="Bold"
                         FontSize="25"
                         HorizontalAlignment="Left"
-                                                TextDecorations = "Underline"
+                        TextDecorations = "Underline"
                         Margin="5"/>
         
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">

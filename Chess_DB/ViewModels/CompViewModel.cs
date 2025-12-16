@@ -52,9 +52,15 @@ public partial class CompViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task OpendWindowAdddMatchAsync()
+    private async Task OpendWindowAddPtoCAsync()
     {
         var editcompwindow = await WeakReferenceMessenger.Default.Send(new WindowAddPtoCMessage(_currentComp));
+    }
+
+    [RelayCommand]
+    private async Task OpendWindowAddMtoCAsync()
+    {
+        var editcompwindow = await WeakReferenceMessenger.Default.Send(new WindowAddMtoCMessage(_currentComp));
     }
 
 
