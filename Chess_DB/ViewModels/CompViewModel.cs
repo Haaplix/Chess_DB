@@ -84,6 +84,8 @@ public partial class CompViewModel : ViewModelBase
             Console.WriteLine($"Competition modified: {CompName} {Country} {City} {Date} (ID generated: {CompId})");
 
         }
+        WeakReferenceMessenger.Default.Send(new CompMessage(this));
+
     }
 
 
@@ -198,5 +200,14 @@ public partial class CompViewModel : ViewModelBase
 
             Console.WriteLine($"Player added to competition ID: {CompId}, Player ID: {player.PlayerID}");
         }
+        WeakReferenceMessenger.Default.Send(new CompMessage(this));
+        PlayersInCompList.Add(player);
+    }
+
+    [RelayCommand]
+    private async Task UpdateComp()
+    {
+        LoadPlayer();
+        LoadPlayerInComp();
     }
 }

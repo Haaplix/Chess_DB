@@ -1,16 +1,6 @@
-
-using System;
-using Microsoft.EntityFrameworkCore;
-using CommunityToolkit.Mvvm.Input;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.Messaging;
-using Chess_DB.Messages;
-using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Linq;
 
 
 namespace Chess_DB.ViewModels;
@@ -64,7 +54,7 @@ public partial class PlayersPageViewModel : ViewModelBase
             await context.SaveChangesAsync();
 
             Console.WriteLine($"Player added: {LastN} {FirstN} (ID generated: {newPlayer.playerID})");
-
+            PlayerList.Add(new PlayerViewModel(newPlayer));
         }
 
         //Clear inputs after adding
@@ -73,8 +63,7 @@ public partial class PlayersPageViewModel : ViewModelBase
         Id = null;
 
 
-        await Task.Delay(50);
-        LoadPlayer();
+
     }
 
 
