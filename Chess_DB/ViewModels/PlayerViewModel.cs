@@ -52,7 +52,7 @@ public partial class PlayerViewModel : ViewModelBase
     {
         using (var context = new AppDbContext())
         {
-#pragma warning disable CS8601 // Possible null reference assignment.
+// #pragma warning disable CS8601 // Possible null reference assignment.
             var editPlayer = new Player
             {
                 Firstname = Firstname,
