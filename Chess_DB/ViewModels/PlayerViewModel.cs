@@ -1,14 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Data.Common;
 using System.Threading.Tasks;
-using Avalonia.Animation.Easings;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
+
 
 namespace Chess_DB.ViewModels;
 
@@ -32,7 +30,7 @@ public partial class PlayerViewModel : ViewModelBase
         ELO = player.ELO;
         PlayerID = player.playerID;
         _currentPlayer = player;
-        // LoadComp();
+        LoadComp();
     }
 
     [RelayCommand]
