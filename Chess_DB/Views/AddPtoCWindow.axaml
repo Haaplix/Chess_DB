@@ -79,7 +79,7 @@
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="350">
           <ItemsControl ItemsSource="{Binding PlayerList}">
             <ItemsControl.ItemTemplate>
-            	<DataTemplate x:DataType="vm:PlayerViewModel">
+            	<DataTemplate x:DataType="vm:LightPlayerViewModel">
     				<Button
 						Command="{Binding $parent[Window].DataContext.AddPlayerToCompCommand}"
 						CommandParameter="{Binding}"

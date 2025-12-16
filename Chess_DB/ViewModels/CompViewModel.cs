@@ -184,7 +184,7 @@ public partial class CompViewModel : ViewModelBase
 
 
     [RelayCommand]
-    private async Task AddPlayerToComp(PlayerViewModel player)
+    private async Task AddPlayerToComp(LightPlayerViewModel player)
     {
         using (var context = new AppDbContext())
         {

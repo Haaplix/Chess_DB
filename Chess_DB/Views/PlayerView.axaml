@@ -114,7 +114,7 @@
                 <ItemsControl ItemsSource="{Binding CompList}">
                     <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                            <Button Command="{Binding OpendCompCommand}" Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                            <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
                                     <DockPanel LastChildFill="True">
 
                                             <!-- Left side: Firstname + Lastname -->
@@ -157,34 +157,34 @@
                         Margin="5"/>
         
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">
-                <ItemsControl ItemsSource="{Binding CompList}">
+                <ItemsControl >
                     <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                            <Button Command="{Binding OpendCompCommand}" Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                            <Button  Padding="20" Margin="5" HorizontalAlignment="Stretch">
                                     <DockPanel LastChildFill="True">
 
                                             <!-- Left side: Firstname + Lastname -->
                                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                                    <TextBlock Text="{Binding CompName}" FontSize="30" FontWeight="Bold"/>
+                                                    <TextBlock Text="" FontSize="30" FontWeight="Bold"/>
                                             </StackPanel>
 
                                             <!-- Right side: ELO + ID -->
                                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
                                                     <TextBlock Margin="20,0,0,0" FontSize="20" FontWeight="Bold">
                                                     <Run Text="Country: " />
-                                                    <Run Text="{Binding Country}" />
+                                                    <Run Text="" />
                                                     </TextBlock>
                                                     <TextBlock Margin="30,0,0,0" FontSize="20" FontWeight="Bold">
                                                     <Run Text="City: " />
-                                                    <Run Text="{Binding City}" />
+                                                    <Run Text="" />
                                                     </TextBlock>
                                                     <TextBlock Margin="40,0,0,0" FontSize="20">
                                                     <Run Text="Date: " />
-                                                    <Run Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
+                                                    <Run Text="" />
                                                     </TextBlock>
                                                     <TextBlock Margin="50,0,0,0" FontSize="20">
                                                     <Run Text="ID: " />
-                                                    <Run Text="{Binding CompId}" />
+                                                    <Run Text="" />
                                                     </TextBlock>
                                             </StackPanel>
 

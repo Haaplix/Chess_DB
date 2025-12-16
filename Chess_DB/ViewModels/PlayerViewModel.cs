@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -30,7 +31,7 @@ public partial class PlayerViewModel : ViewModelBase
         ELO = player.ELO;
         PlayerID = player.playerID;
         _currentPlayer = player;
-        LoadComp();
+        LoadPinComp();
     }
 
     [RelayCommand]
@@ -52,7 +53,7 @@ public partial class PlayerViewModel : ViewModelBase
     {
         using (var context = new AppDbContext())
         {
-#pragma warning disable CS8601 // Possible null reference assignment.
+// #pragma warning disable CS8601 // Possible null reference assignment.
             var editPlayer = new Player
             {
                 Firstname = Firstname,
@@ -69,20 +70,27 @@ public partial class PlayerViewModel : ViewModelBase
     }
 
     [ObservableProperty]
-    private ObservableCollection<CompViewModel> compList = new();
+    private ObservableCollection<LightCompViewModel> compList = new();
 
     [RelayCommand]
-    public void LoadComp()
+    public void LoadPinComp()
     {
         using (var context = new AppDbContext())
         {
             context.Database.EnsureCreated();
+            var playersInComp = context.PlayerCompetition
+                .Where(pc => pc.PlayerId == PlayerID)
+                .ToListAsync().Result;
             var competitions = context.Competitions.ToListAsync().Result;
             CompList.Clear();
 
-            foreach (var comp in competitions)
+            foreach (var pc in playersInComp)
             {
-                CompList.Add(new CompViewModel(comp));
+                var comp = competitions.FirstOrDefault(c => c.CompId == pc.CompId);
+                if (comp != null)
+                {
+                    CompList.Add(new LightCompViewModel(comp));
+                }
             }
         }
     }
