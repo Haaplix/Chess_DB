@@ -46,7 +46,6 @@ public partial class CompetitionsPageViewModel : ViewModelBase
         {
 #pragma warning disable CS8601 // Possible null reference assignment.
             context.Database.EnsureCreated();
-
             var newCompetition = new Competition
             {
                 CompName = CompetitionName,
@@ -58,7 +57,7 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             context.Competitions.Add(newCompetition);
             await context.SaveChangesAsync();
 
-
+            CompList.Add(new CompViewModel(newCompetition));
 
             // Clear the input fields after adding the competition
             CompetitionName = City = Country = string.Empty;

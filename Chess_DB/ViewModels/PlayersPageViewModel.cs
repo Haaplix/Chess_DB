@@ -24,15 +24,8 @@ public partial class PlayersPageViewModel : ViewModelBase
     [ObservableProperty]
     private int? _elo = 1400;
     [ObservableProperty]
-    // [Required(ErrorMessage = "Id is required.")]
-
     private int? _id;
 
-    // [ObservableProperty]
-    // private string? searchText;
-
-    // [ObservableProperty]
-    // private bool isBusy;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public PlayersPageViewModel()
@@ -81,8 +74,6 @@ public partial class PlayersPageViewModel : ViewModelBase
         var playerwindow = await WeakReferenceMessenger.Default.Send(new WindowPlayerMessage());
     }
 
-
-
     [ObservableProperty]
     private ObservableCollection<PlayerViewModel> playerList = new();
 
@@ -129,8 +120,6 @@ public partial class PlayersPageViewModel : ViewModelBase
         }
 
     }
-
-
 
     [RelayCommand]
     private async Task SearchPlayers()

@@ -77,7 +77,7 @@
       </DockPanel>
 
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="350">
-          <ItemsControl ItemsSource="{Binding PlayerList}">
+          <ItemsControl ItemsSource="{Binding PlayerNotIncompList}">
             <ItemsControl.ItemTemplate>
             	<DataTemplate x:DataType="vm:LightPlayerViewModel">
     				<Button

@@ -35,7 +35,7 @@ public partial class CompViewModel : ViewModelBase
         City = comp.City;
         Country = comp.Country;
         _currentComp = comp;
-        LoadPlayer();
+        LoadPlayerNotInComp();
         LoadPlayerInComp();
     }
 
@@ -90,22 +90,26 @@ public partial class CompViewModel : ViewModelBase
 
 
     [ObservableProperty]
-    private ObservableCollection<LightPlayerViewModel> playerList = new();
+    private ObservableCollection<LightPlayerViewModel> playerNotIncompList = new();
     [ObservableProperty]
     private ObservableCollection<LightPlayerViewModel> playersInCompList = new();
 
-    [RelayCommand]
-    public void LoadPlayer()
+
+    public void LoadPlayerNotInComp()
     {
         using (var context = new AppDbContext())
         {
             context.Database.EnsureCreated();
-            var LightPlayers = context.Players.ToListAsync().Result;
-            PlayerList.Clear();
+            var playersNotInComp = context.Players
+                .Where(p => !context.PlayerCompetition
+                .Any(pc => pc.CompId == CompId && pc.PlayerId == p.playerID))
+            .ToList();
 
-            foreach (var player in LightPlayers)
+            PlayerNotIncompList.Clear();
+
+            foreach (var player in playersNotInComp)
             {
-                PlayerList.Add(new LightPlayerViewModel(player));
+                PlayerNotIncompList.Add(new LightPlayerViewModel(player));
             }
         }
     }
@@ -168,11 +172,11 @@ public partial class CompViewModel : ViewModelBase
     {
         var result = await FindPlayerAsync(FirstName_search, LastName_search, Id_search);
 
-        PlayerList.Clear();
+        PlayerNotIncompList.Clear();
 
         foreach (var p in result)
         {
-            PlayerList.Add(new LightPlayerViewModel(p)
+            PlayerNotIncompList.Add(new LightPlayerViewModel(p)
             {
                 Firstname = p.Firstname,
                 Lastname = p.Lastname,
@@ -202,12 +206,13 @@ public partial class CompViewModel : ViewModelBase
         }
         WeakReferenceMessenger.Default.Send(new CompMessage(this));
         PlayersInCompList.Add(player);
+        PlayerNotIncompList.Remove(player);
     }
 
     [RelayCommand]
     private async Task UpdateComp()
     {
-        LoadPlayer();
+        LoadPlayerNotInComp();
         LoadPlayerInComp();
     }
 }
