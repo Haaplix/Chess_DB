@@ -38,6 +38,7 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessa
     {
         new ListItemTemplate(typeof(CompetitionsPageViewModel),"organization_regular"),
         new ListItemTemplate(typeof(PlayersPageViewModel),"PersonRegular"),
+        new ListItemTemplate(typeof(RankingPageViewModel),"trophy_regular"),
     };
 
 

@@ -1,0 +1,112 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Chess_DB.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Chess_DB.Views.RankingPageView"
+        x:DataType="vm:RankingPageViewModel"
+        >
+        <UserControl.Styles>
+                <Style Selector="TextBox">
+			<Setter Property="Foreground" Value="#D7D9CE" />
+                        <Setter Property="Background" Value="#226D68" />
+		</Style>
+		<Style Selector="TextBox:pointerover">
+			<Setter Property="Foreground" Value="#D7D9CE" />
+
+                <Style Selector="^ /template/ Border#PART_BorderElement">
+                        <Setter Property="BorderBrush" Value="#2c8f88"/>
+                        <Setter Property="Background" Value="#2c8f88" />
+                </Style>
+
+                <Style Selector="^ /template/ TextBlock#PART_Watermark">
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                </Style>
+		</Style>
+
+		<Style Selector="TextBox:focus">
+			<Setter Property="Foreground" Value="#144039" />
+
+		<Style Selector="^ /template/ TextBlock#PART_Watermark">
+                        <Setter Property="Foreground" Value="#144039" />
+                </Style>
+
+                <Style Selector="^ /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="#144039"/>
+                        <Setter Property="BorderThickness" Value="1" />
+                </Style>
+		</Style>
+                <Style Selector="Button">
+                        <Setter Property="Background" Value="#144039" />
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                </Style>
+                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="#226D68"></Setter>
+                        <Setter Property="Foreground" Value="#D7D9CE" />
+                </Style>
+                <Style Selector="Button:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground" Value="#144039" />
+                </Style>
+	</UserControl.Styles>
+        <StackPanel>
+                <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <TextBlock Grid.Row="0"
+                        Text="PLAYERS RANKING"
+                        FontWeight="Bold"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Margin="5"/>
+                </Grid>
+        <DockPanel LastChildFill="True">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" >
+                        <TextBox Watermark="FirstName" Text="{Binding FirstName_search}" Width="150"/>
+                        <TextBox Watermark="LastName" Text="{Binding LastName_search}" Width="150"/>
+                        <TextBox Watermark="ID" Text="{Binding Id_search}" Width="150"/>
+                        <Button Command="{Binding SearchPlayersCommand}">Search</Button>
+                </StackPanel>
+        </DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="430">
+                <ItemsControl ItemsSource="{Binding PlayerList}">
+                <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                           <Button Command="{Binding OpendPlayerCommand} " Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                                <DockPanel LastChildFill="True">
+
+                                        <!-- Left side: Firstname + Lastname -->
+                                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                                <TextBlock Text="{Binding Firstname}" FontSize="30" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Lastname}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+                                        </StackPanel>
+
+                                        <!-- Right side: ELO + ID -->
+                                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                                <TextBlock Margin="10,0,0,0" FontSize="20">
+                                                <Run Text="ELO: " />
+                                                <Run Text="{Binding ELO}" />
+                                                </TextBlock>
+                                                <TextBlock Margin="10,0,0,0" FontSize="20">
+                                                <Run Text="ID: " />
+                                                <Run Text="{Binding PlayerID}" />
+                                                </TextBlock>
+                                        </StackPanel>
+                                </DockPanel>
+                           </Button>
+                        </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                </ItemsControl>
+        </ScrollViewer>
+        </StackPanel>
+        
+
+</UserControl>

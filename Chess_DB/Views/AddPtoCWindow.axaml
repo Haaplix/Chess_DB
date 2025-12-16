@@ -7,8 +7,6 @@
 		xmlns:iv="using:Avalonia.Xaml.Interactions.Core"	
 		xmlns:av="using:Avalonia.Xaml.Interactivity"
 		xmlns:avc="using:Avalonia.Xaml.Interactions.Core"
-
-
 		mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="350"
 		x:Class="Chess_DB.Views.AddPtoCWindow"
 		Title="AddPtoCWindow"
@@ -16,8 +14,7 @@
 		WindowStartupLocation="CenterOwner"
 		ExtendClientAreaToDecorationsHint="True"
 		CanResize="False"
-		x:DataType="vm:CompViewModel"
->
+		x:DataType="vm:CompViewModel">
 
 	<Window.Styles>
 		<Style Selector="TextBox">

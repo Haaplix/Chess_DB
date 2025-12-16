@@ -2,13 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Chess_DB.ViewModels"
         mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="350"
         x:Class="Chess_DB.Views.AddMtoCWindow"
         Title="AddMtoCWindow"
         Width="750" Height="450"
         WindowStartupLocation="CenterOwner"
         ExtendClientAreaToDecorationsHint="True"
-        CanResize="False">
+        CanResize="False"
+        x:DataType="vm:CompViewModel">
   <Window.Styles>
 		<Style Selector="TextBox">
 			<Setter Property="Foreground" Value="#D7D9CE" />
@@ -55,8 +57,93 @@
 					Background ="#D7D9CE"
 					TextElement.Foreground="#144039"
 					>
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header/Title Bar Row -->
+        <TextBlock Text="ADD A MATCH TO COMPETITION" Margin="5" Padding="5" FontWeight="Bold" FontSize="30" TextAlignment="Center"/>
 
-    <TextBlock Text="ADD A MATCH TO COMPETITION" Margin="5" Padding="5" FontWeight="Bold" FontSize="30" TextAlignment="Center"/>
-    
+        <!-- Main Content Area with SplitView -->
+        <SplitView Grid.Row="1"
+                   PanePlacement="Left"
+                   DisplayMode="Inline"
+                   IsPaneOpen="True"
+                   OpenPaneLength="350"
+                   PaneBackground= "#144039"
+                   Background ="#D7D9CE">
+            <!-- The Collapsible/Expandable Pane -->
+            
+            <SplitView.Pane>
+              <StackPanel Margin="20">
+                <ComboBox x:Name="Player1" SelectedIndex="0"
+                          Width="200" MaxDropDownHeight="300"
+                          SelectedValue=""
+                          ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold">
+                  <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Firstname"/>
+                                <Binding Path="Lastname"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    </DataTemplate>
+                  </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="BLACK" Margin="5,15,5,5" Padding="5" FontWeight="Bold" FontSize="20" TextAlignment="Center" TextElement.Foreground="#D7D9CE"/>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center" >
+                  <TextBox  Text="" Width="20" Height="40" TextElement.Foreground="#D7D9CE" TextElement.FontSize="20" TextElement.FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                  <TextBlock Text="-->" Margin="5" Padding="5" FontWeight="Bold" FontSize="20" TextAlignment="Center" TextElement.Foreground="#D7D9CE"/>
+                  <TextBox Text="" Width="30" Height="40" TextElement.Foreground="#D7D9CE" TextElement.FontSize="20" TextElement.FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                </StackPanel>
+              </StackPanel>
+            </SplitView.Pane>
+
+            <!-- The Main Content -->
+            <SplitView.Content>
+                <StackPanel Margin="20">
+                <ComboBox x:Name="Player2" SelectedIndex="0"
+                          Width="200" MaxDropDownHeight="300"
+                          SelectedValue=""
+                          ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold" TextElement.Foreground="#144039">
+                  <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Firstname"/>
+                                <Binding Path="Lastname"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    </DataTemplate>
+                  </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="WHITE" Margin="5,15,5,5" Padding="5" FontWeight="Bold" FontSize="20" TextAlignment="Center" TextElement.Foreground="#144039"/>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center" >
+                  <TextBox  Text="" Width="20" Height="40" TextElement.Foreground="#144039" TextElement.FontSize="20" TextElement.FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                  <TextBlock Text="-->" Margin="5" Padding="5" FontWeight="Bold" FontSize="20" TextAlignment="Center" TextElement.Foreground="#144039"/>
+                  <TextBox Text="" Width="30" Height="40" TextElement.Foreground="#144039" TextElement.FontSize="20" TextElement.FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                </StackPanel>
+              </StackPanel>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+    <Button Command="" Margin = "5,15,5,5" HorizontalAlignment="Center" Height="40" Width="200" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+				SAVE
+				</Button>
+    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="WINNER:" Margin="5,5,5,5" Padding="5" FontWeight="Bold" FontSize="30" />
+                <RadioButton Content="BLACK" Margin="0,5,0,0" FontWeight="Bold" FontSize="30" TextElement.Foreground="#144039"/>
+                <RadioButton Content="WHITE" Margin="0,5,0,0" FontWeight="Bold" FontSize="30" TextElement.Foreground="#144039"/>
+    </StackPanel>
+    <Button Command="" HorizontalAlignment="Stretch" Height="60" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+				SAVE MATCH
+				</Button>
   </StackPanel>
+  
 </Window>
