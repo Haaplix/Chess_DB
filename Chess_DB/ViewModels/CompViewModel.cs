@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -37,6 +36,7 @@ public partial class CompViewModel : ViewModelBase
         Country = comp.Country;
         _currentComp = comp;
         LoadPlayer();
+        LoadPlayerInComp();
     }
 
     [RelayCommand]
@@ -88,8 +88,9 @@ public partial class CompViewModel : ViewModelBase
 
 
     [ObservableProperty]
-    private ObservableCollection<PlayerViewModel> playerList = new();
-    private ObservableCollection<PlayerViewModel> PlayersInCompList = new();
+    private ObservableCollection<LightPlayerViewModel> playerList = new();
+    [ObservableProperty]
+    private ObservableCollection<LightPlayerViewModel> playersInCompList = new();
 
     [RelayCommand]
     public void LoadPlayer()
@@ -97,12 +98,12 @@ public partial class CompViewModel : ViewModelBase
         using (var context = new AppDbContext())
         {
             context.Database.EnsureCreated();
-            var players = context.Players.ToListAsync().Result;
+            var LightPlayers = context.Players.ToListAsync().Result;
             PlayerList.Clear();
 
-            foreach (var player in players)
+            foreach (var player in LightPlayers)
             {
-                PlayerList.Add(new PlayerViewModel(player));
+                PlayerList.Add(new LightPlayerViewModel(player));
             }
         }
     }
@@ -120,10 +121,10 @@ public partial class CompViewModel : ViewModelBase
 
             foreach (var pc in playersInComp)
             {
-                var player = context.Players.Find(pc.PlayerId);
-                if (player != null)
+                var LightPlayer = context.Players.Find(pc.PlayerId);
+                if (LightPlayer != null)
                 {
-                    PlayersInCompList.Add(new PlayerViewModel(player));
+                    PlayersInCompList.Add(new LightPlayerViewModel(LightPlayer));
                 }
             }
         }
@@ -169,7 +170,7 @@ public partial class CompViewModel : ViewModelBase
 
         foreach (var p in result)
         {
-            PlayerList.Add(new PlayerViewModel(p)
+            PlayerList.Add(new LightPlayerViewModel(p)
             {
                 Firstname = p.Firstname,
                 Lastname = p.Lastname,
