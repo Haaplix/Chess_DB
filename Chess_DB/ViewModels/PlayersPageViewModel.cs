@@ -54,7 +54,7 @@ public partial class PlayersPageViewModel : ViewModelBase
             context.Players.Add(newPlayer);
             await context.SaveChangesAsync();
 
-            Console.WriteLine($"Player added: {LastN} {FirstN} (ID generated: {newPlayer.playerID})");
+           
             PlayerList.Add(new PlayerViewModel(newPlayer));
         }
 

@@ -81,7 +81,7 @@ public partial class CompViewModel : ViewModelBase
             context.Competitions.Update(editComp);
             await context.SaveChangesAsync();
 
-            Console.WriteLine($"Competition modified: {CompName} {Country} {City} {Date} (ID generated: {CompId})");
+
 
         }
         WeakReferenceMessenger.Default.Send(new CompMessage(this));
@@ -122,7 +122,7 @@ public partial class CompViewModel : ViewModelBase
                 .Where(pc => pc.CompId == CompId)
                 .ToListAsync().Result;
 
-            Console.WriteLine($"Players in Competition ID {CompId}: {playersInComp.Count}");
+
             PlayersInCompList.Clear();
 
             foreach (var pc in playersInComp)
@@ -202,7 +202,6 @@ public partial class CompViewModel : ViewModelBase
             context.PlayerCompetition.Add(playerComp);
             await context.SaveChangesAsync();
 
-            Console.WriteLine($"Player added to competition ID: {CompId}, Player ID: {player.PlayerID}");
         }
         WeakReferenceMessenger.Default.Send(new CompMessage(this));
         PlayersInCompList.Add(player);
@@ -215,4 +214,6 @@ public partial class CompViewModel : ViewModelBase
         LoadPlayerNotInComp();
         LoadPlayerInComp();
     }
+
+
 }

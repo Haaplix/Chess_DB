@@ -64,7 +64,6 @@ public partial class PlayerViewModel : ViewModelBase
             context.Players.Update(editPlayer);
             await context.SaveChangesAsync();
 
-            Console.WriteLine($"Player modified: {Firstname} {Lastname} (ID generated: {PlayerID})");
             WeakReferenceMessenger.Default.Send(new PlayerMessage(this));
         }
     }
