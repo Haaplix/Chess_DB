@@ -15,15 +15,15 @@ Il s'agit d'une application de gestion des matchs d’une fédération d’éche
 
 ### Gérer les joueurs
 
-Dans une page spécifique aux joueurs, il y a la possibilité d'ajouter un joueur en spécifiant: **Prénom, Nom, ELO**. Pour chaque joueur, un **Id** leur sera attribué automatiquement./
-Sur la page, la liste de chaque joueur ajouté est affichée avec leur Nom, Prénom, ELO, Id. Chaque joueur est un bouton cliquable qui permet d'afficher plus de détail sur le joueur sélectionné./
-Dans la page spécifique à un seul joueur, il est possible de le modifier (ex: Nom, Prénom,...).
+Dans une page spécifique aux joueurs, il y a la possibilité d'ajouter un joueur en spécifiant: **Prénom, Nom, ELO**. Pour chaque joueur, un **Id** leur sera attribué automatiquement.\
+Sur la page, la liste de chaque joueur ajouté est affichée avec leur Nom, Prénom, ELO, Id. Chaque joueur est un bouton cliquable qui permet d'afficher plus de détail sur le joueur sélectionné.\
+Dans la page spécifique à un seul joueur, il est possible de le modifier (ex: Nom, Prénom,...).\
 
 ### Gérer les compétitions
 
-Dans une page spécifique aux compétitions, il y a la possibilité d'ajouter une compétition en spécifiant: **Nom, Pays, Ville, Date**. Pour chaque compétition, un **Id** leur sera attribué automatiquement./
-Sur la page, la liste de chaque compétition ajoutée est affichée avec leur Nom, Pays, Ville, Date, Id. Chaque compétition est un bouton cliquable qui permet d'afficher plus de détail sur la compétition sélectionnée./
-Dans la page spécifique à une seule compétition, il est possible de la modifier (ex: Nom, Pays,...).
+Dans une page spécifique aux compétitions, il y a la possibilité d'ajouter une compétition en spécifiant: **Nom, Pays, Ville, Date**. Pour chaque compétition, un **Id** leur sera attribué automatiquement.\
+Sur la page, la liste de chaque compétition ajoutée est affichée avec leur Nom, Pays, Ville, Date, Id. Chaque compétition est un bouton cliquable qui permet d'afficher plus de détail sur la compétition sélectionnée.\
+Dans la page spécifique à une seule compétition, il est possible de la modifier (ex: Nom, Pays,...).\
 
 #### Inscription des joueurs aux compétitions
 
@@ -45,15 +45,15 @@ Dans une page spécifique au classement, est affichée une liste de tous les jou
 
 ## Adaptabilité à d'autres fédérations/sports
 
-Cette application peut être déclinée pour tous les fédérations/sports qui ont des matchs un contre un./
+Cette application peut être déclinée pour tous les fédérations/sports qui ont des matchs un contre un.\
 Les seuls paramètres propres aux échecs sont;
 
-- les coups
-- l'ELO
+- Les coups
+- L'ELO
 
-Les coups peuvent être modifiés pour inscrire un score (ex: 2-1) et l'ELO peut être décliné/supprimé pour s'adapter à un autre sport.
+Les coups peuvent être modifiés pour inscrire un score (ex: 2-1) et l'ELO peut être décliné/supprimé pour s'adapter à un autre sport.\
 
-Il n'y a pas besoin de modifier toute l'application si il faut l'utiliser avec une autre fédération. Il y a juste quelques paramètres à modifier qui ne vont pas interférer avec le fonctionnement global de l'application.
+Il n'y a pas besoin de modifier toute l'application si il faut l'utiliser avec une autre fédération. Il y a juste quelques paramètres à modifier qui ne vont pas interférer avec le fonctionnement global de l'application.\
 
 ## Principes SOLID
 
