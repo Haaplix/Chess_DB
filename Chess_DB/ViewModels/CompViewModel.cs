@@ -37,6 +37,7 @@ public partial class CompViewModel : ViewModelBase
         _currentComp = comp;
         LoadPlayerNotInComp();
         LoadPlayerInComp();
+        LoadMatchs();
     }
 
     [RelayCommand]
@@ -138,11 +139,11 @@ public partial class CompViewModel : ViewModelBase
 
 
     [ObservableProperty]
-    private string firstName_search;
+    private string? firstName_search;
     [ObservableProperty]
-    private string lastName_search;
+    private string? lastName_search;
     [ObservableProperty]
-    private string id_search;
+    private string? id_search;
 
 
     public static async Task<List<Player>> FindPlayerAsync(string? firstname, string? lastname, string? id)
@@ -230,12 +231,17 @@ public partial class CompViewModel : ViewModelBase
     private async Task AddMatch()
     {
         Console.WriteLine(P1.PlayerID);
+        Console.WriteLine(P1.Firstname);
         Console.WriteLine(P2.PlayerID);
         if (BlackIsCheck)
         {
             WinnerId = P1.PlayerID;
         }
-        else { WinnerId = P2.PlayerID; }
+        else
+        {
+            WinnerId = P2.PlayerID;
+        }
+
 
         using (var context = new AppDbContext())
         {
@@ -245,12 +251,29 @@ public partial class CompViewModel : ViewModelBase
                 Player2Id = P2.PlayerID,
                 WinnerId = WinnerId,
                 CompetitionId = CompId,
-
-
             };
             context.Match.Add(match);
             await context.SaveChangesAsync();
+        }
+    }
 
+
+    [ObservableProperty]
+    private ObservableCollection<MatchViewModel> matchList = new();
+
+    [RelayCommand]
+    public void LoadMatchs()
+    {
+        using (var context = new AppDbContext())
+        {
+            context.Database.EnsureCreated();
+            var matchs = context.Match.ToListAsync().Result;
+            MatchList.Clear();
+
+            foreach (var match in matchs)
+            {
+                MatchList.Add(new MatchViewModel(match));
+            }
         }
     }
 }

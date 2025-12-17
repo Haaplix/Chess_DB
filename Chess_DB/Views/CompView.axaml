@@ -152,7 +152,7 @@
                             Margin="5"/>
 		<StackPanel Orientation="Horizontal">
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="850" HorizontalAlignment="Left">
-			<ItemsControl ItemsSource="{Binding PlayerNotIncompList}">
+			<ItemsControl ItemsSource="{Binding MatchList}">
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 				<Button  Padding="20" Margin="5" HorizontalAlignment="Stretch">
@@ -160,18 +160,14 @@
 
 					<!-- Left side: Firstname + Lastname -->
 					<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-						<TextBlock Text="{Binding Firstname}" FontSize="30" FontWeight="Bold"/>
-						<TextBlock Text="{Binding Lastname}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+						<TextBlock Text="{Binding Player1Id}" FontSize="30" FontWeight="Bold"/>
+						<TextBlock Text="{Binding Player2Id}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
 						<TextBlock Margin="10,0,0,0" FontSize="20">
-						<Run Text="ELO: " />
-						<Run Text="{Binding ELO}" />
-						</TextBlock>
-						<TextBlock Margin="10,0,0,0" FontSize="20">
-						<Run Text="ID: " />
-						<Run Text="{Binding PlayerID}" />
+						<Run Text="Winner: " />
+						<Run Text="{Binding WinnerId}" />
 						</TextBlock>
 					</StackPanel>
 					</DockPanel>

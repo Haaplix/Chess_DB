@@ -52,142 +52,128 @@
                 </Style>
 	</UserControl.Styles>
         <ScrollViewer>
-        <StackPanel>
-        <DockPanel LastChildFill="True" TextElement.Foreground="#144039">
                 <StackPanel>
-                        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
-                                <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                        <DockPanel LastChildFill="True" TextElement.Foreground="#144039">
+                                <StackPanel>
+                                        <Grid Background="#D7D9CE" Margin="5" TextElement.Foreground="#144039">
+                                                <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
 
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Grid.Row="0"
-                                                Text="{Binding Firstname}"
-                                                FontWeight="Bold"
-                                                FontSize="40"
-                                                HorizontalAlignment="Center"
-                                                Margin="10"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <TextBlock Grid.Row="0"
+                                                                Text="{Binding Firstname}"
+                                                                FontWeight="Bold"
+                                                                FontSize="40"
+                                                                HorizontalAlignment="Center"
+                                                                Margin="10"/>
 
-                                        <TextBlock Grid.Row="0"
-                                                Text="{Binding Lastname}"
-                                                FontWeight="Bold"
-                                                FontSize="40"
-                                                HorizontalAlignment="Center"
-                                                Margin="10"/>
+                                                        <TextBlock Grid.Row="0"
+                                                                Text="{Binding Lastname}"
+                                                                FontWeight="Bold"
+                                                                FontSize="40"
+                                                                HorizontalAlignment="Center"
+                                                                Margin="10"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Command="{Binding OpendWindowEditPlayerCommand}"
+                                                                Margin="5,10,5,5"
+                                                                Padding="5"
+                                                                FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+                                                                EDIT
+                                                        </Button>
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,10" Spacing="10">
+                                                        <TextBlock Text="ID:" FontWeight="Bold" FontSize="25"/>
+                                                        <TextBlock Text="{Binding PlayerID}" FontSize="25"/>
+                                                        <TextBlock Text="| ELO:" FontWeight="Bold" FontSize="25"/>
+                                                        <TextBlock Text="{Binding ELO}" FontSize="25"/>
+                                                </StackPanel>
+                                        </Grid>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Command="{Binding OpendWindowEditPlayerCommand}"
-                                                Margin="5,10,5,5"
-                                                Padding="5"
-                                                FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
-                                                EDIT
-                                        </Button>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,10" Spacing="10">
-                                        <TextBlock Text="ID:" FontWeight="Bold" FontSize="25"/>
-                                        <TextBlock Text="{Binding PlayerID}" FontSize="25"/>
-                                        <TextBlock Text="| ELO:" FontWeight="Bold" FontSize="25"/>
-                                        <TextBlock Text="{Binding ELO}" FontSize="25"/>
-                                </StackPanel>
-                        </Grid>
-                </StackPanel>
-        </DockPanel> 
-        <TextBlock Grid.Row="0" TextElement.Foreground="#144039"
-                Text="COMPETITIONS:"
-                FontWeight="Bold"
-                FontSize="25"
-                HorizontalAlignment="Left"
-                TextDecorations = "Underline"
-                Margin="5"/>
+                        </DockPanel> 
+                        <TextBlock Grid.Row="0" TextElement.Foreground="#144039"
+                                Text="COMPETITIONS:"
+                                FontWeight="Bold"
+                                FontSize="25"
+                                HorizontalAlignment="Left"
+                                TextDecorations = "Underline"
+                                Margin="5"/>
 		
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">
-                <ItemsControl ItemsSource="{Binding CompList}">
-                    <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                            <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
-                                    <DockPanel LastChildFill="True">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">
+                                <ItemsControl ItemsSource="{Binding CompList}">
+                                        <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                        <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                                                                <DockPanel LastChildFill="True">
 
-                                            <!-- Left side: Firstname + Lastname -->
-                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                                    <TextBlock Text="{Binding CompName}" FontSize="30" FontWeight="Bold"/>
-                                            </StackPanel>
+                                                                        <!-- Left side: Firstname + Lastname -->
+                                                                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                                                                <TextBlock Text="{Binding CompName}" FontSize="30" FontWeight="Bold"/>
+                                                                        </StackPanel>
 
-                                            <!-- Right side: ELO + ID -->
-                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                                                    <TextBlock Margin="20,0,0,0" FontSize="20" FontWeight="Bold">
-                                                    <Run Text="Country: " />
-                                                    <Run Text="{Binding Country}" />
-                                                    </TextBlock>
-                                                    <TextBlock Margin="30,0,0,0" FontSize="20" FontWeight="Bold">
-                                                    <Run Text="City: " />
-                                                    <Run Text="{Binding City}" />
-                                                    </TextBlock>
-                                                    <TextBlock Margin="40,0,0,0" FontSize="20">
-                                                    <Run Text="Date: " />
-                                                    <Run Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
-                                                    </TextBlock>
-                                                    <TextBlock Margin="50,0,0,0" FontSize="20">
-                                                    <Run Text="ID: " />
-                                                    <Run Text="{Binding CompId}" />
-                                                    </TextBlock>
-                                            </StackPanel>
-
-                                    </DockPanel>
-                            </Button>
-                            </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        <TextBlock Grid.Row="0" TextElement.Foreground="#144039"
-                        Text="MATCHES:"
-                        FontWeight="Bold"
-                        FontSize="25"
-                        HorizontalAlignment="Left"
-                        TextDecorations = "Underline"
-                        Margin="5"/>
+                                                                        <!-- Right side: ELO + ID -->
+                                                                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                                                                <TextBlock Margin="20,0,0,0" FontSize="20" FontWeight="Bold">
+                                                                                <Run Text="Country: " />
+                                                                                <Run Text="{Binding Country}" />
+                                                                                </TextBlock>
+                                                                                <TextBlock Margin="30,0,0,0" FontSize="20" FontWeight="Bold">
+                                                                                <Run Text="City: " />
+                                                                                <Run Text="{Binding City}" />
+                                                                                </TextBlock>
+                                                                                <TextBlock Margin="40,0,0,0" FontSize="20">
+                                                                                <Run Text="Date: " />
+                                                                                <Run Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
+                                                                                </TextBlock>
+                                                                                <TextBlock Margin="50,0,0,0" FontSize="20">
+                                                                                <Run Text="ID: " />
+                                                                                <Run Text="{Binding CompId}" />
+                                                                                </TextBlock>
+                                                                        </StackPanel>
+                                                                </DockPanel>
+                                                        </Button>
+                                                </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                        </ScrollViewer>
+                        <TextBlock Grid.Row="0" TextElement.Foreground="#144039"
+                                        Text="MATCHES:"
+                                        FontWeight="Bold"
+                                        FontSize="25"
+                                        HorizontalAlignment="Left"
+                                        TextDecorations = "Underline"
+                                        Margin="5"/>
         
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">
-                <ItemsControl >
-                    <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                            <Button  Padding="20" Margin="5" HorizontalAlignment="Stretch">
-                                    <DockPanel LastChildFill="True">
+                        <!-- <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="850" HorizontalAlignment="Left">
+                                <ItemsControl ItemsSource="{Binding MatchList}">
+                                        <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                        <Button  Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                                                                <DockPanel LastChildFill="True">
 
-                                            <!-- Left side: Firstname + Lastname -->
-                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                                    <TextBlock Text="" FontSize="30" FontWeight="Bold"/>
-                                            </StackPanel>
+                                                                 
+                                                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                                                        <TextBlock Text="{Binding Player1Id}" FontSize="30" FontWeight="Bold"/>
+                                                                        <TextBlock Text="{Binding Player2Id}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+                                                                </StackPanel>
 
-                                            <!-- Right side: ELO + ID -->
-                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                                                    <TextBlock Margin="20,0,0,0" FontSize="20" FontWeight="Bold">
-                                                    <Run Text="Country: " />
-                                                    <Run Text="" />
-                                                    </TextBlock>
-                                                    <TextBlock Margin="30,0,0,0" FontSize="20" FontWeight="Bold">
-                                                    <Run Text="City: " />
-                                                    <Run Text="" />
-                                                    </TextBlock>
-                                                    <TextBlock Margin="40,0,0,0" FontSize="20">
-                                                    <Run Text="Date: " />
-                                                    <Run Text="" />
-                                                    </TextBlock>
-                                                    <TextBlock Margin="50,0,0,0" FontSize="20">
-                                                    <Run Text="ID: " />
-                                                    <Run Text="" />
-                                                    </TextBlock>
-                                            </StackPanel>
-
-                                    </DockPanel>
-                            </Button>
-                            </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </StackPanel>
-	</ScrollViewer>       
+                                                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                                                        <TextBlock Margin="10,0,0,0" FontSize="20">
+                                                                        <Run Text="Winner: " />
+                                                                        <Run Text="{Binding WinnerId}" />
+                                                                        </TextBlock>
+                                                                </StackPanel>
+                                                                </DockPanel>
+                                                        </Button>
+                                                </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                        </ScrollViewer>-->
+		</StackPanel>
+	</ScrollViewer>     
 </UserControl>

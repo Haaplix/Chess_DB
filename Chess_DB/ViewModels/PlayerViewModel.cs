@@ -94,6 +94,6 @@ public partial class PlayerViewModel : ViewModelBase
         }
     }
 
-    
+
 
 }
