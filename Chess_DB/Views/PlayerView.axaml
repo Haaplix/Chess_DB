@@ -108,7 +108,7 @@
                                 <ItemsControl ItemsSource="{Binding CompList}">
                                         <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                        <Button Padding="20" Margin="5" HorizontalAlignment="Stretch">
+                                                        <Button Command="{Binding OpendCompCommand}" Padding="20" Margin="5" HorizontalAlignment="Stretch">
                                                                 <DockPanel LastChildFill="True">
 
                                                                         <!-- Left side: Firstname + Lastname -->

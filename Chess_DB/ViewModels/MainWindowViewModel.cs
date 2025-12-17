@@ -15,7 +15,7 @@ using Chess_DB.Views;
 
 namespace Chess_DB.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessage>, IRecipient<CompMessage>
+public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessage>, IRecipient<CompMessage>, IRecipient<MatchMessage>
 {
 
     [ObservableProperty]
@@ -53,6 +53,7 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessa
     {
         WeakReferenceMessenger.Default.Register<PlayerMessage>(this);
         WeakReferenceMessenger.Default.Register<CompMessage>(this);
+        WeakReferenceMessenger.Default.Register<MatchMessage>(this);
     }
 
 
@@ -63,6 +64,11 @@ public partial class MainWindowViewModel : ViewModelBase, IRecipient<PlayerMessa
     }
 
     public void Receive(CompMessage message)
+    {
+        CurrentPage = message.Value;
+    }
+
+    public void Receive(MatchMessage message)
     {
         CurrentPage = message.Value;
     }

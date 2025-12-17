@@ -33,5 +33,11 @@ public partial class LightPlayerViewModel : ViewModelBase
         CurrentPlayer = player;
 
     }
+
+    [RelayCommand]
+    private async Task OpendPlayerAsync()
+    {
+        var playerusercontrol = WeakReferenceMessenger.Default.Send(new PlayerMessage(new PlayerViewModel(CurrentPlayer)));
+    }
 }
 

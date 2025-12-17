@@ -34,9 +34,11 @@ public partial class MatchViewModel : ViewModelBase
     [ObservableProperty]
     public Player _winner;
     [ObservableProperty]
+    public Competition _comp;
+    [ObservableProperty]
     public string _playedPieces = string.Empty;
 
-    public MatchViewModel(Match match, Player p1, Player p2, Player winner)
+    public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp)
     {
         MatchId = match.MatchId;
         CompetitionId = match.CompetitionId;
@@ -47,6 +49,12 @@ public partial class MatchViewModel : ViewModelBase
         Player2 = p2;
         WinnerId = match.WinnerId;
         Winner = winner;
+        Comp = comp;
+    }
 
+    [RelayCommand]
+    private async Task OpenMatchAsync()
+    {
+        var playerusercontrol = WeakReferenceMessenger.Default.Send(new MatchMessage(this));
     }
 }

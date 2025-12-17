@@ -25,6 +25,7 @@ public partial class LightCompViewModel : ViewModelBase
 
     [ObservableProperty]
     public string _country;
+    [ObservableProperty]
     public Competition _currentComp;
 
     public LightCompViewModel(Competition comp)
@@ -34,6 +35,12 @@ public partial class LightCompViewModel : ViewModelBase
         Date = comp.Date.HasValue ? comp.Date.Value.ToDateTime(TimeOnly.MinValue) : null;
         City = comp.City;
         Country = comp.Country;
+        CurrentComp = comp;
     }
-    
+
+    [RelayCommand]
+    private async Task OpendCompAsync()
+    {
+        var playerusercontrol = WeakReferenceMessenger.Default.Send(new CompMessage(new CompViewModel(CurrentComp)));
+    }
 }

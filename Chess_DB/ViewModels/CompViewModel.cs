@@ -277,7 +277,8 @@ public partial class CompViewModel : ViewModelBase
                 var player1 = await context.Players.FindAsync(match.Player1Id);
                 var player2 = await context.Players.FindAsync(match.Player2Id);
                 var winner = await context.Players.FindAsync(match.WinnerId);
-                MatchList.Add(new MatchViewModel(match, player1, player2, winner));
+                var compet = await context.Competitions.FindAsync(match.CompetitionId);
+                MatchList.Add(new MatchViewModel(match, player1, player2, winner, compet));
             }
         }
     }
