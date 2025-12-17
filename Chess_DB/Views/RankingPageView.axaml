@@ -76,7 +76,7 @@
                         <Button Command="{Binding SearchPlayersCommand}">Search</Button>
                 </StackPanel>
         </DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="430">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="440">
                 <ItemsControl ItemsSource="{Binding PlayerList}">
                 <ItemsControl.ItemTemplate>
                         <DataTemplate>
