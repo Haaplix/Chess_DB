@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Avalonia.Controls.Converters;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -135,6 +137,8 @@ public partial class CompViewModel : ViewModelBase
                 }
             }
         }
+        P1 = PlayersInCompList.FirstOrDefault();
+        P2 = PlayersInCompList.FirstOrDefault();
     }
 
 
@@ -223,6 +227,10 @@ public partial class CompViewModel : ViewModelBase
 
     private int WinnerId;
 
+    [ObservableProperty]
+    public List<string> _piecesPlayed = new();
+
+
 
     [ObservableProperty]
     private bool _blackIsCheck;
@@ -230,18 +238,7 @@ public partial class CompViewModel : ViewModelBase
     [RelayCommand]
     private async Task AddMatch()
     {
-        Console.WriteLine(P1.PlayerID);
-        Console.WriteLine(P1.Firstname);
-        Console.WriteLine(P2.PlayerID);
-        if (BlackIsCheck)
-        {
-            WinnerId = P1.PlayerID;
-        }
-        else
-        {
-            WinnerId = P2.PlayerID;
-        }
-
+        WinnerId = BlackIsCheck ? P1.PlayerID : P2.PlayerID;
 
         using (var context = new AppDbContext())
         {
@@ -251,6 +248,7 @@ public partial class CompViewModel : ViewModelBase
                 Player2Id = P2.PlayerID,
                 WinnerId = WinnerId,
                 CompetitionId = CompId,
+                PlayedPieces = PiecesPlayed,
             };
             context.Match.Add(match);
             await context.SaveChangesAsync();
@@ -275,5 +273,63 @@ public partial class CompViewModel : ViewModelBase
                 MatchList.Add(new MatchViewModel(match));
             }
         }
+    }
+    [ObservableProperty]
+    private string _blackPMBefore = string.Empty;
+    [ObservableProperty]
+    private string _blackPMAfter = string.Empty;
+    [ObservableProperty]
+    private string _whitePMBefore = string.Empty;
+    [ObservableProperty]
+    private string _whitePMAfter = string.Empty;
+
+    [RelayCommand]
+    private void AddPiecePlayed()
+    {
+
+
+        PiecesPlayed.Add(WhitePMBefore);
+        PiecesPlayed.Add("->");
+        PiecesPlayed.Add(WhitePMAfter);
+        PiecesPlayed.Add("|");
+        PiecesPlayed.Add(BlackPMBefore);
+        PiecesPlayed.Add("->");
+        PiecesPlayed.Add(BlackPMAfter);
+        PiecesPlayed.Add("|");
+
+        BlackPMBefore = string.Empty;
+        BlackPMAfter = string.Empty;
+        WhitePMBefore = string.Empty;
+        WhitePMAfter = string.Empty;
+
+    }
+    [ObservableProperty]
+    private string _blackPMBefore = string.Empty;
+    [ObservableProperty]
+    private string _blackPMAfter = string.Empty;
+    [ObservableProperty]
+    private string _whitePMBefore = string.Empty;
+    [ObservableProperty]
+    private string _whitePMAfter = string.Empty;
+
+    [RelayCommand]
+    private void AddPiecePlayed()
+    {
+
+
+        PiecesPlayed.Add(WhitePMBefore);
+        PiecesPlayed.Add("->");
+        PiecesPlayed.Add(WhitePMAfter);
+        PiecesPlayed.Add("|");
+        PiecesPlayed.Add(BlackPMBefore);
+        PiecesPlayed.Add("->");
+        PiecesPlayed.Add(BlackPMAfter);
+        PiecesPlayed.Add("|");
+
+        BlackPMBefore = string.Empty;
+        BlackPMAfter = string.Empty;
+        WhitePMBefore = string.Empty;
+        WhitePMAfter = string.Empty;
+
     }
 }
