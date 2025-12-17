@@ -75,7 +75,7 @@
               <StackPanel Margin="20">
                 <ComboBox x:Name="Player1" SelectedIndex="0"
                           Width="200" MaxDropDownHeight="300"
-                          SelectedValue=""
+                          SelectedValue="{Binding P1}"
                           ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold">
                   <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -106,7 +106,7 @@
                 <StackPanel Margin="20">
                 <ComboBox x:Name="Player2" SelectedIndex="0"
                           Width="200" MaxDropDownHeight="300"
-                          SelectedValue=""
+                          SelectedValue="{Binding P2}"
                           ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold" TextElement.Foreground="#144039">
                   <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -138,10 +138,10 @@
 				</Button>
     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="WINNER:" Margin="5,5,5,5" Padding="5" FontWeight="Bold" FontSize="30" />
-                <RadioButton Content="BLACK" Margin="0,5,0,0" FontWeight="Bold" FontSize="30" TextElement.Foreground="#144039"/>
+                <RadioButton IsChecked="{Binding BlackIsCheck}" Content="BLACK" Margin="0,5,0,0" FontWeight="Bold" FontSize="30" TextElement.Foreground="#144039"/>
                 <RadioButton Content="WHITE" Margin="0,5,0,0" FontWeight="Bold" FontSize="30" TextElement.Foreground="#144039"/>
     </StackPanel>
-    <Button Command="" HorizontalAlignment="Stretch" Height="60" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <Button Command="{Binding AddMatchCommand}" HorizontalAlignment="Stretch" Height="60" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
 				SAVE MATCH
 				</Button>
   </StackPanel>
