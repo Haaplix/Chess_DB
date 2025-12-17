@@ -36,12 +36,17 @@ public partial class MatchViewModel : ViewModelBase
     [ObservableProperty]
     public string _playedPieces = string.Empty;
 
-    public MatchViewModel(Match match)
+    public MatchViewModel(Match match, Player p1, Player p2, Player winner)
     {
         MatchId = match.MatchId;
         CompetitionId = match.CompetitionId;
+        Competition = match.Competition;
         Player1Id = match.Player1Id;
+        Player1 = p1;
         Player2Id = match.Player2Id;
+        Player2 = p2;
         WinnerId = match.WinnerId;
+        Winner = winner;
+
     }
 }

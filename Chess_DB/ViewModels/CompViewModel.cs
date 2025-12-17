@@ -39,7 +39,7 @@ public partial class CompViewModel : ViewModelBase
         _currentComp = comp;
         LoadPlayerNotInComp();
         LoadPlayerInComp();
-        LoadMatchs();
+        LoadMatchsAsync();
     }
 
     [RelayCommand]
@@ -235,6 +235,9 @@ public partial class CompViewModel : ViewModelBase
     [ObservableProperty]
     private bool _blackIsCheck;
 
+    [ObservableProperty]
+    private Player _winnerplayer;
+
     [RelayCommand]
     private async Task AddMatch()
     {
@@ -250,6 +253,7 @@ public partial class CompViewModel : ViewModelBase
                 CompetitionId = CompId,
                 PlayedPieces = PiecesPlayed,
             };
+
             context.Match.Add(match);
             await context.SaveChangesAsync();
         }
@@ -260,7 +264,7 @@ public partial class CompViewModel : ViewModelBase
     private ObservableCollection<MatchViewModel> matchList = new();
 
     [RelayCommand]
-    public void LoadMatchs()
+    public async Task LoadMatchsAsync()
     {
         using (var context = new AppDbContext())
         {
@@ -270,7 +274,10 @@ public partial class CompViewModel : ViewModelBase
 
             foreach (var match in matchs)
             {
-                MatchList.Add(new MatchViewModel(match));
+                var player1 = await context.Players.FindAsync(match.Player1Id);
+                var player2 = await context.Players.FindAsync(match.Player2Id);
+                var winner = await context.Players.FindAsync(match.WinnerId);
+                MatchList.Add(new MatchViewModel(match, player1, player2, winner));
             }
         }
     }
