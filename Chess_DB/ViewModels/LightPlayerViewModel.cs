@@ -21,7 +21,7 @@ public partial class LightPlayerViewModel : ViewModelBase
     public int _eLO;
     [ObservableProperty]
     public int _playerID;
-
+    [ObservableProperty]
     public Player _currentPlayer;
 
     public LightPlayerViewModel(Player player)
@@ -30,7 +30,7 @@ public partial class LightPlayerViewModel : ViewModelBase
         Lastname = player.Lastname;
         ELO = player.ELO;
         PlayerID = player.playerID;
-        _currentPlayer = player;
+        CurrentPlayer = player;
 
     }
 }

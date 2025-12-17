@@ -286,37 +286,6 @@ public partial class CompViewModel : ViewModelBase
     [RelayCommand]
     private void AddPiecePlayed()
     {
-
-
-        PiecesPlayed.Add(WhitePMBefore);
-        PiecesPlayed.Add("->");
-        PiecesPlayed.Add(WhitePMAfter);
-        PiecesPlayed.Add("|");
-        PiecesPlayed.Add(BlackPMBefore);
-        PiecesPlayed.Add("->");
-        PiecesPlayed.Add(BlackPMAfter);
-        PiecesPlayed.Add("|");
-
-        BlackPMBefore = string.Empty;
-        BlackPMAfter = string.Empty;
-        WhitePMBefore = string.Empty;
-        WhitePMAfter = string.Empty;
-
-    }
-    [ObservableProperty]
-    private string _blackPMBefore = string.Empty;
-    [ObservableProperty]
-    private string _blackPMAfter = string.Empty;
-    [ObservableProperty]
-    private string _whitePMBefore = string.Empty;
-    [ObservableProperty]
-    private string _whitePMAfter = string.Empty;
-
-    [RelayCommand]
-    private void AddPiecePlayed()
-    {
-
-
         PiecesPlayed.Add(WhitePMBefore);
         PiecesPlayed.Add("->");
         PiecesPlayed.Add(WhitePMAfter);
