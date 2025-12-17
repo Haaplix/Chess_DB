@@ -215,5 +215,42 @@ public partial class CompViewModel : ViewModelBase
         LoadPlayerInComp();
     }
 
+    [ObservableProperty]
+    private LightPlayerViewModel _p1;
+    [ObservableProperty]
+    private LightPlayerViewModel _p2;
 
+    private int WinnerId;
+
+
+    [ObservableProperty]
+    private bool _blackIsCheck;
+
+    [RelayCommand]
+    private async Task AddMatch()
+    {
+        Console.WriteLine(P1.PlayerID);
+        Console.WriteLine(P2.PlayerID);
+        if (BlackIsCheck)
+        {
+            WinnerId = P1.PlayerID;
+        }
+        else { WinnerId = P2.PlayerID; }
+
+        using (var context = new AppDbContext())
+        {
+            var match = new Match
+            {
+                Player1Id = P1.PlayerID,
+                Player2Id = P2.PlayerID,
+                WinnerId = WinnerId,
+                CompetitionId = CompId,
+
+
+            };
+            context.Match.Add(match);
+            await context.SaveChangesAsync();
+
+        }
+    }
 }

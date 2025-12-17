@@ -1,10 +1,12 @@
 
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Match
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MatchId { get; set; }
     public int CompetitionId { get; set; }
 

@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
     public DbSet<Player> Players { get; set; }
     public DbSet<Competition> Competitions { get; set; }
     public DbSet<PlayerCompetition> PlayerCompetition { get; set; }
+    public DbSet<Match> Match { get; set; }
 
     string dbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Chess_DB\Data_Base_Services\AppDatabase.db"));
 
