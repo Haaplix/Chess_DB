@@ -150,38 +150,38 @@
                                         Margin="5"/>
         
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="850" HorizontalAlignment="Left">
-                                <ItemsControl ItemsSource="{Binding PinMatchList}">
-                                        <ItemsControl.ItemTemplate>
-				<DataTemplate>
-				<Button Command="" Padding="20" Margin="5" HorizontalAlignment="Stretch">
-					<DockPanel LastChildFill="True">
+							<ItemsControl ItemsSource="{Binding PinMatchList}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Button Command="{Binding OpenMatchCommand}" Padding="20" Margin="5" HorizontalAlignment="Stretch">
+											<DockPanel LastChildFill="True">
 
-					<!-- Left side: Firstname + Lastname -->
-					<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-						<TextBlock  FontSize="30" FontWeight="Bold">
-						<Run Text="{Binding Player1.Firstname}"  />
-						<Run Text="{Binding Player1.Lastname}" />
-						</TextBlock>
-						<TextBlock Text="   VS   " FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-						<TextBlock  FontSize="30" FontWeight="Bold">
-						<Run Text="{Binding Player2.Firstname}"  />
-						<Run Text="{Binding Player2.Lastname}" />
-						</TextBlock>
-					</StackPanel>
+											<!-- Left side: Firstname + Lastname -->
+												<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+													<TextBlock  FontSize="30" FontWeight="Bold">
+													<Run Text="{Binding Player1.Firstname}"  />
+													<Run Text="{Binding Player1.Lastname}" />
+													</TextBlock>
+													<TextBlock Text="   VS   " FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+													<TextBlock  FontSize="30" FontWeight="Bold">
+													<Run Text="{Binding Player2.Firstname}"  />
+													<Run Text="{Binding Player2.Lastname}" />
+													</TextBlock>
+												</StackPanel>
 
-					<StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-						<TextBlock Margin="10,0,0,0" FontSize="20">
-						<Run Text="Winner: " />
-						<Run Text="{Binding Winner.Firstname}" />
-						<Run Text="{Binding Winner.Lastname}" />
-						</TextBlock>
-					</StackPanel>
-					</DockPanel>
-				</Button>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-			</ItemsControl>
-                        </ScrollViewer>
+												<StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+													<TextBlock Margin="10,0,0,0" FontSize="20">
+													<Run Text="Winner: " />
+													<Run Text="{Binding Winner.Firstname}" />
+													<Run Text="{Binding Winner.Lastname}" />
+													</TextBlock>
+												</StackPanel>
+											</DockPanel>
+										</Button>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+					</ScrollViewer>
 		</StackPanel>
 	</ScrollViewer>     
 </UserControl>
