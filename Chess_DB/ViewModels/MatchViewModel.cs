@@ -37,8 +37,9 @@ public partial class MatchViewModel : ViewModelBase
     public Competition _comp;
     [ObservableProperty]
     public List<string> _playedPieces = new();
+    public Match Match;
 
-    public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp, List<string> playedPice)
+    public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp, List<string> playedPiece)
     {
         MatchId = match.MatchId;
         CompetitionId = match.CompetitionId;
@@ -50,13 +51,41 @@ public partial class MatchViewModel : ViewModelBase
         WinnerId = match.WinnerId;
         Winner = winner;
         Comp = comp;
-        PlayedPieces =playedPice;  
+        PlayedPieces = playedPiece;
+        Match = match;
     }
 
     [RelayCommand]
     private async Task OpenMatchAsync()
     {
         var playerusercontrol = WeakReferenceMessenger.Default.Send(new MatchMessage(this));
+    }
+    [RelayCommand]
+    private async Task OpendWindowEditMatchAsync()
+    {
+        var editcompwindow = await WeakReferenceMessenger.Default.Send(new WindowEditMatchMessage(Match, Player1, Player2, Winner, Comp, PlayedPieces));
+    }
+
+    [RelayCommand]
+    private async Task EditMatch()
+    {
+        using (var context = new AppDbContext())
+        {
+            // #pragma warning disable CS8601 // Possible null reference assignment.
+            var editMatch = new Match
+            {
+                MatchId = MatchId,
+                CompetitionId = CompetitionId,
+                Player1Id = Player1Id,
+                Player2Id = Player2Id,
+                WinnerId = WinnerId,
+                PlayedPieces = PlayedPieces,
+            };
+            context.Match.Update(editMatch);
+            await context.SaveChangesAsync();
+
+            WeakReferenceMessenger.Default.Send(new MatchMessage(this));
+        }
     }
 
 }

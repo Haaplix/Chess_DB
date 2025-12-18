@@ -84,9 +84,6 @@ public partial class CompViewModel : ViewModelBase
             };
             context.Competitions.Update(editComp);
             await context.SaveChangesAsync();
-
-
-
         }
         WeakReferenceMessenger.Default.Send(new CompMessage(this));
 

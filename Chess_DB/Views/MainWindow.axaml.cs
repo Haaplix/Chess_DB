@@ -75,6 +75,15 @@ public partial class MainWindow : Window
             };
             m.Reply(dialog.ShowDialog<WindowEditCompViewModel?>(w));
         });
+
+        WeakReferenceMessenger.Default.Register<MainWindow, WindowEditMatchMessage>(this, static (w, m) =>
+        {
+            var dialog = new EditMatchView
+            {
+                DataContext = new MatchViewModel(m.MatchToEdit, m.player1, m.player2, m.Winner, m.competition, m.listplay)
+            };
+            m.Reply(dialog.ShowDialog<WindowEditMatchViewModel?>(w));
+        });
     }
 
 }

@@ -80,7 +80,16 @@
                                             <Run Text="{Binding Player2.Firstname}"  />
                                             <Run Text="{Binding Player2.Lastname}" />
                                         </TextBlock>
-                                </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button Command="{Binding OpendWindowEditMatchCommand}"
+							Margin="40,10,5,5"
+							Padding="5"
+							FontWeight="Bold" FontSize="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="120" >
+							EDIT
+					</Button>
+                                        </StackPanel>
+                                
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0,5,0,10" Spacing="10">
                                         <TextBlock Text="ELO:" FontWeight="Bold" FontSize="25">
@@ -90,11 +99,16 @@
                                         <Run Text="{Binding Player2.ELO}" />
                                         </TextBlock>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,7,0,10" Spacing="10" HorizontalAlignment="Center">
-                                  <TextBlock Grid.Row="0"
-                                    FontWeight="Bold" FontSize="30"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="0,5,0,10" Spacing="10">
+                                        <TextBlock Margin="7,0,0,0" FontSize="25" FontWeight="Bold">
+						<Run Text="Winner: " />
+						<Run Text="{Binding Winner.Firstname}" />
+						<Run Text="{Binding Winner.Lastname}" />
+					</TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,50,0,10" Spacing="10" HorizontalAlignment="Center">
+                                  <TextBlock 
+                                    FontWeight="Bold" FontSize="30" Margin="0,-4,0,0">
                                     <Run Text="{Binding Competition.CompName}"/>
                                     <Run Text=":  "/> 
                                   </TextBlock>
@@ -109,8 +123,23 @@
                                   </TextBlock>
                                   <TextBlock Text="| Date:" FontWeight="Bold" FontSize="25"/>
                                   <TextBlock Text="{Binding Competition.Date, StringFormat={}{0:dd/MM/yyyy}}" FontSize="25"/>
-
                                 </StackPanel>
+                                <ItemsControl ItemsSource="{Binding PlayedPieces}"
+                                        Grid.Row="4"
+                                        Margin="0,100,0,10"
+                                        HorizontalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                        <TextBlock Text="{Binding}" Margin="5,5" FontSize="25" />
+                                        </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                         </Grid>
                 </StackPanel>
         </DockPanel> 
