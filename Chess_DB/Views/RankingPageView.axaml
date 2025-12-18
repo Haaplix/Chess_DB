@@ -77,7 +77,7 @@
                 </StackPanel>
         </DockPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="440">
-                <ItemsControl ItemsSource="{Binding PlayerList}">
+                <ItemsControl ItemsSource="{Binding PlayerEloRankList}">
                 <ItemsControl.ItemTemplate>
                         <DataTemplate>
                            <Button Command="{Binding OpendPlayerCommand} " Padding="20" Margin="5" HorizontalAlignment="Stretch">
