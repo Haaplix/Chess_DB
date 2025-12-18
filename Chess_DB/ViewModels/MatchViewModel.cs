@@ -57,4 +57,5 @@ public partial class MatchViewModel : ViewModelBase
     {
         var playerusercontrol = WeakReferenceMessenger.Default.Send(new MatchMessage(this));
     }
+
 }

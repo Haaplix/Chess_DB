@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Avalonia.Controls.Converters;
@@ -255,10 +256,64 @@ public partial class CompViewModel : ViewModelBase
             };
 
             context.Match.Add(match);
+            var winner = await context.Players.FindAsync(match.WinnerId);
+            var player1 = await context.Players.FindAsync(match.Player1Id);
+            var player2 = await context.Players.FindAsync(match.Player2Id);
+            Elo(winner, player1, player2);
             await context.SaveChangesAsync();
         }
     }
 
+
+    public void Elo(Player winner, Player p1, Player p2)
+    {
+
+        double pD1;
+        double pD2;
+        int K1;
+        int K2;
+        double D;
+        int W;
+        double newElo1;
+        double newElo2;
+        D = p1.ELO - p2.ELO;
+        if (p1.ELO < 2400)
+        {
+            K1 = 20;
+        }
+        else
+        {
+            K1 = 10;
+        }
+        if (p2.ELO < 2400)
+        {
+            K2 = 20;
+        }
+        else
+        {
+            K2 = 10;
+        }
+
+        pD1 = 1 / (1 + Math.Pow(10, -D / 400.0));
+        pD2 = 1 - pD1;
+        if (winner.playerID == p1.playerID)
+        {
+            W = 1;
+            newElo1 = p1.ELO + K1 * (W - pD1);
+            W = 0;
+            newElo2 = p2.ELO + K2 * (W - pD2);
+        }
+        else
+        {
+            W = 0;
+            newElo1 = p1.ELO + K1 * (W - pD1);
+            W = 1;
+            newElo2 = p2.ELO + K2 * (W - pD2);
+        }
+
+        p1.ELO = (int)Math.Round(newElo1);
+        p2.ELO = (int)Math.Round(newElo2);
+    }
 
     [ObservableProperty]
     private ObservableCollection<MatchViewModel> matchList = new();
@@ -279,9 +334,13 @@ public partial class CompViewModel : ViewModelBase
                 var winner = await context.Players.FindAsync(match.WinnerId);
                 var compet = await context.Competitions.FindAsync(match.CompetitionId);
                 MatchList.Add(new MatchViewModel(match, player1, player2, winner, compet));
+
             }
+            WeakReferenceMessenger.Default.Send(new CompMessage(this));
         }
     }
+
+
     [ObservableProperty]
     private string _blackPMBefore = string.Empty;
     [ObservableProperty]
