@@ -36,9 +36,9 @@ public partial class MatchViewModel : ViewModelBase
     [ObservableProperty]
     public Competition _comp;
     [ObservableProperty]
-    public string _playedPieces = string.Empty;
+    public List<string> _playedPieces = new();
 
-    public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp)
+    public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp, List<string> playedPice)
     {
         MatchId = match.MatchId;
         CompetitionId = match.CompetitionId;
@@ -50,6 +50,7 @@ public partial class MatchViewModel : ViewModelBase
         WinnerId = match.WinnerId;
         Winner = winner;
         Comp = comp;
+        PlayedPieces =playedPice;  
     }
 
     [RelayCommand]

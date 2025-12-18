@@ -113,7 +113,7 @@ public partial class PlayerViewModel : ViewModelBase
                 var player2 = await context.Players.FindAsync(match.Player2Id);
                 var winner = await context.Players.FindAsync(match.WinnerId);
                 var compet = await context.Competitions.FindAsync(match.CompetitionId);
-                PinMatchList.Add(new MatchViewModel(match, player1, player2, winner, compet));
+                PinMatchList.Add(new MatchViewModel(match, player1, player2, winner, compet, match.PlayedPieces));
             }
         }
     }
