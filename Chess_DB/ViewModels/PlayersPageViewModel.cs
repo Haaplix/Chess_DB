@@ -53,7 +53,7 @@ public partial class PlayersPageViewModel : ViewModelBase
             context.Players.Add(newPlayer);
             await context.SaveChangesAsync();
 
-           
+
             PlayerList.Add(new PlayerViewModel(newPlayer));
         }
 
