@@ -326,11 +326,15 @@ public partial class CompViewModel : ViewModelBase
 
             foreach (var match in matchs)
             {
-                var player1 = await context.Players.FindAsync(match.Player1Id);
-                var player2 = await context.Players.FindAsync(match.Player2Id);
-                var winner = await context.Players.FindAsync(match.WinnerId);
-                var compet = await context.Competitions.FindAsync(match.CompetitionId);
-                MatchList.Add(new MatchViewModel(match, player1, player2, winner, compet, match.PlayedPieces));
+                if (match.CompetitionId == CompId)
+                {
+                    var player1 = await context.Players.FindAsync(match.Player1Id);
+                    var player2 = await context.Players.FindAsync(match.Player2Id);
+                    var winner = await context.Players.FindAsync(match.WinnerId);
+                    var compet = await context.Competitions.FindAsync(match.CompetitionId);
+                    MatchList.Add(new MatchViewModel(match, player1, player2, winner, compet, match.PlayedPieces));
+                }
+
 
             }
             WeakReferenceMessenger.Default.Send(new CompMessage(this));
