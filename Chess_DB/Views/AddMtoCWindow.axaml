@@ -105,7 +105,7 @@
             <!-- The Main Content -->
             <SplitView.Content>
                 <StackPanel Margin="20">
-                <ComboBox x:Name="Player2" SelectedIndex="0"
+                <ComboBox x:Name="Player2" SelectedIndex="-1"
                           Width="200" MaxDropDownHeight="300"
                           SelectedValue="{Binding P2}"
                           ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold" TextElement.Foreground="#144039">

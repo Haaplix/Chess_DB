@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.PortableExecutable;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Avalonia.Controls.Converters;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -237,6 +240,7 @@ public partial class CompViewModel : ViewModelBase
     {
         LoadPlayerNotInComp();
         LoadPlayerInComp();
+        
     }
 
 
@@ -263,6 +267,7 @@ public partial class CompViewModel : ViewModelBase
             Elo(winner, player1, player2);
             await context.SaveChangesAsync();
         }
+        WeakReferenceMessenger.Default.Send(new CompMessage(this));
     }
 
 
