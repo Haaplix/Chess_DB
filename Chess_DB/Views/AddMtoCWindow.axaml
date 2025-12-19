@@ -73,10 +73,11 @@
             
             <SplitView.Pane>
               <StackPanel Margin="20">
-                <ComboBox x:Name="Player1" SelectedIndex="0"
+                <ComboBox x:Name="Player1" SelectedIndex="-1"
                           Width="200" MaxDropDownHeight="300"
                           SelectedValue="{Binding P1}"
-                          ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold">
+                          ItemsSource="{Binding PlayersInCompList}" HorizontalAlignment="Center" TextElement.FontSize="20" TextElement.FontWeight="Bold" 
+                          PlaceholderText="Select a player">
                   <ComboBox.ItemTemplate>
                     <DataTemplate>
                       <TextBlock>
