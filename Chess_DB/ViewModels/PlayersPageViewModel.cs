@@ -24,6 +24,14 @@ public partial class PlayersPageViewModel : ViewModelBase
     private int? _elo = 1400;
     [ObservableProperty]
     private int? _id;
+    [ObservableProperty]
+    private ObservableCollection<PlayerViewModel> playerList = new();
+    [ObservableProperty]
+    private string firstName_search;
+    [ObservableProperty]
+    private string lastName_search;
+    [ObservableProperty]
+    private string id_search;
 
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -53,7 +61,7 @@ public partial class PlayersPageViewModel : ViewModelBase
             context.Players.Add(newPlayer);
             await context.SaveChangesAsync();
 
-           
+
             PlayerList.Add(new PlayerViewModel(newPlayer));
         }
 
@@ -61,9 +69,6 @@ public partial class PlayersPageViewModel : ViewModelBase
         FirstN = LastN = string.Empty;
         Elo = 1400;
         Id = null;
-
-
-
     }
 
 
@@ -73,8 +78,6 @@ public partial class PlayersPageViewModel : ViewModelBase
         var playerwindow = await WeakReferenceMessenger.Default.Send(new WindowPlayerMessage());
     }
 
-    [ObservableProperty]
-    private ObservableCollection<PlayerViewModel> playerList = new();
 
     [RelayCommand]
     public void LoadPlayer()
@@ -91,13 +94,6 @@ public partial class PlayersPageViewModel : ViewModelBase
             }
         }
     }
-
-    [ObservableProperty]
-    private string firstName_search;
-    [ObservableProperty]
-    private string lastName_search;
-    [ObservableProperty]
-    private string id_search;
 
 
     public static async Task<List<Player>> FindPlayerAsync(string? firstname, string? lastname, string? id)

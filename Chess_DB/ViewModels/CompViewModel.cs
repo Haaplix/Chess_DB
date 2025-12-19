@@ -30,6 +30,46 @@ public partial class CompViewModel : ViewModelBase
     public string _country;
     public Competition _currentComp;
 
+
+    [ObservableProperty]
+    private ObservableCollection<LightPlayerViewModel> playerNotIncompList = new();
+    [ObservableProperty]
+    private ObservableCollection<LightPlayerViewModel> playersInCompList = new();
+
+    [ObservableProperty]
+    private string? firstName_search;
+    [ObservableProperty]
+    private string? lastName_search;
+    [ObservableProperty]
+    private string? id_search;
+    [ObservableProperty]
+    private LightPlayerViewModel _p1;
+    [ObservableProperty]
+    private LightPlayerViewModel _p2;
+
+    private int WinnerId;
+
+    [ObservableProperty]
+    public List<string> _piecesPlayed = new();
+    [ObservableProperty]
+    private bool _blackIsCheck;
+
+    [ObservableProperty]
+    private Player _winnerplayer;
+
+    [ObservableProperty]
+    private ObservableCollection<MatchViewModel> matchList = new();
+
+    [ObservableProperty]
+    private string _blackPMBefore = string.Empty;
+    [ObservableProperty]
+    private string _blackPMAfter = string.Empty;
+    [ObservableProperty]
+    private string _whitePMBefore = string.Empty;
+    [ObservableProperty]
+    private string _whitePMAfter = string.Empty;
+
+
     public CompViewModel(Competition comp)
     {
         CompId = comp.CompId;
@@ -89,13 +129,6 @@ public partial class CompViewModel : ViewModelBase
 
     }
 
-
-    [ObservableProperty]
-    private ObservableCollection<LightPlayerViewModel> playerNotIncompList = new();
-    [ObservableProperty]
-    private ObservableCollection<LightPlayerViewModel> playersInCompList = new();
-
-
     public void LoadPlayerNotInComp()
     {
         using (var context = new AppDbContext())
@@ -140,14 +173,6 @@ public partial class CompViewModel : ViewModelBase
     }
 
 
-    [ObservableProperty]
-    private string? firstName_search;
-    [ObservableProperty]
-    private string? lastName_search;
-    [ObservableProperty]
-    private string? id_search;
-
-
     public static async Task<List<Player>> FindPlayerAsync(string? firstname, string? lastname, string? id)
     {
         using (var _context = new AppDbContext())
@@ -167,7 +192,6 @@ public partial class CompViewModel : ViewModelBase
         }
 
     }
-
 
 
     [RelayCommand]
@@ -218,23 +242,6 @@ public partial class CompViewModel : ViewModelBase
         LoadPlayerInComp();
     }
 
-    [ObservableProperty]
-    private LightPlayerViewModel _p1;
-    [ObservableProperty]
-    private LightPlayerViewModel _p2;
-
-    private int WinnerId;
-
-    [ObservableProperty]
-    public List<string> _piecesPlayed = new();
-
-
-
-    [ObservableProperty]
-    private bool _blackIsCheck;
-
-    [ObservableProperty]
-    private Player _winnerplayer;
 
     [RelayCommand]
     private async Task AddMatch()
@@ -312,8 +319,6 @@ public partial class CompViewModel : ViewModelBase
         p2.ELO = (int)Math.Round(newElo2);
     }
 
-    [ObservableProperty]
-    private ObservableCollection<MatchViewModel> matchList = new();
 
     [RelayCommand]
     public async Task LoadMatchsAsync()
@@ -341,15 +346,6 @@ public partial class CompViewModel : ViewModelBase
         }
     }
 
-
-    [ObservableProperty]
-    private string _blackPMBefore = string.Empty;
-    [ObservableProperty]
-    private string _blackPMAfter = string.Empty;
-    [ObservableProperty]
-    private string _whitePMBefore = string.Empty;
-    [ObservableProperty]
-    private string _whitePMAfter = string.Empty;
 
     [RelayCommand]
     private void AddPiecePlayed()

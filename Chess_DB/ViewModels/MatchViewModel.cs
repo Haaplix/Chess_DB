@@ -35,6 +35,14 @@ public partial class MatchViewModel : ViewModelBase
     [ObservableProperty]
     public List<string> _playedPieces = new();
     private Match Match;
+    [ObservableProperty]
+    private string _blackPMBefore = string.Empty;
+    [ObservableProperty]
+    private string _blackPMAfter = string.Empty;
+    [ObservableProperty]
+    private string _whitePMBefore = string.Empty;
+    [ObservableProperty]
+    private string _whitePMAfter = string.Empty;
 
     public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp, List<string> playedPiece)
     {
@@ -85,14 +93,6 @@ public partial class MatchViewModel : ViewModelBase
         }
     }
 
-    [ObservableProperty]
-    private string _blackPMBefore = string.Empty;
-    [ObservableProperty]
-    private string _blackPMAfter = string.Empty;
-    [ObservableProperty]
-    private string _whitePMBefore = string.Empty;
-    [ObservableProperty]
-    private string _whitePMAfter = string.Empty;
 
     [RelayCommand]
     private void AddPiecePlayed()

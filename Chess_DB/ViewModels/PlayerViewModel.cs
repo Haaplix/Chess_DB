@@ -24,6 +24,10 @@ public partial class PlayerViewModel : ViewModelBase
     public int _playerID;
 
     public Player _currentPlayer;
+    [ObservableProperty]
+    private ObservableCollection<LightCompViewModel> compList = new();
+    [ObservableProperty]
+    private ObservableCollection<MatchViewModel> pinMatchList = new();
 
     public PlayerViewModel(Player player)
     {
@@ -70,8 +74,6 @@ public partial class PlayerViewModel : ViewModelBase
         }
     }
 
-    [ObservableProperty]
-    private ObservableCollection<LightCompViewModel> compList = new();
 
     [RelayCommand]
     public void LoadPinComp()
@@ -96,8 +98,6 @@ public partial class PlayerViewModel : ViewModelBase
         }
     }
 
-    [ObservableProperty]
-    private ObservableCollection<MatchViewModel> pinMatchList = new();
     public async Task LoadPinMatch()
     {
         using (var context = new AppDbContext())

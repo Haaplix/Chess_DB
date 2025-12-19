@@ -28,6 +28,18 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     [ObservableProperty]
     [Required(ErrorMessage = "*")]
     private string? _country;
+    [ObservableProperty]
+    private ObservableCollection<CompViewModel> compList = new();
+    [ObservableProperty]
+    private string name_search;
+    [ObservableProperty]
+    private string country_search;
+    [ObservableProperty]
+    private string city_search;
+    [ObservableProperty]
+    private string date_search;
+    [ObservableProperty]
+    private string id_search;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public CompetitionsPageViewModel()
@@ -73,9 +85,6 @@ public partial class CompetitionsPageViewModel : ViewModelBase
     }
 
 
-    [ObservableProperty]
-    private ObservableCollection<CompViewModel> compList = new();
-
     [RelayCommand]
     public void LoadComp()
     {
@@ -91,17 +100,6 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             }
         }
     }
-
-    [ObservableProperty]
-    private string name_search;
-    [ObservableProperty]
-    private string country_search;
-    [ObservableProperty]
-    private string city_search;
-    [ObservableProperty]
-    private string date_search;
-    [ObservableProperty]
-    private string id_search;
 
 
     public static async Task<List<Competition>> FindCompAsync(string? name, string? country, string? city, string? date, string? id)
@@ -135,8 +133,6 @@ public partial class CompetitionsPageViewModel : ViewModelBase
             return await query.ToListAsync();
         }
     }
-
-
 
     [RelayCommand]
     private async Task SearchCompetitions()
