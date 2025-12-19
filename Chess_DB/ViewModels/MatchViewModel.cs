@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Chess_DB.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.EntityFrameworkCore;
+
 
 
 namespace Chess_DB.ViewModels;
@@ -37,7 +34,7 @@ public partial class MatchViewModel : ViewModelBase
     public Competition _comp;
     [ObservableProperty]
     public List<string> _playedPieces = new();
-    public Match Match;
+    private Match Match;
 
     public MatchViewModel(Match match, Player p1, Player p2, Player winner, Competition comp, List<string> playedPiece)
     {

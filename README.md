@@ -4,7 +4,7 @@
 
 Il s'agit d'une application de gestion des matchs d’une fédération d’échecs qui sera gérée par le personnel administratif de la fédération. Cette application peut être déclinée pour tous les sports qui ont des matchs un contre un.
 
-## 1 .Fonctionnalitées
+## 1. Fonctionnalitées
 
 - Gérer les joueurs (Ajouter, modifier);
 - Gérer les compétitions (Ajouter, modifier);
@@ -53,11 +53,19 @@ Dans une page spécifique au classement, est affichée une liste de tous les jou
 
 ## 2. Diagramme de classes
 
+![Diagramme de classes](/Pictures/Diagramme%20de%20classes.png)
+
 ## Diagramme de séquence
 
 Diagramme de séquence qui montre l'affichage d'un match ainsi que la création d'un match.
 
+![Diagramme de séquence](/Pictures/Diagramme%20de%20séquence.svg)
+
 ## 3. Diagramme d'activité
+
+Diagramme d'activé de création d'une compétition.
+
+![Diagramme activé](/Pictures/Diagramme%20activite.svg)
 
 ## 4. Adaptabilité à d'autres fédérations/sports
 
