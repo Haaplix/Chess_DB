@@ -149,7 +149,7 @@
                                         TextDecorations = "Underline"
                                         Margin="5"/>
         
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="850" HorizontalAlignment="Left">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Width="950" HorizontalAlignment="Left">
 							<ItemsControl ItemsSource="{Binding PinMatchList}">
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>

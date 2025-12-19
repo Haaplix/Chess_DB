@@ -124,9 +124,12 @@
                                   <TextBlock Text="| Date:" FontWeight="Bold" FontSize="25"/>
                                   <TextBlock Text="{Binding Competition.Date, StringFormat={}{0:dd/MM/yyyy}}" FontSize="25"/>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,100,0,10" Spacing="10" HorizontalAlignment="Center">
+                                        <TextBlock Text="White --> White | Black --> Black" FontSize="25" FontWeight="Bold"/>
+                                </StackPanel>
                                 <ItemsControl ItemsSource="{Binding PlayedPieces}"
                                         Grid.Row="4"
-                                        Margin="0,100,0,10"
+                                        Margin="0,150,0,10"
                                         HorizontalAlignment="Center">
                                 <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>

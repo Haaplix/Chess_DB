@@ -88,4 +88,32 @@ public partial class MatchViewModel : ViewModelBase
         }
     }
 
+    [ObservableProperty]
+    private string _blackPMBefore = string.Empty;
+    [ObservableProperty]
+    private string _blackPMAfter = string.Empty;
+    [ObservableProperty]
+    private string _whitePMBefore = string.Empty;
+    [ObservableProperty]
+    private string _whitePMAfter = string.Empty;
+
+    [RelayCommand]
+    private void AddPiecePlayed()
+    {
+        PlayedPieces.Add(WhitePMBefore);
+        PlayedPieces.Add("->");
+        PlayedPieces.Add(WhitePMAfter);
+        PlayedPieces.Add("|");
+        PlayedPieces.Add(BlackPMBefore);
+        PlayedPieces.Add("->");
+        PlayedPieces.Add(BlackPMAfter);
+        PlayedPieces.Add("|");
+
+        BlackPMBefore = string.Empty;
+        BlackPMAfter = string.Empty;
+        WhitePMBefore = string.Empty;
+        WhitePMAfter = string.Empty;
+
+    }
+
 }
